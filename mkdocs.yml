@@ -1,0 +1,21 @@
+site_name: Portfolio Cybersécurité - Cherif Zouaoui
+site_url: https://ZouCherif.github.io/portfolio/
+theme:
+  name: material
+  palette:
+    # Mode sombre
+    - scheme: slate
+      primary: blue grey
+      accent: cyan
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - admonition
