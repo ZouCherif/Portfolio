@@ -23,7 +23,7 @@
     
     
       
-        <title>01 deploiement siem wazuh - Portfolio Cybersécurité - Cherif Zouaoui</title>
+        <title>Hybrid SOC Deployment & Threat Detection - Portfolio Cybersécurité - Cherif Zouaoui</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#2-architecture-technique" class="md-skip">
+        <a href="#hybrid-soc-deployment-threat-detection" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              01 deploiement siem wazuh
+              Hybrid SOC Deployment &amp; Threat Detection
             
           </span>
         </div>
@@ -360,6 +360,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -368,7 +370,7 @@
   <span class="md-ellipsis">
     
   
-    01 deploiement siem wazuh
+    Hybrid SOC Deployment &amp; Threat Detection
   
 
     
@@ -386,7 +388,7 @@
   <span class="md-ellipsis">
     
   
-    01 deploiement siem wazuh
+    Hybrid SOC Deployment &amp; Threat Detection
   
 
     
@@ -402,6 +404,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -410,13 +414,52 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#2-architecture-technique" class="md-nav__link">
+  <a href="#1-context-business-objective" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Architecture Technique
+        1. Context &amp; Business Objective
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-technical-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Technical Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-deployment-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Deployment (Build)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Deployment (Build)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-network-segmentation-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Network Segmentation &amp; Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -453,6 +496,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -461,13 +506,52 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#2-architecture-technique" class="md-nav__link">
+  <a href="#1-context-business-objective" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Architecture Technique
+        1. Context &amp; Business Objective
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-technical-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Technical Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-deployment-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Deployment (Build)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Deployment (Build)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-network-segmentation-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Network Segmentation &amp; Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -488,11 +572,31 @@
 
 
 
-  <h1>01 deploiement siem wazuh</h1>
-
-<h2 id="2-architecture-technique">2. Architecture Technique</h2>
-<p><img alt="Architecture globale du laboratoire SOC hybride" src="../../assets/architecture-soc.png" />
-<em>Schéma de l'infrastructure virtuelle isolant la zone attaquant (WAN) et la zone entreprise (LAN) via pfSense.</em></p>
+<h1 id="hybrid-soc-deployment-threat-detection">Hybrid SOC Deployment &amp; Threat Detection</h1>
+<p><strong>Duration:</strong> 10 days<br />
+<strong>Technologies:</strong> pfSense, Suricata, Wazuh, Elastic Stack, Windows Server (Sysmon), Ubuntu, Kali Linux.</p>
+<h2 id="1-context-business-objective">1. Context &amp; Business Objective</h2>
+<p>In modern corporate environments, centralizing security logs and maintaining strict network segmentation is critical for threat detection. The objective of this project is to build a hybrid Security Operations Center (SOC) lab from scratch. This infrastructure is designed to monitor both network traffic (via NIDS) and endpoint activity (via EDR), enabling real-time detection and automated response to simulated cyber attacks.</p>
+<h2 id="2-technical-architecture">2. Technical Architecture</h2>
+<p>The environment is strictly segmented using a pfSense firewall to isolate the untrusted external zone from the internal corporate network, reflecting a realistic perimeter defense.</p>
+<p><img alt="Hybrid SOC Architecture" src="../../assets/architecture-soc.png" />
+<em>Figure 1: Virtual infrastructure design isolating the WAN (Attacker) and LAN (Enterprise) zones.</em></p>
+<ul>
+<li><strong>Red Zone (Attacker):</strong> Kali Linux (<code>192.168.50.100</code>) situated on an isolated external network (VMnet1).</li>
+<li><strong>Perimeter (NIDS/Firewall):</strong> pfSense routing traffic between zones and hosting Suricata for network intrusion detection.</li>
+<li><strong>Internal Zone (Targets):</strong> Windows Server with Sysmon (<code>10.0.0.20</code>) and an Ubuntu Web Server (<code>10.0.0.30</code>) on an isolated internal network (VMnet2).</li>
+<li><strong>Defense Zone (SIEM):</strong> Wazuh Manager (<code>10.0.0.10</code>) ingesting logs via Syslog and Wazuh Agents.</li>
+</ul>
+<h2 id="3-deployment-build">3. Deployment (Build)</h2>
+<h3 id="31-network-segmentation-routing">3.1. Network Segmentation &amp; Routing</h3>
+<p>To ensure strict isolation, the virtualization environment relies on custom Host-Only networks without local DHCP services. The routing is entirely handled by the central pfSense instance.</p>
+<ul>
+<li><strong>WAN Interface (em0):</strong> Assigned to <code>VMnet1</code> with static IP <code>192.168.50.254/24</code>.</li>
+<li><strong>LAN Interface (em1):</strong> Assigned to <code>VMnet2</code> with static IP <code>10.0.0.254/24</code>.</li>
+<li>WebConfigurator (HTTPS) enabled on the LAN interface for firewall management.</li>
+</ul>
+<p><img alt="pfSense interface configuration" src="../../assets/pfsense_config.png" /><br />
+<em>Figure 2: pfSense routing configuration establishing the foundation of the lab environment.</em></p>
 
 
 

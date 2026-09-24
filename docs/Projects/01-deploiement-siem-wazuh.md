@@ -31,3 +31,17 @@ To ensure strict isolation, the virtualization environment relies on custom Host
 
 ![pfSense interface configuration](../assets/pfsense_config.png)  
 _Figure 2: pfSense routing configuration establishing the foundation of the lab environment._
+
+### 3.2. Firewall Initial Configuration
+
+Access to the pfSense WebConfigurator was established via the internal LAN interface. To allow realistic attack simulations from the external Kali Linux machine, the default blockage of private networks (RFC1918) and bogon networks on the WAN interface was intentionally disabled. This critical adjustment ensures the firewall accurately routes and processes malicious traffic originating from the simulated external subnet (`192.168.50.0/24`).
+
+### 3.3. Vulnerable Web Server Provisioning
+
+An Ubuntu machine was provisioned within the internal zone (`10.0.0.30`) to act as the primary target for web-based attacks. To simulate a modern, realistic corporate application, the OWASP Juice Shop container was deployed via Docker.
+
+```bash
+sudo apt update && sudo apt install docker.io -y
+sudo systemctl enable --now docker
+sudo docker run -d -p 80:3000 bkimminich/juice-shop
+```
