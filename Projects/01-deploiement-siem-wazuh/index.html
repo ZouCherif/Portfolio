@@ -458,6 +458,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#32-firewall-initial-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Firewall Initial Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-vulnerable-web-server-provisioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. Vulnerable Web Server Provisioning
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -550,6 +572,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#32-firewall-initial-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Firewall Initial Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-vulnerable-web-server-provisioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. Vulnerable Web Server Provisioning
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -597,6 +641,14 @@
 </ul>
 <p><img alt="pfSense interface configuration" src="../../assets/pfsense_config.png" /><br />
 <em>Figure 2: pfSense routing configuration establishing the foundation of the lab environment.</em></p>
+<h3 id="32-firewall-initial-configuration">3.2. Firewall Initial Configuration</h3>
+<p>Access to the pfSense WebConfigurator was established via the internal LAN interface. To allow realistic attack simulations from the external Kali Linux machine, the default blockage of private networks (RFC1918) and bogon networks on the WAN interface was intentionally disabled. This critical adjustment ensures the firewall accurately routes and processes malicious traffic originating from the simulated external subnet (<code>192.168.50.0/24</code>).</p>
+<h3 id="33-vulnerable-web-server-provisioning">3.3. Vulnerable Web Server Provisioning</h3>
+<p>An Ubuntu machine was provisioned within the internal zone (<code>10.0.0.30</code>) to act as the primary target for web-based attacks. To simulate a modern, realistic corporate application, the OWASP Juice Shop container was deployed via Docker.</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>docker.io<span class="w"> </span>-y
+sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>docker
+sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:3000<span class="w"> </span>bkimminich/juice-shop
+</code></pre></div>
 
 
 
