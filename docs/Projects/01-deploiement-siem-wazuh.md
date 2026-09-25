@@ -52,3 +52,19 @@ The core of the Security Operations Center is powered by a central Wazuh Manager
 
 - Network access is strictly restricted to the internal LAN, ensuring the security dashboard is only accessible via internal pivot points (e.g., the local administration subnet).
 - The all-in-one deployment handles the Wazuh server, indexer, and dashboard components to centralize security telemetry.
+
+### 3.5. Endpoint Telemetry (Linux Agent)
+
+To ensure continuous monitoring of the vulnerable web target, the Wazuh agent was deployed on the Ubuntu server (`10.0.0.30`). The agent is configured to forward system logs, security events, and file integrity data directly to the central Wazuh Manager.
+
+![Active Linux Agent in Wazuh Dashboard](../assets/wazuh_endpoits1.png)
+
+### 3.5.1. Troubleshooting: Agent Authentication Mismatch
+
+During the initial deployment of the Ubuntu agent, a network context switch (from NAT to isolated LAN) caused a persistent `Disconnected` state. The agent logs (`/var/ossec/logs/ossec.log`) revealed a `Duplicate agent name` error, as the manager retained the initial DHCP-assigned IP address and rejected subsequent connections from the new static LAN IP (`10.0.0.30`) to prevent agent hijacking.
+
+**Resolution:**
+
+1. Purged the stale agent record directly from the Wazuh Manager database to release the hostname lock.
+2. Restarted the Wazuh agent service on the endpoint (`sudo systemctl restart wazuh-agent`), forcing a fresh enrollment request.
+3. The manager successfully issued a new cryptographic key, and telemetry resumed with the correct internal IP.
