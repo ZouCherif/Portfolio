@@ -45,3 +45,10 @@ sudo apt update && sudo apt install docker.io -y
 sudo systemctl enable --now docker
 sudo docker run -d -p 80:3000 bkimminich/juice-shop
 ```
+
+### 3.4. SIEM Deployment (Wazuh Manager)
+
+The core of the Security Operations Center is powered by a central Wazuh Manager instance (`10.0.0.10`), deployed on an isolated Ubuntu Server within the internal network. This node acts as the primary log ingestion, rule evaluation, and threat analysis engine.
+
+- Network access is strictly restricted to the internal LAN, ensuring the security dashboard is only accessible via internal pivot points (e.g., the local administration subnet).
+- The all-in-one deployment handles the Wazuh server, indexer, and dashboard components to centralize security telemetry.
