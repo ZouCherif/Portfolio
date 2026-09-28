@@ -23,7 +23,7 @@
     
     
       
-        <title>Hybrid SOC Deployment & Threat Detection - Portfolio Cybersécurité - Cherif Zouaoui</title>
+        <title>Hybrid SOC Deployment & Threat Detection - Portfolio - Cherif Zouaoui</title>
       
     
     
@@ -88,7 +88,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Portfolio Cybersécurité - Cherif Zouaoui" class="md-header__button md-logo" aria-label="Portfolio Cybersécurité - Cherif Zouaoui" data-md-component="logo">
+    <a href="../.." title="Portfolio - Cherif Zouaoui" class="md-header__button md-logo" aria-label="Portfolio - Cherif Zouaoui" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -102,7 +102,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Portfolio Cybersécurité - Cherif Zouaoui
+            Portfolio - Cherif Zouaoui
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -252,13 +252,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Portfolio Cybersécurité - Cherif Zouaoui" class="md-nav__button md-logo" aria-label="Portfolio Cybersécurité - Cherif Zouaoui" data-md-component="logo">
+    <a href="../.." title="Portfolio - Cherif Zouaoui" class="md-nav__button md-logo" aria-label="Portfolio - Cherif Zouaoui" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Portfolio Cybersécurité - Cherif Zouaoui
+    Portfolio - Cherif Zouaoui
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -480,6 +480,39 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#34-siem-deployment-wazuh-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4. SIEM Deployment (Wazuh Manager)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-endpoint-telemetry-linux-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5. Endpoint Telemetry (Linux Agent)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#351-troubleshooting-agent-authentication-mismatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5.1. Troubleshooting: Agent Authentication Mismatch
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -594,6 +627,39 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#34-siem-deployment-wazuh-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4. SIEM Deployment (Wazuh Manager)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-endpoint-telemetry-linux-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5. Endpoint Telemetry (Linux Agent)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#351-troubleshooting-agent-authentication-mismatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5.1. Troubleshooting: Agent Authentication Mismatch
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -649,6 +715,23 @@
 sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>docker
 sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:3000<span class="w"> </span>bkimminich/juice-shop
 </code></pre></div>
+<h3 id="34-siem-deployment-wazuh-manager">3.4. SIEM Deployment (Wazuh Manager)</h3>
+<p>The core of the Security Operations Center is powered by a central Wazuh Manager instance (<code>10.0.0.10</code>), deployed on an isolated Ubuntu Server within the internal network. This node acts as the primary log ingestion, rule evaluation, and threat analysis engine.</p>
+<ul>
+<li>Network access is strictly restricted to the internal LAN, ensuring the security dashboard is only accessible via internal pivot points (e.g., the local administration subnet).</li>
+<li>The all-in-one deployment handles the Wazuh server, indexer, and dashboard components to centralize security telemetry.</li>
+</ul>
+<h3 id="35-endpoint-telemetry-linux-agent">3.5. Endpoint Telemetry (Linux Agent)</h3>
+<p>To ensure continuous monitoring of the vulnerable web target, the Wazuh agent was deployed on the Ubuntu server (<code>10.0.0.30</code>). The agent is configured to forward system logs, security events, and file integrity data directly to the central Wazuh Manager.</p>
+<p><img alt="Active Linux Agent in Wazuh Dashboard" src="../../assets/wazuh_endpoits1.png" /></p>
+<h3 id="351-troubleshooting-agent-authentication-mismatch">3.5.1. Troubleshooting: Agent Authentication Mismatch</h3>
+<p>During the initial deployment of the Ubuntu agent, a network context switch (from NAT to isolated LAN) caused a persistent <code>Disconnected</code> state. The agent logs (<code>/var/ossec/logs/ossec.log</code>) revealed a <code>Duplicate agent name</code> error, as the manager retained the initial DHCP-assigned IP address and rejected subsequent connections from the new static LAN IP (<code>10.0.0.30</code>) to prevent agent hijacking.</p>
+<p><strong>Resolution:</strong></p>
+<ol>
+<li>Purged the stale agent record directly from the Wazuh Manager database to release the hostname lock.</li>
+<li>Restarted the Wazuh agent service on the endpoint (<code>sudo systemctl restart wazuh-agent</code>), forcing a fresh enrollment request.</li>
+<li>The manager successfully issued a new cryptographic key, and telemetry resumed with the correct internal IP.</li>
+</ol>
 
 
 
