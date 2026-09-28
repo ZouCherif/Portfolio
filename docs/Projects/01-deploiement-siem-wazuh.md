@@ -59,7 +59,7 @@ To ensure continuous monitoring of the vulnerable web target, the Wazuh agent wa
 
 ![Active Linux Agent in Wazuh Dashboard](../assets/wazuh_endpoits1.png)
 
-### 3.5.1. Troubleshooting: Agent Authentication Mismatch
+#### Troubleshooting: Agent Authentication Mismatch
 
 During the initial deployment of the Ubuntu agent, a network context switch (from NAT to isolated LAN) caused a persistent `Disconnected` state. The agent logs (`/var/ossec/logs/ossec.log`) revealed a `Duplicate agent name` error, as the manager retained the initial DHCP-assigned IP address and rejected subsequent connections from the new static LAN IP (`10.0.0.30`) to prevent agent hijacking.
 
@@ -78,3 +78,13 @@ To establish deep visibility into the Windows environment (`10.0.0.20`), the sta
 - **Version Control:** Resolved an initial `Agent version must be lower or equal to manager version` error by downgrading the Windows agent to match the Manager's exact version (4.9.2), ensuring cryptographic compatibility.
 
 ![Active Windows Agent in Wazuh Dashboard](../assets/wazuh-agent-windows.png)
+
+### 3.7. Network Intrusion Detection (Suricata on pfSense)
+
+To complement the endpoint telemetry provided by Wazuh, a Network Intrusion Detection System (NIDS) was deployed at the network perimeter.
+
+- **Deployment:** Suricata was installed directly on the pfSense firewall to monitor all ingress and egress traffic between the isolated LAN (`10.0.0.0/24`) and the WAN.
+- **Threat Intelligence:** The sensor is configured with the **ETOpen Emerging Threats** ruleset, providing signature-based detection for known malicious activity, network scans, and exploit attempts.
+- **Visibility:** By monitoring the LAN interface, Suricata detects threats that have bypassed perimeter access controls, acting as a critical network-layer sensor for the SOC.
+
+![Suricata Active on pfSense LAN Interface](../assets/suricata-pfsense-active.png)

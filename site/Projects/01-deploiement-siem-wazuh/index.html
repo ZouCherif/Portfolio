@@ -676,6 +676,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#36-windows-endpoint-sysmon-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6. Windows Endpoint &amp; Sysmon Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -823,6 +834,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#36-windows-endpoint-sysmon-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6. Windows Endpoint &amp; Sysmon Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -895,6 +917,14 @@ sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </
 <li>Restarted the Wazuh agent service on the endpoint (<code>sudo systemctl restart wazuh-agent</code>), forcing a fresh enrollment request.</li>
 <li>The manager successfully issued a new cryptographic key, and telemetry resumed with the correct internal IP.</li>
 </ol>
+<h3 id="36-windows-endpoint-sysmon-integration">3.6. Windows Endpoint &amp; Sysmon Integration</h3>
+<p>To establish deep visibility into the Windows environment (<code>10.0.0.20</code>), the standard event logging was augmented with Microsoft Sysmon.</p>
+<ul>
+<li><strong>Sysmon Deployment:</strong> Configured using the SwiftOnSecurity baseline to filter noise and prioritize critical telemetry (process creation, network connections, and registry modifications).</li>
+<li><strong>Log Forwarding:</strong> The Wazuh agent was deployed and explicitly configured to hook into the <code>Microsoft-Windows-Sysmon/Operational</code> event channel, streaming high-fidelity endpoint data back to the central SIEM on the isolated LAN.</li>
+<li><strong>Version Control:</strong> Resolved an initial <code>Agent version must be lower or equal to manager version</code> error by downgrading the Windows agent to match the Manager's exact version (4.9.2), ensuring cryptographic compatibility.</li>
+</ul>
+<p><img alt="Active Windows Agent in Wazuh Dashboard" src="../../assets/wazuh-agent-windows.png" /></p>
 
 
 
