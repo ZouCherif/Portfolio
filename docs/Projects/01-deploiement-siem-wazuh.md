@@ -68,3 +68,13 @@ During the initial deployment of the Ubuntu agent, a network context switch (fro
 1. Purged the stale agent record directly from the Wazuh Manager database to release the hostname lock.
 2. Restarted the Wazuh agent service on the endpoint (`sudo systemctl restart wazuh-agent`), forcing a fresh enrollment request.
 3. The manager successfully issued a new cryptographic key, and telemetry resumed with the correct internal IP.
+
+### 3.6. Windows Endpoint & Sysmon Integration
+
+To establish deep visibility into the Windows environment (`10.0.0.20`), the standard event logging was augmented with Microsoft Sysmon.
+
+- **Sysmon Deployment:** Configured using the SwiftOnSecurity baseline to filter noise and prioritize critical telemetry (process creation, network connections, and registry modifications).
+- **Log Forwarding:** The Wazuh agent was deployed and explicitly configured to hook into the `Microsoft-Windows-Sysmon/Operational` event channel, streaming high-fidelity endpoint data back to the central SIEM on the isolated LAN.
+- **Version Control:** Resolved an initial `Agent version must be lower or equal to manager version` error by downgrading the Windows agent to match the Manager's exact version (4.9.2), ensuring cryptographic compatibility.
+
+![Active Windows Agent in Wazuh Dashboard](../assets/wazuh-agent-windows.png)

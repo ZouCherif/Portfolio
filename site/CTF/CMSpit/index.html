@@ -8,11 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://ZouCherif.github.io/portfolio/Projects/01-deploiement-siem-wazuh/">
+        <link rel="canonical" href="https://ZouCherif.github.io/portfolio/CTF/CMSpit/">
       
       
-        <link rel="prev" href="../../CTF/attacktive-directory/">
+        <link rel="prev" href="../..">
       
+      
+        <link rel="next" href="../JacobTheBoss/">
       
       
         
@@ -23,7 +25,7 @@
     
     
       
-        <title>Hybrid SOC Deployment & Threat Detection - Portfolio - Cherif Zouaoui</title>
+        <title>TryHackMe: CMSpit - Portfolio - Cherif Zouaoui</title>
       
     
     
@@ -74,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#hybrid-soc-deployment-threat-detection" class="md-skip">
+        <a href="#tryhackme-cmspit" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Hybrid SOC Deployment &amp; Threat Detection
+              TryHackMe: CMSpit
             
           </span>
         </div>
@@ -212,11 +214,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../CTF/CMSpit/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -232,13 +236,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../Projects/01-deploiement-siem-wazuh/" class="md-tabs__link">
           
   
   
@@ -314,26 +316,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -351,7 +358,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -366,10 +373,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../CTF/CMSpit/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TryHackMe: CMSpit
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -385,6 +419,143 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-context-objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Context &amp; Objectives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-reconnaissance-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Reconnaissance &amp; Enumeration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-exploitation-initial-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Exploitation (Initial Access)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Exploitation (Initial Access)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nosql-injection-remote-code-execution-rce" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NoSQL Injection &amp; Remote Code Execution (RCE)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-lateral-movement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Lateral Movement
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Lateral Movement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Enumeration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-privilege-escalation-privesc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Privilege Escalation (PrivEsc)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Privilege Escalation (PrivEsc)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sudo-misconfiguration-command-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sudo Misconfiguration &amp; Command Injection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-the-defenders-view-remediation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. The Defender's View (Remediation)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -397,7 +568,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CTF/JacobTheBoss/" class="md-nav__link">
+      <a href="../JacobTheBoss/" class="md-nav__link">
         
   
   
@@ -425,7 +596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../CTF/attacktive-directory/" class="md-nav__link">
+      <a href="../attacktive-directory/" class="md-nav__link">
         
   
   
@@ -457,31 +628,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
@@ -499,7 +665,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -514,37 +680,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Hybrid SOC Deployment &amp; Threat Detection
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../Projects/01-deploiement-siem-wazuh/" class="md-nav__link">
         
   
   
@@ -560,131 +699,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-context-business-objective" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Context &amp; Business Objective
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-technical-architecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Technical Architecture
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-deployment-build" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Deployment (Build)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. Deployment (Build)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#31-network-segmentation-routing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.1. Network Segmentation &amp; Routing
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#32-firewall-initial-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.2. Firewall Initial Configuration
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#33-vulnerable-web-server-provisioning" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.3. Vulnerable Web Server Provisioning
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#34-siem-deployment-wazuh-manager" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.4. SIEM Deployment (Wazuh Manager)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#35-endpoint-telemetry-linux-agent" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.5. Endpoint Telemetry (Linux Agent)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#351-troubleshooting-agent-authentication-mismatch" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.5.1. Troubleshooting: Agent Authentication Mismatch
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -724,10 +738,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-context-business-objective" class="md-nav__link">
+  <a href="#1-context-objectives" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Context &amp; Business Objective
+        1. Context &amp; Objectives
       
     </span>
   </a>
@@ -735,10 +749,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-technical-architecture" class="md-nav__link">
+  <a href="#2-reconnaissance-enumeration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Technical Architecture
+        2. Reconnaissance &amp; Enumeration
       
     </span>
   </a>
@@ -746,77 +760,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-deployment-build" class="md-nav__link">
+  <a href="#3-exploitation-initial-access" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Deployment (Build)
+        3. Exploitation (Initial Access)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3. Deployment (Build)">
+    <nav class="md-nav" aria-label="3. Exploitation (Initial Access)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#31-network-segmentation-routing" class="md-nav__link">
+  <a href="#nosql-injection-remote-code-execution-rce" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.1. Network Segmentation &amp; Routing
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#32-firewall-initial-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.2. Firewall Initial Configuration
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#33-vulnerable-web-server-provisioning" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.3. Vulnerable Web Server Provisioning
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#34-siem-deployment-wazuh-manager" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.4. SIEM Deployment (Wazuh Manager)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#35-endpoint-telemetry-linux-agent" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.5. Endpoint Telemetry (Linux Agent)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#351-troubleshooting-agent-authentication-mismatch" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3.5.1. Troubleshooting: Agent Authentication Mismatch
+        NoSQL Injection &amp; Remote Code Execution (RCE)
       
     </span>
   </a>
@@ -825,6 +784,73 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-lateral-movement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Lateral Movement
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Lateral Movement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Enumeration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-privilege-escalation-privesc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Privilege Escalation (PrivEsc)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Privilege Escalation (PrivEsc)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sudo-misconfiguration-command-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sudo Misconfiguration &amp; Command Injection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-the-defenders-view-remediation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. The Defender's View (Remediation)
+      
+    </span>
+  </a>
   
 </li>
       
@@ -845,55 +871,61 @@
 
 
 
-<h1 id="hybrid-soc-deployment-threat-detection">Hybrid SOC Deployment &amp; Threat Detection</h1>
-<p><strong>Duration:</strong> 10 days<br />
-<strong>Technologies:</strong> pfSense, Suricata, Wazuh, Elastic Stack, Windows Server (Sysmon), Ubuntu, Kali Linux.</p>
-<h2 id="1-context-business-objective">1. Context &amp; Business Objective</h2>
-<p>In modern corporate environments, centralizing security logs and maintaining strict network segmentation is critical for threat detection. The objective of this project is to build a hybrid Security Operations Center (SOC) lab from scratch. This infrastructure is designed to monitor both network traffic (via NIDS) and endpoint activity (via EDR), enabling real-time detection and automated response to simulated cyber attacks.</p>
-<h2 id="2-technical-architecture">2. Technical Architecture</h2>
-<p>The environment is strictly segmented using a pfSense firewall to isolate the untrusted external zone from the internal corporate network, reflecting a realistic perimeter defense.</p>
-<p><img alt="Hybrid SOC Architecture" src="../../assets/architecture-soc.png" />
-<em>Figure 1: Virtual infrastructure design isolating the WAN (Attacker) and LAN (Enterprise) zones.</em></p>
-<ul>
-<li><strong>Red Zone (Attacker):</strong> Kali Linux (<code>192.168.50.100</code>) situated on an isolated external network (VMnet1).</li>
-<li><strong>Perimeter (NIDS/Firewall):</strong> pfSense routing traffic between zones and hosting Suricata for network intrusion detection.</li>
-<li><strong>Internal Zone (Targets):</strong> Windows Server with Sysmon (<code>10.0.0.20</code>) and an Ubuntu Web Server (<code>10.0.0.30</code>) on an isolated internal network (VMnet2).</li>
-<li><strong>Defense Zone (SIEM):</strong> Wazuh Manager (<code>10.0.0.10</code>) ingesting logs via Syslog and Wazuh Agents.</li>
-</ul>
-<h2 id="3-deployment-build">3. Deployment (Build)</h2>
-<h3 id="31-network-segmentation-routing">3.1. Network Segmentation &amp; Routing</h3>
-<p>To ensure strict isolation, the virtualization environment relies on custom Host-Only networks without local DHCP services. The routing is entirely handled by the central pfSense instance.</p>
-<ul>
-<li><strong>WAN Interface (em0):</strong> Assigned to <code>VMnet1</code> with static IP <code>192.168.50.254/24</code>.</li>
-<li><strong>LAN Interface (em1):</strong> Assigned to <code>VMnet2</code> with static IP <code>10.0.0.254/24</code>.</li>
-<li>WebConfigurator (HTTPS) enabled on the LAN interface for firewall management.</li>
-</ul>
-<p><img alt="pfSense interface configuration" src="../../assets/pfsense_config.png" /><br />
-<em>Figure 2: pfSense routing configuration establishing the foundation of the lab environment.</em></p>
-<h3 id="32-firewall-initial-configuration">3.2. Firewall Initial Configuration</h3>
-<p>Access to the pfSense WebConfigurator was established via the internal LAN interface. To allow realistic attack simulations from the external Kali Linux machine, the default blockage of private networks (RFC1918) and bogon networks on the WAN interface was intentionally disabled. This critical adjustment ensures the firewall accurately routes and processes malicious traffic originating from the simulated external subnet (<code>192.168.50.0/24</code>).</p>
-<h3 id="33-vulnerable-web-server-provisioning">3.3. Vulnerable Web Server Provisioning</h3>
-<p>An Ubuntu machine was provisioned within the internal zone (<code>10.0.0.30</code>) to act as the primary target for web-based attacks. To simulate a modern, realistic corporate application, the OWASP Juice Shop container was deployed via Docker.</p>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>docker.io<span class="w"> </span>-y
-sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>docker
-sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:3000<span class="w"> </span>bkimminich/juice-shop
+<h1 id="tryhackme-cmspit">TryHackMe: CMSpit</h1>
+<p><strong>Difficulty:</strong> Medium<br />
+<strong>Category:</strong> Web Exploitation &amp; Privilege Escalation</p>
+<h2 id="1-context-objectives">1. Context &amp; Objectives</h2>
+<p>The objective of this assessment is to identify and exploit vulnerabilities within a web application environment, specifically targeting a Content Management System (CMS), and to demonstrate privilege escalation techniques using misconfigured system binaries.</p>
+<h2 id="2-reconnaissance-enumeration">2. Reconnaissance &amp; Enumeration</h2>
+<p>The assessment began with an external port scan targeting the application server at <code>10.10.134.1</code>.</p>
+<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-sV<span class="w"> </span>--top-ports<span class="w"> </span><span class="m">1000</span><span class="w"> </span><span class="m">10</span>.10.134.1
 </code></pre></div>
-<h3 id="34-siem-deployment-wazuh-manager">3.4. SIEM Deployment (Wazuh Manager)</h3>
-<p>The core of the Security Operations Center is powered by a central Wazuh Manager instance (<code>10.0.0.10</code>), deployed on an isolated Ubuntu Server within the internal network. This node acts as the primary log ingestion, rule evaluation, and threat analysis engine.</p>
-<ul>
-<li>Network access is strictly restricted to the internal LAN, ensuring the security dashboard is only accessible via internal pivot points (e.g., the local administration subnet).</li>
-<li>The all-in-one deployment handles the Wazuh server, indexer, and dashboard components to centralize security telemetry.</li>
-</ul>
-<h3 id="35-endpoint-telemetry-linux-agent">3.5. Endpoint Telemetry (Linux Agent)</h3>
-<p>To ensure continuous monitoring of the vulnerable web target, the Wazuh agent was deployed on the Ubuntu server (<code>10.0.0.30</code>). The agent is configured to forward system logs, security events, and file integrity data directly to the central Wazuh Manager.</p>
-<p><img alt="Active Linux Agent in Wazuh Dashboard" src="../../assets/wazuh_endpoits1.png" /></p>
-<h3 id="351-troubleshooting-agent-authentication-mismatch">3.5.1. Troubleshooting: Agent Authentication Mismatch</h3>
-<p>During the initial deployment of the Ubuntu agent, a network context switch (from NAT to isolated LAN) caused a persistent <code>Disconnected</code> state. The agent logs (<code>/var/ossec/logs/ossec.log</code>) revealed a <code>Duplicate agent name</code> error, as the manager retained the initial DHCP-assigned IP address and rejected subsequent connections from the new static LAN IP (<code>10.0.0.30</code>) to prevent agent hijacking.</p>
-<p><strong>Resolution:</strong></p>
+<p><img alt="Alt Text" src="../assets/CMSpit/nmap.png" />
+The scan identified an active web service on port 80. Navigating to the application (http://10.10.134.1/auth/login?to=/) revealed a login interface.</p>
+<p><img alt="Alt Text" src="../assets/CMSpit/login_page.png" />
+<img alt="Alt Text" src="../assets/CMSpit/version.png" /></p>
+<p>Further fingerprinting confirmed the application is running <strong><em>Cockpit CMS version 0.11.1</em></strong>.</p>
+<h2 id="3-exploitation-initial-access">3. Exploitation (Initial Access)</h2>
+<h3 id="nosql-injection-remote-code-execution-rce">NoSQL Injection &amp; Remote Code Execution (RCE)</h3>
+<p>Researching <strong>Cockpit CMS 0.11.1</strong> revealed a known exploit chaining two NoSQL injection vulnerabilities to retrieve user lists and password reset tokens, ultimately leading to a command injection vulnerability (Metasploit module: <code>exploit/multi/http/cockpit_cms_rce</code>).</p>
+<p><img alt="Alt Text" src="../assets/CMSpit/4.png" /></p>
+<p>After configuring the payload (<code>RHOSTS</code>, <code>LHOST</code>), the exploit successfully enumerated <strong>4</strong> valid users: <code>admin</code>, <code>darkStar7471</code>, <code>skidy</code>, and <code>ekoparty</code>.</p>
+<p>Targeting the <code>skidy</code> account (<code>skidy@tryhackme.fakemail</code>) via the <code>/auth/resetpassword</code> endpoint bypassed the authentication mechanism, granting an initial <code>meterpreter</code> shell on the target system.
+<img alt="Alt Text" src="../assets/CMSpit/10.png" />
+<img alt="Alt Text" src="../assets/CMSpit/11.png" /></p>
+<p>Directory traversal through the established session allowed the retrieval of the initial web flag.
+<img alt="Alt Text" src="../assets/CMSpit/5.png" />
+<img alt="Alt Text" src="../assets/CMSpit/6.png" />
+<img alt="Alt Text" src="../assets/CMSpit/7.png" /></p>
+<h2 id="4-lateral-movement">4. Lateral Movement</h2>
+<h3 id="database-enumeration">Database Enumeration</h3>
+<p>Further exploration of the local environment identified a user named <code>stux</code>. Enumerating the database files revealed a hidden <code>.dbshell</code> configuration file in their home directory.</p>
+<p><img alt="Alt Text" src="../assets/CMSpit/13.png" /></p>
+<p>This file contained hardcoded credentials and a database flag.</p>
+<p><img alt="Alt Text" src="../assets/CMSpit/14.png" /></p>
+<p>Using the recovered password, an interactive shell session was established as the <code>stux</code> user to retrieve the standard user flag.</p>
+<p><img alt="Alt Text" src="../assets/CMSpit/15.png" /></p>
+<h2 id="5-privilege-escalation-privesc">5. Privilege Escalation (PrivEsc)</h2>
+<h3 id="sudo-misconfiguration-command-injection">Sudo Misconfiguration &amp; Command Injection</h3>
+<p>A review of local permissions (<code>sudo -l</code>) revealed a critical misconfiguration: the <code>stux</code> user was permitted to execute the <code>exiftool</code> binary with root privileges without requiring a password.</p>
+<p><img alt="Alt Text" src="../assets/CMSpit/16.png" /></p>
+<p>The installed version of <code>exiftool</code> was vulnerable to <strong>CVE-2021-22204</strong> (Command Injection). By utilizing the <code>djvumake</code> utility, a malicious proof-of-concept (PoC) file was crafted. When processed by <code>exiftool</code> via <code>sudo</code>, it executed the embedded payload with root privileges, successfully copying and reading the <code>root.txt</code> flag.</p>
+<p><img alt="Alt Text" src="../assets/CMSpit/17.png" /></p>
+<h2 id="6-the-defenders-view-remediation">6. The Defender's View (Remediation)</h2>
+<p>To secure this environment and mitigate the identified attack paths, the following remediations must be applied:</p>
 <ol>
-<li>Purged the stale agent record directly from the Wazuh Manager database to release the hostname lock.</li>
-<li>Restarted the Wazuh agent service on the endpoint (<code>sudo systemctl restart wazuh-agent</code>), forcing a fresh enrollment request.</li>
-<li>The manager successfully issued a new cryptographic key, and telemetry resumed with the correct internal IP.</li>
+<li>
+<p><strong>CMS Patching</strong>: Upgrade Cockpit CMS to the latest stable release to patch the NoSQL injection and command injection vulnerabilities.</p>
+</li>
+<li>
+<p><strong>Secure Configuration Storage</strong>: Never store plain-text passwords or sensitive tokens in configuration or history files (e.g., <code>.dbshell</code>). Implement strict file permissions (<code>600</code>) for user-specific configuration files.</p>
+</li>
+<li>
+<p><strong>Principle of Least Privilege (Sudo)</strong>: Revoke the <code>NOPASSWD</code> sudo execution rights for the <code>exiftool</code> binary. Sudo privileges should only be granted for specific, required operational scripts, not interactive or parse-heavy binaries.</p>
+</li>
+<li>
+<p><strong>Vulnerability Management</strong>: Update <code>exiftool</code> to a patched version to remediate CVE-2021-22204, preventing arbitrary code execution via crafted files.</p>
+</li>
 </ol>
 
 
