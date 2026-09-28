@@ -1,6 +1,5 @@
 # Hybrid SOC Deployment & Threat Detection
 
-**Duration:** 10 days  
 **Technologies:** pfSense, Suricata, Wazuh, Elastic Stack, Windows Server (Sysmon), Ubuntu, Kali Linux.
 
 ## 1. Context & Business Objective
@@ -88,3 +87,27 @@ To complement the endpoint telemetry provided by Wazuh, a Network Intrusion Dete
 - **Visibility:** By monitoring the LAN interface, Suricata detects threats that have bypassed perimeter access controls, acting as a critical network-layer sensor for the SOC.
 
 ![Suricata Active on pfSense LAN Interface](../assets/suricata-pfsense-active.png)
+
+## 4. Offensive Simulation (Red Team)
+
+To validate the defensive capabilities and alerting mechanisms of the hybrid SOC (Wazuh & Suricata), a controlled attack simulation was orchestrated from outside the internal network.
+
+### 4.1. Adversary Infrastructure
+
+A **Kali Linux** machine was deployed on the external WAN zone (`192.168.50.100`) to act as the threat actor. This network isolation ensures that the attack accurately simulates an external threat traversing the perimeter firewall, rather than a local lateral movement.
+
+### 4.2. Target Exposure & NAT Configuration
+
+The target is **OWASP Juice Shop**, a deliberately vulnerable web application hosted via Docker on the internal Ubuntu endpoint (`10.0.0.30`). Docker natively binds the application's internal port 3000 to the system's external port 80.
+To expose this internal service to the external attacker, a **Port Forwarding (NAT)** rule was configured on the pfSense firewall:
+
+- **Interface:** WAN
+- **Protocol:** TCP
+- **Destination:** WAN Address (Port 80)
+- **Redirect Target:** `10.0.0.30` (Port 80)
+
+![pfSense NAT Rule Configuration](../assets/Port_forward_rule.png)
+
+This setup successfully mirrors a standard corporate environment where internal servers are shielded by a firewall, but specific services (like HTTP) are selectively published to the Internet.
+
+![OWASP Juice Shop Accessed via Attacker](../assets/kali-juice-shop.png)

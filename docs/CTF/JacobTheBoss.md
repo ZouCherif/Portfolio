@@ -1,4 +1,4 @@
-# 🚩 Audit Report: Jacob the Boss
+# TryHackMe: Jacob the Boss
 
 **Difficulty:** Medium  
 **Category:** Web Exploitation & Privilege Escalation
