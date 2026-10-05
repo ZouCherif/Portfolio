@@ -404,7 +404,7 @@
   <span class="md-ellipsis">
     
   
-    🚩 Audit Report: Jacob the Boss
+    TryHackMe: Jacob the Boss
   
 
     
@@ -663,16 +663,22 @@
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="3.5. Endpoint Telemetry (Linux Agent)">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#351-troubleshooting-agent-authentication-mismatch" class="md-nav__link">
+  <a href="#troubleshooting-agent-authentication-mismatch" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.5.1. Troubleshooting: Agent Authentication Mismatch
+        Troubleshooting: Agent Authentication Mismatch
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -681,6 +687,67 @@
     <span class="md-ellipsis">
       
         3.6. Windows Endpoint &amp; Sysmon Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-network-intrusion-detection-suricata-on-pfsense" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7. Network Intrusion Detection (Suricata on pfSense)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-offensive-simulation-red-team" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Offensive Simulation (Red Team)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Offensive Simulation (Red Team)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-adversary-infrastructure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Adversary Infrastructure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-target-exposure-nat-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Target Exposure &amp; NAT Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-network-intrusion-detection-attack-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3. Network Intrusion Detection &amp; Attack Validation
       
     </span>
   </a>
@@ -821,16 +888,22 @@
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="3.5. Endpoint Telemetry (Linux Agent)">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#351-troubleshooting-agent-authentication-mismatch" class="md-nav__link">
+  <a href="#troubleshooting-agent-authentication-mismatch" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.5.1. Troubleshooting: Agent Authentication Mismatch
+        Troubleshooting: Agent Authentication Mismatch
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -839,6 +912,67 @@
     <span class="md-ellipsis">
       
         3.6. Windows Endpoint &amp; Sysmon Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-network-intrusion-detection-suricata-on-pfsense" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7. Network Intrusion Detection (Suricata on pfSense)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-offensive-simulation-red-team" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Offensive Simulation (Red Team)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Offensive Simulation (Red Team)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-adversary-infrastructure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Adversary Infrastructure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-target-exposure-nat-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Target Exposure &amp; NAT Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-network-intrusion-detection-attack-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3. Network Intrusion Detection &amp; Attack Validation
       
     </span>
   </a>
@@ -868,8 +1002,7 @@
 
 
 <h1 id="hybrid-soc-deployment-threat-detection">Hybrid SOC Deployment &amp; Threat Detection</h1>
-<p><strong>Duration:</strong> 10 days<br />
-<strong>Technologies:</strong> pfSense, Suricata, Wazuh, Elastic Stack, Windows Server (Sysmon), Ubuntu, Kali Linux.</p>
+<p><strong>Technologies:</strong> pfSense, Suricata, Wazuh, Elastic Stack, Windows Server (Sysmon), Ubuntu, Kali Linux.</p>
 <h2 id="1-context-business-objective">1. Context &amp; Business Objective</h2>
 <p>In modern corporate environments, centralizing security logs and maintaining strict network segmentation is critical for threat detection. The objective of this project is to build a hybrid Security Operations Center (SOC) lab from scratch. This infrastructure is designed to monitor both network traffic (via NIDS) and endpoint activity (via EDR), enabling real-time detection and automated response to simulated cyber attacks.</p>
 <h2 id="2-technical-architecture">2. Technical Architecture</h2>
@@ -900,6 +1033,7 @@
 sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>docker
 sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:3000<span class="w"> </span>bkimminich/juice-shop
 </code></pre></div>
+<p><img alt="docker image" src="../../assets/docker_ps.png" /></p>
 <h3 id="34-siem-deployment-wazuh-manager">3.4. SIEM Deployment (Wazuh Manager)</h3>
 <p>The core of the Security Operations Center is powered by a central Wazuh Manager instance (<code>10.0.0.10</code>), deployed on an isolated Ubuntu Server within the internal network. This node acts as the primary log ingestion, rule evaluation, and threat analysis engine.</p>
 <ul>
@@ -909,7 +1043,7 @@ sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </
 <h3 id="35-endpoint-telemetry-linux-agent">3.5. Endpoint Telemetry (Linux Agent)</h3>
 <p>To ensure continuous monitoring of the vulnerable web target, the Wazuh agent was deployed on the Ubuntu server (<code>10.0.0.30</code>). The agent is configured to forward system logs, security events, and file integrity data directly to the central Wazuh Manager.</p>
 <p><img alt="Active Linux Agent in Wazuh Dashboard" src="../../assets/wazuh_endpoits1.png" /></p>
-<h3 id="351-troubleshooting-agent-authentication-mismatch">3.5.1. Troubleshooting: Agent Authentication Mismatch</h3>
+<h4 id="troubleshooting-agent-authentication-mismatch">Troubleshooting: Agent Authentication Mismatch</h4>
 <p>During the initial deployment of the Ubuntu agent, a network context switch (from NAT to isolated LAN) caused a persistent <code>Disconnected</code> state. The agent logs (<code>/var/ossec/logs/ossec.log</code>) revealed a <code>Duplicate agent name</code> error, as the manager retained the initial DHCP-assigned IP address and rejected subsequent connections from the new static LAN IP (<code>10.0.0.30</code>) to prevent agent hijacking.</p>
 <p><strong>Resolution:</strong></p>
 <ol>
@@ -925,6 +1059,37 @@ sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </
 <li><strong>Version Control:</strong> Resolved an initial <code>Agent version must be lower or equal to manager version</code> error by downgrading the Windows agent to match the Manager's exact version (4.9.2), ensuring cryptographic compatibility.</li>
 </ul>
 <p><img alt="Active Windows Agent in Wazuh Dashboard" src="../../assets/wazuh-agent-windows.png" /></p>
+<h3 id="37-network-intrusion-detection-suricata-on-pfsense">3.7. Network Intrusion Detection (Suricata on pfSense)</h3>
+<p>To complement the endpoint telemetry provided by Wazuh, a Network Intrusion Detection System (NIDS) was deployed at the network perimeter.</p>
+<ul>
+<li><strong>Deployment:</strong> Suricata was installed directly on the pfSense firewall to monitor all ingress and egress traffic between the isolated LAN (<code>10.0.0.0/24</code>) and the WAN.</li>
+<li><strong>Threat Intelligence:</strong> The sensor is configured with the <strong>ETOpen Emerging Threats</strong> ruleset, providing signature-based detection for known malicious activity, network scans, and exploit attempts.</li>
+<li><strong>Visibility:</strong> By monitoring the LAN interface, Suricata detects threats that have bypassed perimeter access controls, acting as a critical network-layer sensor for the SOC.</li>
+</ul>
+<p><img alt="Suricata Active on pfSense LAN Interface" src="../../assets/suricata-pfsense-active.png" /></p>
+<h2 id="4-offensive-simulation-red-team">4. Offensive Simulation (Red Team)</h2>
+<p>To validate the defensive capabilities and alerting mechanisms of the hybrid SOC (Wazuh &amp; Suricata), a controlled attack simulation was orchestrated from outside the internal network.</p>
+<h3 id="41-adversary-infrastructure">4.1. Adversary Infrastructure</h3>
+<p>A <strong>Kali Linux</strong> machine was deployed on the external WAN zone (<code>192.168.50.100</code>) to act as the threat actor. This network isolation ensures that the attack accurately simulates an external threat traversing the perimeter firewall, rather than a local lateral movement.</p>
+<h3 id="42-target-exposure-nat-configuration">4.2. Target Exposure &amp; NAT Configuration</h3>
+<p>The target is <strong>OWASP Juice Shop</strong>, a deliberately vulnerable web application hosted via Docker on the internal Ubuntu endpoint (<code>10.0.0.30</code>). Docker natively binds the application's internal port 3000 to the system's external port 80.
+To expose this internal service to the external attacker, a <strong>Port Forwarding (NAT)</strong> rule was configured on the pfSense firewall:</p>
+<ul>
+<li><strong>Interface:</strong> WAN</li>
+<li><strong>Protocol:</strong> TCP</li>
+<li><strong>Destination:</strong> WAN Address (Port 80)</li>
+<li><strong>Redirect Target:</strong> <code>10.0.0.30</code> (Port 80)</li>
+</ul>
+<p><img alt="pfSense NAT Rule Configuration" src="../../assets/Port_forward_rule.png" /></p>
+<p>This setup successfully mirrors a standard corporate environment where internal servers are shielded by a firewall, but specific services (like HTTP) are selectively published to the Internet.</p>
+<p><img alt="OWASP Juice Shop Accessed via Attacker" src="../../assets/kali-juice-shop.png" /></p>
+<h3 id="43-network-intrusion-detection-attack-validation">4.3. Network Intrusion Detection &amp; Attack Validation</h3>
+<p>To validate the detection capabilities of the Suricata NIDS positioned on the internal LAN interface, a controlled reconnaissance and vulnerability scan was launched from the external Kali Linux node.</p>
+<ul>
+<li><strong>Attack Vector:</strong> Execution of targeted Nmap scripting engine modules (<code>http-enum</code>, <code>http-vuln*</code>) against the published web service.</li>
+<li><strong>SOC Response:</strong> Suricata successfully intercepted the inbound malicious payload signatures as they traversed the internal network segment. The NIDS triggered clear signature-based alerts mapped to web server enumeration attempts and vulnerability probes.</li>
+</ul>
+<p><img alt="Suricata NIDS Alerts Dashboard" src="../../assets/suricata-nmap-alerts.png" /></p>
 
 
 
