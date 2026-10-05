@@ -8,13 +8,11 @@
       
       
       
-        <link rel="canonical" href="https://ZouCherif.github.io/portfolio/CTF/CMSpit/">
+        <link rel="canonical" href="https://ZouCherif.github.io/portfolio/Projects/02-bitcoin-pim/">
       
       
-        <link rel="prev" href="../..">
+        <link rel="prev" href="../01-deploiement-siem-wazuh/">
       
-      
-        <link rel="next" href="../JacobTheBoss/">
       
       
         
@@ -25,7 +23,7 @@
     
     
       
-        <title>TryHackMe: CMSpit - Portfolio - Cherif Zouaoui</title>
+        <title>Optimization of Bitcoin Mining on PiM Architecture - Portfolio - Cherif Zouaoui</title>
       
     
     
@@ -76,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tryhackme-cmspit" class="md-skip">
+        <a href="#optimization-of-bitcoin-mining-on-pim-architecture" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              TryHackMe: CMSpit
+              Optimization of Bitcoin Mining on PiM Architecture
             
           </span>
         </div>
@@ -214,13 +212,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../CTF/CMSpit/" class="md-tabs__link">
           
   
   
@@ -236,11 +232,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../Projects/01-deploiement-siem-wazuh/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01-deploiement-siem-wazuh/" class="md-tabs__link">
           
   
   
@@ -316,31 +314,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
@@ -358,7 +351,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -373,37 +366,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    TryHackMe: CMSpit
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../CTF/CMSpit/" class="md-nav__link">
         
   
   
@@ -419,143 +385,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-context-objectives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Context &amp; Objectives
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-reconnaissance-enumeration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Reconnaissance &amp; Enumeration
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-exploitation-initial-access" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Exploitation (Initial Access)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. Exploitation (Initial Access)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#nosql-injection-remote-code-execution-rce" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        NoSQL Injection &amp; Remote Code Execution (RCE)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-lateral-movement" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Lateral Movement
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4. Lateral Movement">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#database-enumeration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Database Enumeration
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-privilege-escalation-privesc" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Privilege Escalation (PrivEsc)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="5. Privilege Escalation (PrivEsc)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#sudo-misconfiguration-command-injection" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Sudo Misconfiguration &amp; Command Injection
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-the-defenders-view-remediation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. The Defender's View (Remediation)
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -568,7 +397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../JacobTheBoss/" class="md-nav__link">
+      <a href="../../CTF/JacobTheBoss/" class="md-nav__link">
         
   
   
@@ -596,7 +425,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../attacktive-directory/" class="md-nav__link">
+      <a href="../../CTF/attacktive-directory/" class="md-nav__link">
         
   
   
@@ -628,26 +457,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -665,7 +499,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -683,7 +517,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Projects/01-deploiement-siem-wazuh/" class="md-nav__link">
+      <a href="../01-deploiement-siem-wazuh/" class="md-nav__link">
         
   
   
@@ -708,10 +542,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../Projects/02-bitcoin-pim/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Optimization of Bitcoin Mining on PiM Architecture
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -727,6 +588,37 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#work-carried-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Work Carried Out
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -766,116 +658,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-context-objectives" class="md-nav__link">
+  <a href="#work-carried-out" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Context &amp; Objectives
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-reconnaissance-enumeration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Reconnaissance &amp; Enumeration
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-exploitation-initial-access" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Exploitation (Initial Access)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. Exploitation (Initial Access)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#nosql-injection-remote-code-execution-rce" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        NoSQL Injection &amp; Remote Code Execution (RCE)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-lateral-movement" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Lateral Movement
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4. Lateral Movement">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#database-enumeration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Database Enumeration
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-privilege-escalation-privesc" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Privilege Escalation (PrivEsc)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="5. Privilege Escalation (PrivEsc)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#sudo-misconfiguration-command-injection" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Sudo Misconfiguration &amp; Command Injection
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-the-defenders-view-remediation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. The Defender's View (Remediation)
+        Work Carried Out
       
     </span>
   </a>
@@ -899,62 +685,16 @@
 
 
 
-<h1 id="tryhackme-cmspit">TryHackMe: CMSpit</h1>
-<p><strong>Difficulty:</strong> Medium<br />
-<strong>Category:</strong> Web Exploitation &amp; Privilege Escalation</p>
-<h2 id="1-context-objectives">1. Context &amp; Objectives</h2>
-<p>The objective of this assessment is to identify and exploit vulnerabilities within a web application environment, specifically targeting a Content Management System (CMS), and to demonstrate privilege escalation techniques using misconfigured system binaries.</p>
-<h2 id="2-reconnaissance-enumeration">2. Reconnaissance &amp; Enumeration</h2>
-<p>The assessment began with an external port scan targeting the application server at <code>10.10.134.1</code>.</p>
-<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-sV<span class="w"> </span>--top-ports<span class="w"> </span><span class="m">1000</span><span class="w"> </span><span class="m">10</span>.10.134.1
-</code></pre></div>
-<p><img alt="Alt Text" src="../assets/CMSpit/nmap.png" />
-The scan identified an active web service on port 80. Navigating to the application (http://10.10.134.1/auth/login?to=/) revealed a login interface.</p>
-<p><img alt="Alt Text" src="../assets/CMSpit/login_page.png" />
-<img alt="Alt Text" src="../assets/CMSpit/version.png" /></p>
-<p>Further fingerprinting confirmed the application is running <strong><em>Cockpit CMS version 0.11.1</em></strong>.</p>
-<h2 id="3-exploitation-initial-access">3. Exploitation (Initial Access)</h2>
-<h3 id="nosql-injection-remote-code-execution-rce">NoSQL Injection &amp; Remote Code Execution (RCE)</h3>
-<p>Researching <strong>Cockpit CMS 0.11.1</strong> revealed a known exploit chaining two NoSQL injection vulnerabilities to retrieve user lists and password reset tokens, ultimately leading to a command injection vulnerability (Metasploit module: <code>exploit/multi/http/cockpit_cms_rce</code>).</p>
-<p><img alt="Alt Text" src="../assets/CMSpit/4.png" /></p>
-<p>After configuring the payload (<code>RHOSTS</code>, <code>LHOST</code>), the exploit successfully enumerated <strong>4</strong> valid users: <code>admin</code>, <code>darkStar7471</code>, <code>skidy</code>, and <code>ekoparty</code>.</p>
-<p>Targeting the <code>skidy</code> account (<code>skidy@tryhackme.fakemail</code>) via the <code>/auth/resetpassword</code> endpoint bypassed the authentication mechanism, granting an initial <code>meterpreter</code> shell on the target system.
-<img alt="Alt Text" src="../assets/CMSpit/10.png" />
-<img alt="Alt Text" src="../assets/CMSpit/11.png" /></p>
-<p>Directory traversal through the established session allowed the retrieval of the initial web flag.
-<img alt="Alt Text" src="../assets/CMSpit/5.png" />
-<img alt="Alt Text" src="../assets/CMSpit/6.png" />
-<img alt="Alt Text" src="../assets/CMSpit/7.png" /></p>
-<h2 id="4-lateral-movement">4. Lateral Movement</h2>
-<h3 id="database-enumeration">Database Enumeration</h3>
-<p>Further exploration of the local environment identified a user named <code>stux</code>. Enumerating the database files revealed a hidden <code>.dbshell</code> configuration file in their home directory.</p>
-<p><img alt="Alt Text" src="../assets/CMSpit/13.png" /></p>
-<p>This file contained hardcoded credentials and a database flag.</p>
-<p><img alt="Alt Text" src="../assets/CMSpit/14.png" /></p>
-<p>Using the recovered password, an interactive shell session was established as the <code>stux</code> user to retrieve the standard user flag.</p>
-<p><img alt="Alt Text" src="../assets/CMSpit/15.png" /></p>
-<h2 id="5-privilege-escalation-privesc">5. Privilege Escalation (PrivEsc)</h2>
-<h3 id="sudo-misconfiguration-command-injection">Sudo Misconfiguration &amp; Command Injection</h3>
-<p>A review of local permissions (<code>sudo -l</code>) revealed a critical misconfiguration: the <code>stux</code> user was permitted to execute the <code>exiftool</code> binary with root privileges without requiring a password.</p>
-<p><img alt="Alt Text" src="../assets/CMSpit/16.png" /></p>
-<p>The installed version of <code>exiftool</code> was vulnerable to <strong>CVE-2021-22204</strong> (Command Injection). By utilizing the <code>djvumake</code> utility, a malicious proof-of-concept (PoC) file was crafted. When processed by <code>exiftool</code> via <code>sudo</code>, it executed the embedded payload with root privileges, successfully copying and reading the <code>root.txt</code> flag.</p>
-<p><img alt="Alt Text" src="../assets/CMSpit/17.png" /></p>
-<h2 id="6-the-defenders-view-remediation">6. The Defender's View (Remediation)</h2>
-<p>To secure this environment and mitigate the identified attack paths, the following remediations must be applied:</p>
-<ol>
-<li>
-<p><strong>CMS Patching</strong>: Upgrade Cockpit CMS to the latest stable release to patch the NoSQL injection and command injection vulnerabilities.</p>
-</li>
-<li>
-<p><strong>Secure Configuration Storage</strong>: Never store plain-text passwords or sensitive tokens in configuration or history files (e.g., <code>.dbshell</code>). Implement strict file permissions (<code>600</code>) for user-specific configuration files.</p>
-</li>
-<li>
-<p><strong>Principle of Least Privilege (Sudo)</strong>: Revoke the <code>NOPASSWD</code> sudo execution rights for the <code>exiftool</code> binary. Sudo privileges should only be granted for specific, required operational scripts, not interactive or parse-heavy binaries.</p>
-</li>
-<li>
-<p><strong>Vulnerability Management</strong>: Update <code>exiftool</code> to a patched version to remediate CVE-2021-22204, preventing arbitrary code execution via crafted files.</p>
-</li>
-</ol>
+<h1 id="optimization-of-bitcoin-mining-on-pim-architecture">Optimization of Bitcoin Mining on PiM Architecture</h1>
+<p>R&amp;D Internship conducted at the MIS Laboratory — Université de Picardie Jules Verne.</p>
+<h2 id="work-carried-out">Work Carried Out</h2>
+<ul>
+<li>Implementation of Bitcoin mining on UPMEM architecture.</li>
+<li>Development in C and Assembly.</li>
+<li>Performance optimization.</li>
+<li>Throughput improvement up to 3× the number of hashes per second.</li>
+</ul>
+<p><a href="rapport-stage-pim.pdf">📄 View the internship report</a></p>
 
 
 

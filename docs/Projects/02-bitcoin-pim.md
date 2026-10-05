@@ -9,4 +9,4 @@ R&D Internship conducted at the MIS Laboratory — Université de Picardie Jules
 - Performance optimization.
 - Throughput improvement up to 3× the number of hashes per second.
 
-[📄 View the internship report](rapport-stage-pim.pdf)
+[📄 View the internship report](UPMEM.pdf)
