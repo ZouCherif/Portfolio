@@ -45,6 +45,8 @@ sudo systemctl enable --now docker
 sudo docker run -d -p 80:3000 bkimminich/juice-shop
 ```
 
+![docker image](../assets/docker_ps.png)
+
 ### 3.4. SIEM Deployment (Wazuh Manager)
 
 The core of the Security Operations Center is powered by a central Wazuh Manager instance (`10.0.0.10`), deployed on an isolated Ubuntu Server within the internal network. This node acts as the primary log ingestion, rule evaluation, and threat analysis engine.
@@ -111,3 +113,12 @@ To expose this internal service to the external attacker, a **Port Forwarding (N
 This setup successfully mirrors a standard corporate environment where internal servers are shielded by a firewall, but specific services (like HTTP) are selectively published to the Internet.
 
 ![OWASP Juice Shop Accessed via Attacker](../assets/kali-juice-shop.png)
+
+### 4.3. Network Intrusion Detection & Attack Validation
+
+To validate the detection capabilities of the Suricata NIDS positioned on the internal LAN interface, a controlled reconnaissance and vulnerability scan was launched from the external Kali Linux node.
+
+- **Attack Vector:** Execution of targeted Nmap scripting engine modules (`http-enum`, `http-vuln*`) against the published web service.
+- **SOC Response:** Suricata successfully intercepted the inbound malicious payload signatures as they traversed the internal network segment. The NIDS triggered clear signature-based alerts mapped to web server enumeration attempts and vulnerability probes.
+
+![Suricata NIDS Alerts Dashboard](../assets/suricata-nmap-alerts.png)
