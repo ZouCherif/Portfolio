@@ -20,7 +20,8 @@ nav:
   - Home: index.md
   - Projects:
       - Security Monitoring Lab: Projects/01-deploiement-siem-wazuh.md
-      - Bitcoin / PiM Optimization: Projects/02-bitcoin-pim.md
+      - Active Directory Attack & Defense Lab: Projects/02-active-directory-security-lab.md
+      - Bitcoin / PiM Optimization: Projects/03-bitcoin-pim.md
   - CTF Write-ups:
       - Attacktive Directory: CTF/attacktive-directory.md
       - CMSpit: CTF/CMSpit.md

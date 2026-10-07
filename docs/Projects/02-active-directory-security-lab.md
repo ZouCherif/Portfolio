@@ -1,16 +1,26 @@
 # Active Directory Attack & Defense Lab
 
-> **Educational lab only.** This project was built in an isolated virtual environment to understand how a compromise can propagate from an exposed web server to an Active Directory domain, and how segmentation, least privilege and domain hardening can break that attack chain.
+> **Educational lab only.**  
+> This project was built in an isolated virtual environment to understand how a compromise can propagate from an exposed web application to an Active Directory domain, then how segmentation, firewalling, Group Policy and least-privilege controls can break that attack chain.
 
 ## 1. Project Overview
 
-The objective of this lab was to build a small enterprise-like Active Directory environment, deliberately introduce several weaknesses, compromise it from an external attacker position, and then redesign the infrastructure with defensive controls.
+The objective of this project was to build a small enterprise-like Active Directory environment, deliberately introduce several weaknesses, compromise it from an external attacker position, and then redesign the infrastructure with defensive controls.
 
-The offensive scenario starts from a Kali Linux host placed on an external network. A vulnerable Ubuntu web server running DVWA is exposed to that network and also connected to the internal Active Directory network. By exploiting the web application, escalating privileges on Ubuntu and abusing excessive Active Directory permissions, the attack ultimately reaches the Domain Controller with `NT AUTHORITY\SYSTEM` privileges.
+The offensive scenario starts from a Kali Linux host located on an external network. A vulnerable Ubuntu web server running DVWA is exposed to that network and is also connected to the internal Active Directory network. By exploiting the web application, escalating privileges on Ubuntu and abusing excessive Active Directory permissions, the attack ultimately reaches the Domain Controller with `NT AUTHORITY\SYSTEM` privileges.
 
-The defensive phase focuses on breaking this path using firewall rules, network segmentation, security zones, Group Policy Objects (GPOs) and least-privilege principles.
+The defensive phase focuses on breaking this path using:
 
-**Main technologies and concepts:** Windows Server 2022, Active Directory Domain Services, DNS, Kerberos, Ubuntu, DVWA, Kali Linux, Impacket, Hashcat, command injection, privilege escalation, Kerberoasting, DCSync, Pass-the-Hash, network segmentation, firewalling and GPO hardening.
+- network segmentation;
+- firewall rules and security zones;
+- least-privilege principles;
+- service-account hardening;
+- Group Policy Objects (GPOs);
+- restriction of administrative traffic;
+- Active Directory privilege review;
+- monitoring and detection opportunities.
+
+**Main technologies and concepts:** Windows Server 2022, Active Directory Domain Services, DNS, Kerberos, Ubuntu, DVWA, Kali Linux, Impacket, Hashcat, command injection, reverse shell, Linux privilege escalation, Kerberoasting, DCSync, Pass-the-Hash, network segmentation, firewalling and GPO hardening.
 
 ---
 
@@ -18,15 +28,20 @@ The defensive phase focuses on breaking this path using firewall rules, network 
 
 The initial lab contained three main systems:
 
-| System | Role | Network position |
-|---|---|---|
-| **Kali Linux** | External attacker | `192.168.91.129/24` |
-| **Ubuntu Server** | DVWA web server, domain member and pivot host | `192.168.91.128/24` + `192.168.176.128/24` |
-| **Windows Server 2022** | Domain Controller, AD DS and DNS | `192.168.176.129/24` |
+| System                  | Role                                          | Network position                           |
+| ----------------------- | --------------------------------------------- | ------------------------------------------ |
+| **Kali Linux**          | External attacker                             | `192.168.91.129/24`                        |
+| **Ubuntu Server**       | DVWA web server, domain member and pivot host | `192.168.91.128/24` + `192.168.176.128/24` |
+| **Windows Server 2022** | Domain Controller, AD DS and DNS              | `192.168.176.129/24`                       |
 
-The Active Directory forest/domain used **`LAB.LOCAL`**. Test users visible in the domain included **Alice**, **Bob**, **Charles** and a service account named **`svc_web`**.
+The Active Directory forest/domain used **`LAB.LOCAL`**.
 
-The Ubuntu server was deliberately dual-homed. One interface was reachable from the external Kali network while the second interface provided direct access to the internal Active Directory network. This configuration made the web server a high-value pivot point once compromised.
+The Ubuntu server was deliberately dual-homed:
+
+- one interface connected to the external network;
+- one interface connected directly to the internal Active Directory network.
+
+This configuration made the web server a critical pivot point once compromised.
 
 ```text
 External network: 192.168.91.0/24
@@ -49,130 +64,248 @@ LAB.LOCAL
 Internal network: 192.168.176.0/24
 ```
 
+![Ubuntu dual-homed network configuration](../assets/ad-lab/ubuntu-interfaces.png)
+
+_Figure 1 — Ubuntu server connected to both the external and internal networks, making it usable as a pivot host after compromise._
+
 ---
 
 ## 3. Active Directory Configuration
 
 The Windows Server was configured with the **Active Directory Domain Services (AD DS)** and **DNS** roles and promoted as the Domain Controller for `LAB.LOCAL`.
 
-Several user accounts were created to simulate a small organization. A dedicated service account, `svc_web`, was intentionally configured with excessive privileges in order to model a realistic privilege-management failure.
+Several users were created to simulate a small organization, including:
 
-In particular, the account was granted directory replication permissions such as **Replicating Directory Changes**, creating the conditions required for a later **DCSync** attack if the service account credentials were compromised.
+- `Alice`
+- `Bob`
+- `Charles`
+- `svc_web`
 
-This misconfiguration is important because it demonstrates a common security principle: a service account should never receive domain-wide privileges that are unrelated to the service it runs.
+![Active Directory users](../assets/ad-lab/ad-users.png)
 
----
+_Figure 2 — Test users created inside the `LAB.LOCAL` Active Directory domain._
 
-## 4. Offensive Scenario
+### 3.1. Service Account Configuration
 
-### 4.1. Initial Access through DVWA
-
-The Ubuntu server hosted **Damn Vulnerable Web Application (DVWA)**. The attack began from Kali Linux by targeting the **Command Injection** functionality exposed by the application.
-
-After validating that commands could be executed on the server, a reverse shell was triggered back to the Kali machine.
-
-Kali listener:
-
-```bash
-nc -nvlp 4444
-```
-
-The injected payload established a connection back to the attacker and returned a shell running as the web-service account:
+A dedicated service account named `svc_web` was associated with the Ubuntu web service through a Service Principal Name (SPN):
 
 ```text
-www-data@ubuntuserver
+HTTP/ubuntuserver.lab.local
 ```
 
-At this stage, the attacker had remote command execution on the exposed Ubuntu host but did not yet have administrative privileges.
+![svc_web servicePrincipalName](../assets/ad-lab/svc-web-properties.png)
 
-### 4.2. Linux Privilege Escalation
+_Figure 3 — `svc_web` configured with an HTTP Service Principal Name._
 
-The compromised `www-data` account was checked for sudo permissions:
+### 3.2. Excessive Replication Permissions
 
-```bash
-sudo -l
-```
-
-The configuration allowed `www-data` to execute `/usr/bin/find` with `NOPASSWD`. Because `find` can execute arbitrary commands, this sudo rule could be abused to spawn a privileged shell.
-
-```bash
-sudo find . -exec /bin/bash \; -quit
-```
-
-The attacker therefore escalated from the low-privileged web-service account to **root** on the Ubuntu pivot host.
-
-This phase highlights why sudo rules must not grant unrestricted access to binaries that support command execution or shell escapes.
-
-### 4.3. Pivot to the Internal Domain
-
-Once root access was obtained, the second Ubuntu network interface provided direct connectivity to the internal `192.168.176.0/24` network.
-
-The compromised server was also already integrated into the `LAB.LOCAL` Kerberos realm. Domain discovery confirmed that the machine was a Kerberos/Active Directory member:
-
-```bash
-realm discover
-```
-
-The Ubuntu machine's Kerberos keytab was then used to obtain credentials for the machine account:
-
-```bash
-kinit -k -t /etc/krb5.keytab 'UBUNTUSERVER$@LAB.LOCAL'
-klist
-```
-
-This step demonstrates another important risk: compromising a domain-joined server can expose domain credentials or Kerberos material that can be reused for further domain reconnaissance.
-
-### 4.4. Kerberoasting the Service Account
-
-Using the Kerberos context available on the compromised Ubuntu server, Impacket was used to request service tickets for accounts with Service Principal Names (SPNs):
-
-```bash
-GetUserSPNs.py -request -k -no-pass LAB.LOCAL/UBUNTUSERVER$
-```
-
-A Kerberos TGS hash associated with the web service account was recovered and exported for offline cracking.
-
-The ticket was then tested against a wordlist with Hashcat using mode **13100** (Kerberos 5 TGS-REP, etype 23):
-
-```bash
-hashcat -m 13100 svc_web.hash /usr/share/wordlists/rockyou.txt
-```
-
-The service-account password was successfully recovered, demonstrating that the password was not sufficiently resistant to offline guessing.
-
-> The recovered lab password is intentionally omitted from this public write-up.
-
-### 4.5. DCSync through Excessive Replication Rights
-
-The compromise became critical because the service account had previously been granted directory replication privileges.
-
-With the recovered account credentials, Impacket's `secretsdump` was used against the Domain Controller:
-
-```bash
-impacket-secretsdump lab.local/svcweb:'<recovered-password>'@192.168.176.129
-```
-
-Because the account possessed replication rights, it could request sensitive directory data in a way similar to a Domain Controller replication operation. This exposed domain credential material, including the Administrator NTLM hash.
-
-The attack demonstrates why the following permissions are exceptionally sensitive:
+To simulate a privilege-management error, `svc_web` was intentionally granted directory replication permissions, including:
 
 - Replicating Directory Changes
 - Replicating Directory Changes All
 - Replicating Directory Changes in Filtered Set
 
-Accounts holding these rights should be treated as highly privileged and continuously audited.
+![svc_web replication permissions](../assets/ad-lab/svc-web-replication-permissions.png)
 
-### 4.6. Pass-the-Hash and Domain Controller Compromise
+_Figure 4 — Excessive replication permissions assigned to the `svc_web` account._
 
-The recovered Administrator NTLM hash was then reused directly without knowing the Administrator clear-text password.
+This misconfiguration is critical because an account with these permissions can perform a **DCSync** operation and request credential material from Active Directory.
+
+---
+
+# 4. Offensive Scenario
+
+The attack chain was executed from the external Kali Linux host.
+
+The objective was to demonstrate how several independent weaknesses can be chained together until the Domain Controller is fully compromised.
+
+---
+
+## 4.1. Initial Access through DVWA
+
+The Ubuntu server hosted **Damn Vulnerable Web Application (DVWA)**.
+
+The attack started by targeting the **Command Injection** functionality.
+
+A command-injection payload was used to launch a reverse shell toward the attacker's Kali Linux machine.
+
+![DVWA command injection](../assets/ad-lab/dvwa-command-injection.png)
+
+_Figure 5 — DVWA Command Injection used to execute a reverse-shell payload._
+
+On Kali Linux, a Netcat listener was started:
+
+```bash
+nc -nvlp 4444
+```
+
+The connection returned a shell running under the web-service account:
+
+```text
+www-data@ubuntuserver
+```
+
+![Reverse shell as www-data](../assets/ad-lab/reverse-shell-www-data.png)
+
+_Figure 6 — Reverse shell obtained from the vulnerable Ubuntu web server as `www-data`._
+
+At this stage, the attacker had remote command execution on the web server, but not administrative privileges.
+
+---
+
+## 4.2. Linux Privilege Escalation
+
+The current user's sudo privileges were inspected:
+
+```bash
+sudo -l
+```
+
+The configuration allowed `www-data` to execute:
+
+```text
+/usr/bin/find
+```
+
+with `NOPASSWD`.
+
+Because `find` supports command execution, the rule could be abused to spawn a root shell:
+
+```bash
+sudo find . -exec /bin/bash \; -quit
+```
+
+![Linux privilege escalation](../assets/ad-lab/ubuntu-privilege-escalation.png)
+
+_Figure 7 — Unsafe sudo configuration abused to escalate from `www-data` to `root`._
+
+The attacker now had full control of the Ubuntu server.
+
+### Security issue
+
+The problem was not the `find` utility itself, but the overly permissive sudo rule.
+
+A service account such as `www-data` should never be allowed to execute shell-capable binaries as root without authentication.
+
+---
+
+## 4.3. Pivot to the Internal Active Directory Network
+
+Because the Ubuntu host had two network interfaces, root access also provided a direct path toward the internal `192.168.176.0/24` network.
+
+The system was already integrated into the `LAB.LOCAL` Kerberos realm.
+
+Domain membership was confirmed with:
+
+```bash
+realm discover
+```
+
+The machine account's Kerberos keytab was then used to obtain a Ticket Granting Ticket:
+
+```bash
+kinit -k -t /etc/krb5.keytab 'UBUNTUSERVER$@LAB.LOCAL'
+```
+
+The ticket was verified with:
+
+```bash
+klist
+```
+
+![Kerberos domain membership](../assets/ad-lab/realm-kerberos-membership.png)
+
+_Figure 8 — Ubuntu domain membership and Kerberos ticket acquisition using the machine keytab._
+
+This demonstrates an important security consideration: compromising a domain-joined Linux server can expose Kerberos material that may be reused for domain reconnaissance.
+
+---
+
+## 4.4. Kerberoasting the `svc_web` Account
+
+The attacker then enumerated Service Principal Names from the compromised domain-joined Ubuntu server.
+
+The following Impacket command was used:
+
+```bash
+GetUserSPNs.py -request -k -no-pass LAB.LOCAL/UBUNTUSERVER$
+```
+
+![GetUserSPNs command](../assets/ad-lab/kerberoasting-command.png)
+
+_Figure 9 — Requesting Kerberos service tickets using Impacket `GetUserSPNs.py`._
+
+The output identified the service account:
+
+```text
+HTTP/ubuntuserver.lab.local    svcweb
+```
+
+and returned a Kerberos TGS ticket suitable for offline password cracking.
+
+![Kerberoasting ticket](../assets/ad-lab/kerberoasting-ticket.png)
+
+_Figure 10 — Kerberos TGS ticket obtained for the `svc_web` service account._
+
+The captured ticket was then tested with Hashcat using mode `13100`:
+
+```bash
+hashcat -m 13100 svc_web.hash /usr/share/wordlists/rockyou.txt
+```
+
+The password was successfully recovered.
+
+![Hashcat cracked Kerberos ticket](../assets/ad-lab/hashcat-kerberoast.png)
+
+_Figure 11 — Successful offline cracking of the Kerberos service ticket with Hashcat._
+
+This demonstrates why service accounts require long, random and non-human-generated passwords.
+
+---
+
+## 4.5. DCSync through Excessive Replication Rights
+
+The recovered `svc_web` credentials became much more dangerous because the account had Active Directory replication permissions.
+
+Using Impacket `secretsdump`, the account requested directory credential material from the Domain Controller:
+
+```bash
+impacket-secretsdump lab.local/svcweb:'<password>'@192.168.176.129
+```
+
+![DCSync with secretsdump](../assets/ad-lab/dcsync-secretsdump.png)
+
+_Figure 12 — `svc_web` using its excessive replication permissions to retrieve domain credential material._
+
+The operation returned password hashes for multiple domain accounts, including the built-in Administrator account.
+
+This technique is known as **DCSync** because the attacker abuses replication rights to behave like a Domain Controller requesting synchronization data.
+
+### Sensitive replication permissions
+
+The following permissions are especially important to monitor:
+
+- Replicating Directory Changes
+- Replicating Directory Changes All
+- Replicating Directory Changes in Filtered Set
+
+A normal service account should not possess them.
+
+---
+
+## 4.6. Pass-the-Hash and Domain Controller Compromise
+
+The recovered Administrator NTLM hash was reused without needing to know the Administrator clear-text password.
+
+Impacket `psexec.py` was used:
 
 ```bash
 psexec.py Administrator@192.168.176.129 -hashes :<ADMIN_NTLM_HASH>
 ```
 
-The remote execution succeeded through the administrative share and created a privileged service on the Domain Controller.
+The attack successfully authenticated to the Domain Controller through SMB, created a service and obtained a privileged command shell.
 
-Final verification:
+The final privilege level was verified with:
 
 ```cmd
 whoami
@@ -184,17 +317,21 @@ Result:
 nt authority\system
 ```
 
-The lab therefore demonstrated a complete attack path from an external web application to **SYSTEM-level execution on the Domain Controller**.
+![Pass-the-Hash to Domain Controller](../assets/ad-lab/pass-the-hash-system.png)
+
+_Figure 13 — Pass-the-Hash attack resulting in `NT AUTHORITY\SYSTEM` access on the Domain Controller._
+
+The full attack chain therefore progressed from an externally reachable web application to complete control of the Domain Controller.
 
 ---
 
-## 5. Attack Path Summary
+# 5. Complete Attack Path
 
 ```text
-External Kali attacker
+External Kali Linux attacker
         |
         v
-DVWA command injection
+DVWA Command Injection
         |
         v
 Reverse shell as www-data
@@ -203,25 +340,31 @@ Reverse shell as www-data
 Unsafe sudo rule on /usr/bin/find
         |
         v
-Root on dual-homed Ubuntu server
+Root on Ubuntu server
         |
         v
-Kerberos access to LAB.LOCAL
+Dual-homed host provides internal network access
+        |
+        v
+Kerberos machine credentials from keytab
         |
         v
 Kerberoasting of svc_web
         |
         v
-Weak service-account password recovered
+Offline password cracking
         |
         v
-svc_web replication / DCSync privileges
+svc_web replication permissions
         |
         v
-Domain credential hashes recovered
+DCSync / secretsdump
         |
         v
-Pass-the-Hash with Administrator NTLM hash
+Administrator NTLM hash
+        |
+        v
+Pass-the-Hash / PsExec
         |
         v
 NT AUTHORITY\SYSTEM on Domain Controller
@@ -229,215 +372,453 @@ NT AUTHORITY\SYSTEM on Domain Controller
 
 ---
 
-## 6. Security Weaknesses Identified
+# 6. Security Weaknesses Identified
 
-The exercise exposed several independent weaknesses that became much more dangerous when chained together:
+The compromise did not rely on a single vulnerability.
 
-1. **Externally reachable vulnerable web application** allowing operating-system command injection.
-2. **Dual-homed web server** providing a direct bridge between the exposed network and the internal domain network.
-3. **Unsafe sudo configuration** allowing the web-service account to execute a shell-capable binary as root without a password.
-4. **Domain-joined exposed server** containing reusable Kerberos material in a local keytab.
-5. **Weak service-account password** that could be recovered through offline Kerberoasting.
-6. **Excessive privileges on `svc_web`**, especially Active Directory replication rights.
-7. **Insufficient network filtering** between the compromised web server and the Domain Controller.
-8. **Administrative protocols reachable from the pivot host**, allowing credential material to be reused for lateral movement.
+It was possible because several weaknesses could be chained together.
 
-The main lesson is that domain compromise did not depend on one critical vulnerability. It resulted from a **chain of smaller configuration and privilege weaknesses**.
+## 6.1. Vulnerable Internet-Facing Application
 
----
+DVWA intentionally allowed operating-system command injection.
 
-## 7. Defensive Redesign & Hardening
+In a real environment, an equivalent vulnerability in an exposed application could provide the initial foothold.
 
-The second phase of the project focused on breaking the attack path using defense-in-depth rather than relying on a single control.
+## 6.2. Dual-Homed Web Server
 
-### 7.1. Network Segmentation and Security Zones
+The same Ubuntu server was connected to both:
 
-The flat connectivity model was redesigned around separate security zones protected by firewall rules.
+- the external network;
+- the internal Active Directory network.
 
-A typical hardened design for this lab separates:
+After compromising the web server, the attacker automatically gained network reachability toward internal resources.
 
-- **External / Untrusted zone** — attacker or Internet-facing network.
-- **DMZ / Web zone** — exposed application servers.
-- **Internal server zone** — trusted internal services.
-- **Domain Controller / Identity zone** — the most sensitive Active Directory systems.
-- **Administration zone** — privileged management traffic where applicable.
+## 6.3. Unsafe Sudo Rule
 
-The firewall policy follows a **default-deny** approach: communication between zones is blocked unless an explicit business requirement exists.
+The `www-data` service account was able to execute `/usr/bin/find` as root without a password.
 
-For the web server, only the application ports required by users should be exposed from the external network. Direct unrestricted communication from the DMZ to the Domain Controller should not be permitted.
+This created an immediate local privilege-escalation path.
 
-This single architectural change limits the value of the web server as a pivot even if the application itself is compromised.
+## 6.4. Domain-Joined Exposed Server
 
-### 7.2. Firewall Rules and Flow Restriction
+The Ubuntu machine was joined to the Active Directory domain and stored Kerberos machine credentials in its keytab.
 
-The firewall rules were designed around the principle of minimum required connectivity:
+Once the host was compromised, this material could be reused.
 
-- External users can reach only the published web service.
-- The DMZ cannot initiate arbitrary connections toward internal systems.
-- Administrative protocols such as SMB, WinRM and RDP are not exposed to the web zone without a justified requirement.
-- Domain Controller access is limited to trusted systems and necessary identity services.
-- East-west traffic between security zones is explicitly controlled and logged.
+## 6.5. Weak Service-Account Password
 
-The objective is not simply to hide the Domain Controller, but to ensure that compromising one server does not automatically provide a routable path to the identity infrastructure.
+The Kerberos service ticket for `svc_web` could be cracked offline.
 
-### 7.3. Linux Privilege Hardening
+A sufficiently long random password would make this attack impractical.
 
-The dangerous sudo rule allowing `www-data` to execute `/usr/bin/find` with `NOPASSWD` must be removed.
+## 6.6. Excessive Active Directory Privileges
 
-Service accounts should not receive generic sudo rights. If a web application genuinely requires a privileged operation, it should be implemented through a narrowly scoped mechanism that cannot execute arbitrary commands.
+The `svc_web` account possessed replication permissions unrelated to its function.
 
-Key principles applied to sudo configuration:
+This converted a compromised service account into a domain-compromise path.
 
-- no shell-capable binaries for untrusted service accounts;
-- no unnecessary `NOPASSWD` rules;
-- explicit command paths and arguments when possible;
-- regular review of `/etc/sudoers` and `/etc/sudoers.d/`;
-- separation between application identities and administrator identities.
+## 6.7. Insufficient Internal Network Filtering
 
-### 7.4. Active Directory Least Privilege
+The pivot host could directly reach sensitive services on the Domain Controller.
 
-The most important identity fix is the removal of replication privileges from the service account.
+## 6.8. Administrative Protocol Exposure
 
-`svc_web` should not have any of the permissions required for DCSync. Replication rights should remain restricted to Domain Controllers and explicitly authorized administrative identities.
-
-The service account should also follow a dedicated hardening policy:
-
-- long and randomly generated password;
-- no interactive logon;
-- no membership in administrative groups;
-- only the exact permissions required by the associated service;
-- regular credential rotation;
-- use of modern Kerberos encryption where possible;
-- periodic review of SPNs and delegated permissions.
-
-This change breaks the attack chain even if the account password were somehow recovered.
-
-### 7.5. Group Policy Hardening
-
-Group Policy was used as part of the defensive phase to centralize security configuration and reduce privilege exposure across the domain.
-
-The hardening strategy focuses on areas such as:
-
-- stronger password and account-lockout policy;
-- restriction of privileged and local administrator rights;
-- Windows Defender Firewall enforcement;
-- enhanced security auditing;
-- reduction of legacy or unnecessary authentication protocols;
-- restriction of remote administrative access;
-- tighter user-rights assignments;
-- consistent security configuration across domain-joined machines.
-
-The exact GPO settings can be extended in the portfolio as screenshots or exports from the original lab become available.
-
-### 7.6. Protecting the Domain Controller
-
-The Domain Controller is placed in the most restricted network zone and should not be treated as a general-purpose server.
-
-Defensive principles include:
-
-- no direct exposure to untrusted zones;
-- no unnecessary applications or services;
-- privileged administration only from controlled systems;
-- restricted SMB/RPC/RDP access;
-- regular review of accounts with replication permissions;
-- dedicated administrative accounts;
-- strong auditing of changes to privileged groups and directory permissions.
+SMB and related administrative services were reachable from the compromised internal host, making Pass-the-Hash lateral movement possible.
 
 ---
 
-## 8. Detection Opportunities
+# 7. Defensive Redesign & Hardening
 
-The attack also provides several useful Blue Team detection points.
+The second phase of the project focused on redesigning the environment according to **defense-in-depth** principles.
 
-| Attack phase | Detection opportunity |
-|---|---|
-| Web command injection | Web-server logs, abnormal shell execution, suspicious child processes |
-| Reverse shell | Unexpected outbound connection from web service process |
-| Sudo privilege escalation | `sudo` logs showing `www-data` executing privileged commands |
-| Kerberoasting | Unusual volume or pattern of Kerberos service-ticket requests (Windows Event ID 4769) |
-| DCSync | Directory replication activity by an account that is not a Domain Controller (Event ID 4662 with replication rights) |
-| Pass-the-Hash / PsExec | Remote SMB authentication, administrative share access, new service creation and unusual privileged logons |
+The objective was not to assume that the web application could never be compromised.
 
-This makes the lab useful from both offensive and defensive perspectives: each attack technique can be mapped to a potential prevention or detection control.
+Instead, the infrastructure was redesigned so that compromising one component would no longer automatically provide a path to the Domain Controller.
 
 ---
 
-## 9. Before vs. After Hardening
+## 7.1. Network Segmentation
 
-### Before
+The original architecture effectively allowed the web server to bridge the external network and the Active Directory network.
+
+The hardened design separates the infrastructure into security zones.
 
 ```text
-Internet/Attacker -> Web Server -> Internal Network -> Domain Controller
-                         |
-                         +-> privileged sudo
-                         +-> Kerberos material
-                         +-> unrestricted internal reachability
-
-svc_web -> weak password + replication privileges -> DCSync
+                   Internet / External
+                           |
+                        Firewall
+                           |
+                           v
+                      +---------+
+                      |   DMZ   |
+                      | Web App |
+                      +---------+
+                           |
+                     Restricted flows
+                           |
+                        Firewall
+                           |
+               +-----------+-----------+
+               |                       |
+               v                       v
+       Internal Server Zone     Administration Zone
+               |
+         Restricted flows
+               |
+               v
+        Identity / DC Zone
 ```
 
-### After
+Recommended zones for the lab:
+
+- **External / Untrusted Zone**
+- **DMZ / Web Zone**
+- **Internal Server Zone**
+- **Domain Controller / Identity Zone**
+- **Administration Zone**
+
+The central rule is:
+
+> **Default deny between zones. Allow only explicitly required traffic.**
+
+---
+
+## 7.2. Firewall Rules
+
+Firewall rules should implement minimum required connectivity.
+
+### External → DMZ
+
+Allow only the web application ports required by users.
+
+Example:
+
+```text
+ALLOW External -> Web Server : TCP/80, TCP/443
+DENY  External -> Internal Network : ANY
+```
+
+### DMZ → Internal
+
+The web server should not have unrestricted access to internal systems.
+
+```text
+DENY DMZ -> Domain Controller : SMB
+DENY DMZ -> Domain Controller : RDP
+DENY DMZ -> Domain Controller : WinRM
+DENY DMZ -> Internal hosts : ANY
+```
+
+Only explicitly required application flows should be allowed.
+
+### Administration Traffic
+
+Administrative protocols should only originate from dedicated management systems or an administration zone.
+
+---
+
+## 7.3. Removing the Linux Privilege-Escalation Path
+
+The dangerous sudo rule:
+
+```text
+www-data ALL=(ALL) NOPASSWD: /usr/bin/find
+```
+
+must be removed.
+
+Web-service accounts should:
+
+- not receive generic sudo privileges;
+- not execute shell-capable utilities as root;
+- not use unrestricted `NOPASSWD` rules;
+- be isolated from administrator identities.
+
+Where privileged actions are absolutely necessary, they should be implemented using narrowly scoped commands.
+
+---
+
+## 7.4. Active Directory Least Privilege
+
+The most important Active Directory correction is to remove replication privileges from `svc_web`.
+
+A service account should receive only the permissions required for its service.
+
+The account should not have:
+
+- Domain Admin membership;
+- directory replication privileges;
+- interactive administrator access;
+- unrestricted remote-management rights.
+
+### Service-account hardening
+
+A hardened service account should use:
+
+- a long random password;
+- regular password rotation;
+- no interactive logon;
+- minimal delegated permissions;
+- modern Kerberos encryption where possible;
+- periodic SPN review;
+- periodic ACL and privilege review.
+
+A managed service account such as **gMSA** can also reduce password-management risk in suitable environments.
+
+---
+
+## 7.5. Group Policy Hardening
+
+Group Policy Objects were used during the defensive phase to centralize security configuration.
+
+The hardening strategy includes the following categories.
+
+### Password and Account Policies
+
+- stronger password requirements;
+- account-lockout policy;
+- password history;
+- protection of privileged accounts.
+
+### Local Administrator Restrictions
+
+Administrative privileges should be limited to explicitly authorized accounts.
+
+Users should not receive unnecessary local administrator rights.
+
+### Windows Firewall
+
+Windows Defender Firewall should be enforced centrally through Group Policy.
+
+Only necessary inbound services should be allowed.
+
+### Remote Administration
+
+RDP, WinRM and SMB administration should be restricted to trusted management systems and administrator identities.
+
+### Auditing
+
+Advanced audit policy should provide visibility into:
+
+- logon events;
+- account changes;
+- Kerberos events;
+- directory-service changes;
+- privilege use;
+- process creation;
+- Group Policy changes.
+
+### Authentication Hardening
+
+Where compatible with the environment:
+
+- reduce or disable legacy NTLM use;
+- prefer Kerberos;
+- disable obsolete protocols;
+- review delegation settings;
+- enforce modern encryption.
+
+---
+
+# 8. Protecting the Domain Controller
+
+The Domain Controller is the most sensitive system in the environment.
+
+It should be placed in a dedicated, highly restricted network zone.
+
+Key principles include:
+
+- no direct Internet access;
+- no direct access from the DMZ;
+- no unnecessary software;
+- no general-purpose browsing or user activity;
+- restricted SMB/RPC/RDP/WinRM access;
+- dedicated administrative accounts;
+- privileged administration from trusted management systems;
+- continuous monitoring of privileged groups;
+- monitoring of directory replication permissions;
+- regular review of delegated rights.
+
+---
+
+# 9. Detection Opportunities
+
+The attack chain also provides several useful Blue Team detection points.
+
+| Attack phase              | Detection opportunity                                                                  |
+| ------------------------- | -------------------------------------------------------------------------------------- |
+| Web command injection     | Web-server logs, suspicious command execution, unexpected shell processes              |
+| Reverse shell             | Unexpected outbound connection from the web-service process                            |
+| Sudo privilege escalation | Linux authentication/sudo logs showing privileged execution by `www-data`              |
+| Kerberoasting             | Unusual Kerberos service-ticket requests, especially RC4 TGS requests                  |
+| DCSync                    | Directory replication activity initiated by an account that is not a Domain Controller |
+| Pass-the-Hash             | Unusual NTLM authentication, SMB administration and remote service creation            |
+| PsExec                    | Service creation and administrative-share activity                                     |
+| Domain privilege changes  | Changes to directory ACLs and privileged group membership                              |
+
+### Relevant Windows events
+
+Examples include:
+
+- **4769** — Kerberos service ticket requested
+- **4662** — operation performed on an Active Directory object
+- **4624** — successful logon
+- **4672** — special privileges assigned to a new logon
+- **7045** — service installed on a system
+
+Detection should not rely on a single event. Context and correlation are essential.
+
+---
+
+# 10. Before vs. After Hardening
+
+## Before
+
+```text
+External attacker
+       |
+       v
+Web Server
+       |
+       +---- unrestricted route ----> Internal Network
+       |                                  |
+       |                                  v
+       |                           Domain Controller
+       |
+       +---- dangerous sudo rule
+       |
+       +---- Kerberos machine credentials
+
+svc_web
+   |
+   +---- weak password
+   |
+   +---- replication permissions
+              |
+              v
+            DCSync
+```
+
+## After
 
 ```text
 External Zone
       |
    Firewall
       |
+      v
      DMZ
  [Web Server]
       |
-   restricted flows
+ restricted flows
       |
- Internal Services
+   Firewall
       |
-   restricted flows
+      v
+Internal Services
       |
- Identity / DC Zone
+ restricted flows
+      |
+      v
+Identity / DC Zone
 ```
 
-The redesigned model creates multiple independent barriers. Compromising the web application should no longer automatically provide root privileges, unrestricted internal connectivity, domain-replication privileges and administrative access to the Domain Controller.
+The hardened design introduces multiple independent barriers.
+
+Even if the web server is compromised:
+
+- root access should not be immediate;
+- the server should not have unrestricted internal connectivity;
+- service accounts should not expose reusable high-value credentials;
+- service accounts should not possess replication rights;
+- the Domain Controller should not accept arbitrary administrative traffic from the web zone.
 
 ---
 
-## 10. Skills Demonstrated
+# 11. Lessons Learned
 
-This project combines offensive and defensive security skills:
+The most important lesson from this lab is that a complete domain compromise often does not require one catastrophic vulnerability.
 
-- Windows Server and Active Directory deployment
-- AD DS and DNS administration
-- Kerberos authentication and service accounts
-- Linux and Windows networking
-- Web application exploitation in a controlled lab
-- Reverse shells and Linux privilege escalation
-- Internal network pivoting
+Instead, attackers can chain together several smaller weaknesses:
+
+```text
+Application vulnerability
+        +
+Privilege misconfiguration
+        +
+Poor network segmentation
+        +
+Weak service-account password
+        +
+Excessive AD permissions
+        =
+Domain compromise
+```
+
+This project reinforced the importance of **defense in depth**.
+
+Each defensive control should assume that another control may eventually fail.
+
+---
+
+# 12. Skills Demonstrated
+
+This project combines offensive and defensive security skills.
+
+### Infrastructure & Systems
+
+- Windows Server 2022
+- Active Directory Domain Services
+- DNS
+- Linux administration
+- Windows/Linux networking
+- domain-joined Linux systems
+
+### Offensive Security
+
+- web command injection
+- reverse shells
+- Linux privilege escalation
+- network pivoting
+- Kerberos abuse
 - Kerberoasting
+- Hashcat
 - DCSync
 - Pass-the-Hash
-- Impacket tooling
-- Hashcat
-- Active Directory privilege analysis
-- Firewall policy design
-- Network segmentation and security zones
-- GPO-based hardening
-- Least-privilege design
-- Attack-path analysis
-- Blue Team detection thinking
+- Impacket
+- PsExec
+
+### Defensive Security
+
+- network segmentation
+- DMZ design
+- firewall policy design
+- least privilege
+- Active Directory ACL review
+- service-account hardening
+- GPO hardening
+- identity-security principles
+- attack-path analysis
+- logging and detection strategy
 
 ---
 
-## 11. Evidence to Add from the Original Demonstration
+# 13. Conclusion
 
-The original project demonstration video provides strong visual evidence for the offensive portion of the lab. Useful screenshots for the final portfolio version include:
+This lab reproduces a realistic multi-stage attack path against a deliberately vulnerable Active Directory environment.
 
-1. Active Directory users (`Alice`, `Bob`, `Charles`, `svc_web`).
-2. `svc_web` directory replication permissions.
-3. Ubuntu dual-interface network configuration.
-4. DVWA Command Injection page.
-5. Reverse shell as `www-data` and the unsafe sudo rule.
-6. `realm discover` / Kerberos domain membership.
-7. Kerberoasting ticket extraction.
-8. Hashcat result with the recovered password **redacted**.
-9. `secretsdump` output with credential hashes **redacted**.
-10. Final `whoami` output showing `nt authority\system` on the Domain Controller.
+The project starts with the compromise of an exposed web application and progresses through Linux privilege escalation, network pivoting, Kerberos abuse, credential recovery, DCSync and Pass-the-Hash until the Domain Controller is reached with `NT AUTHORITY\SYSTEM` privileges.
 
-These screenshots should be cropped and sanitized before publication so that the write-up demonstrates the technique without publishing reusable credentials or hashes.
+The second phase demonstrates that security cannot rely solely on preventing the initial exploit.
+
+A resilient architecture must also limit the consequences of compromise through:
+
+- segmentation;
+- firewalling;
+- least privilege;
+- strong service-account management;
+- Active Directory hardening;
+- centralized policies;
+- monitoring and detection.
+
+The project therefore provides both an **offensive understanding of Active Directory attack paths** and a **defensive understanding of how to reduce and detect them**.

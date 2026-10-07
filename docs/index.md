@@ -27,7 +27,7 @@ The project also includes controlled attack simulations from Kali Linux against 
 
 R&D internship project conducted at the MIS Laboratory of the Université de Picardie Jules Verne. I implemented and optimized Bitcoin mining workloads on a Processor-in-Memory architecture, achieving up to a **3× increase in hashes calculated per second**.
 
-[View the project →](Projects/02-bitcoin-pim.md)
+[View the project →](Projects/03-bitcoin-pim.md)
 
 ---
 
