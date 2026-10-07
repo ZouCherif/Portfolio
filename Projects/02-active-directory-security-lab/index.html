@@ -1,0 +1,2676 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Cybersecurity portfolio of Cherif Zouaoui — Blue Team, security infrastructure, SOC, Active Directory and technical security projects.">
+      
+      
+      
+        <link rel="canonical" href="https://ZouCherif.github.io/portfolio/Projects/02-active-directory-security-lab/">
+      
+      
+        <link rel="prev" href="../01-deploiement-siem-wazuh/">
+      
+      
+        <link rel="next" href="../03-bitcoin-pim/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Active Directory Attack & Defense Lab - Cherif Zouaoui — Cybersecurity Portfolio</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#active-directory-attack-defense-lab" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Cherif Zouaoui — Cybersecurity Portfolio" class="md-header__button md-logo" aria-label="Cherif Zouaoui — Cybersecurity Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cherif Zouaoui — Cybersecurity Portfolio
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Active Directory Attack & Defense Lab
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="cyan"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01-deploiement-siem-wazuh/" class="md-tabs__link">
+          
+  
+  
+  Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../CTF/attacktive-directory/" class="md-tabs__link">
+          
+  
+  
+  CTF Write-ups
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Cherif Zouaoui — Cybersecurity Portfolio" class="md-nav__button md-logo" aria-label="Cherif Zouaoui — Cybersecurity Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Cherif Zouaoui — Cybersecurity Portfolio
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-deploiement-siem-wazuh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Monitoring Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Directory Attack & Defense Lab
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Directory Attack & Defense Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-project-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Project Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-initial-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Initial Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-active-directory-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Active Directory Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Active Directory Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-service-account-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Service Account Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-excessive-replication-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Excessive Replication Permissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-offensive-scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Offensive Scenario
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Offensive Scenario">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-initial-access-through-dvwa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Initial Access through DVWA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-linux-privilege-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Linux Privilege Escalation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2. Linux Privilege Escalation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security-issue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security issue
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-pivot-to-the-internal-active-directory-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3. Pivot to the Internal Active Directory Network
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-kerberoasting-the-svc_web-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4. Kerberoasting the svc_web Account
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-dcsync-through-excessive-replication-rights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5. DCSync through Excessive Replication Rights
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-replication-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive replication permissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-pass-the-hash-and-domain-controller-compromise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6. Pass-the-Hash and Domain Controller Compromise
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-complete-attack-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Complete Attack Path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-security-weaknesses-identified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Security Weaknesses Identified
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Security Weaknesses Identified">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-vulnerable-internet-facing-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1. Vulnerable Internet-Facing Application
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-dual-homed-web-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2. Dual-Homed Web Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-unsafe-sudo-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3. Unsafe Sudo Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-domain-joined-exposed-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4. Domain-Joined Exposed Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-weak-service-account-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5. Weak Service-Account Password
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-excessive-active-directory-privileges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6. Excessive Active Directory Privileges
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#67-insufficient-internal-network-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.7. Insufficient Internal Network Filtering
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#68-administrative-protocol-exposure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.8. Administrative Protocol Exposure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-defensive-redesign-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Defensive Redesign &amp; Hardening
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Defensive Redesign &amp; Hardening">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-network-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1. Network Segmentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-firewall-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2. Firewall Rules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.2. Firewall Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#external-dmz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External → DMZ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dmz-internal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DMZ → Internal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#administration-traffic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Administration Traffic
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-removing-the-linux-privilege-escalation-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3. Removing the Linux Privilege-Escalation Path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-active-directory-least-privilege" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4. Active Directory Least Privilege
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.4. Active Directory Least Privilege">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-account-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service-account hardening
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-group-policy-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.5. Group Policy Hardening
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.5. Group Policy Hardening">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#password-and-account-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Password and Account Policies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-administrator-restrictions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Administrator Restrictions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windows Firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-administration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remote Administration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auditing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auditing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Hardening
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-protecting-the-domain-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Protecting the Domain Controller
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-detection-opportunities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Detection Opportunities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Detection Opportunities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#relevant-windows-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relevant Windows events
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-before-vs-after-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Before vs. After Hardening
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Before vs. After Hardening">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        After
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-lessons-learned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Lessons Learned
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-skills-demonstrated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Skills Demonstrated
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Skills Demonstrated">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#infrastructure-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Infrastructure &amp; Systems
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Infrastructure &amp; Systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#offensive-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offensive Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defensive-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defensive Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-bitcoin-pim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bitcoin / PiM Optimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CTF Write-ups
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CTF Write-ups
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CTF/attacktive-directory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attacktive Directory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CTF/CMSpit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CMSpit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CTF/JacobTheBoss/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JacobTheBoss
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-project-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Project Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-initial-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Initial Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-active-directory-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Active Directory Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Active Directory Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-service-account-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Service Account Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-excessive-replication-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Excessive Replication Permissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-offensive-scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Offensive Scenario
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Offensive Scenario">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-initial-access-through-dvwa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Initial Access through DVWA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-linux-privilege-escalation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Linux Privilege Escalation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2. Linux Privilege Escalation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security-issue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security issue
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-pivot-to-the-internal-active-directory-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3. Pivot to the Internal Active Directory Network
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-kerberoasting-the-svc_web-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4. Kerberoasting the svc_web Account
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-dcsync-through-excessive-replication-rights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5. DCSync through Excessive Replication Rights
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-replication-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive replication permissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-pass-the-hash-and-domain-controller-compromise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6. Pass-the-Hash and Domain Controller Compromise
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-complete-attack-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Complete Attack Path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-security-weaknesses-identified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Security Weaknesses Identified
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Security Weaknesses Identified">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-vulnerable-internet-facing-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1. Vulnerable Internet-Facing Application
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-dual-homed-web-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2. Dual-Homed Web Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-unsafe-sudo-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3. Unsafe Sudo Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-domain-joined-exposed-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4. Domain-Joined Exposed Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-weak-service-account-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5. Weak Service-Account Password
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-excessive-active-directory-privileges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6. Excessive Active Directory Privileges
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#67-insufficient-internal-network-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.7. Insufficient Internal Network Filtering
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#68-administrative-protocol-exposure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.8. Administrative Protocol Exposure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-defensive-redesign-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Defensive Redesign &amp; Hardening
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Defensive Redesign &amp; Hardening">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-network-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1. Network Segmentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-firewall-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2. Firewall Rules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.2. Firewall Rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#external-dmz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External → DMZ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dmz-internal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DMZ → Internal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#administration-traffic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Administration Traffic
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-removing-the-linux-privilege-escalation-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3. Removing the Linux Privilege-Escalation Path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-active-directory-least-privilege" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4. Active Directory Least Privilege
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.4. Active Directory Least Privilege">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-account-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service-account hardening
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-group-policy-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.5. Group Policy Hardening
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.5. Group Policy Hardening">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#password-and-account-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Password and Account Policies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-administrator-restrictions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Administrator Restrictions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows-firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windows Firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-administration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remote Administration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auditing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auditing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Hardening
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-protecting-the-domain-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Protecting the Domain Controller
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-detection-opportunities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Detection Opportunities
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Detection Opportunities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#relevant-windows-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relevant Windows events
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-before-vs-after-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Before vs. After Hardening
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Before vs. After Hardening">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        After
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-lessons-learned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Lessons Learned
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-skills-demonstrated" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Skills Demonstrated
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Skills Demonstrated">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#infrastructure-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Infrastructure &amp; Systems
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Infrastructure &amp; Systems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#offensive-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offensive Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defensive-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defensive Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="active-directory-attack-defense-lab">Active Directory Attack &amp; Defense Lab</h1>
+<blockquote>
+<p><strong>Educational lab only.</strong><br />
+This project was built in an isolated virtual environment to understand how a compromise can propagate from an exposed web application to an Active Directory domain, then how segmentation, firewalling, Group Policy and least-privilege controls can break that attack chain.</p>
+</blockquote>
+<h2 id="1-project-overview">1. Project Overview</h2>
+<p>The objective of this project was to build a small enterprise-like Active Directory environment, deliberately introduce several weaknesses, compromise it from an external attacker position, and then redesign the infrastructure with defensive controls.</p>
+<p>The offensive scenario starts from a Kali Linux host located on an external network. A vulnerable Ubuntu web server running DVWA is exposed to that network and is also connected to the internal Active Directory network. By exploiting the web application, escalating privileges on Ubuntu and abusing excessive Active Directory permissions, the attack ultimately reaches the Domain Controller with <code>NT AUTHORITY\SYSTEM</code> privileges.</p>
+<p>The defensive phase focuses on breaking this path using:</p>
+<ul>
+<li>network segmentation;</li>
+<li>firewall rules and security zones;</li>
+<li>least-privilege principles;</li>
+<li>service-account hardening;</li>
+<li>Group Policy Objects (GPOs);</li>
+<li>restriction of administrative traffic;</li>
+<li>Active Directory privilege review;</li>
+<li>monitoring and detection opportunities.</li>
+</ul>
+<p><strong>Main technologies and concepts:</strong> Windows Server 2022, Active Directory Domain Services, DNS, Kerberos, Ubuntu, DVWA, Kali Linux, Impacket, Hashcat, command injection, reverse shell, Linux privilege escalation, Kerberoasting, DCSync, Pass-the-Hash, network segmentation, firewalling and GPO hardening.</p>
+<hr />
+<h2 id="2-initial-architecture">2. Initial Architecture</h2>
+<p>The initial lab contained three main systems:</p>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Role</th>
+<th>Network position</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Kali Linux</strong></td>
+<td>External attacker</td>
+<td><code>192.168.91.129/24</code></td>
+</tr>
+<tr>
+<td><strong>Ubuntu Server</strong></td>
+<td>DVWA web server, domain member and pivot host</td>
+<td><code>192.168.91.128/24</code> + <code>192.168.176.128/24</code></td>
+</tr>
+<tr>
+<td><strong>Windows Server 2022</strong></td>
+<td>Domain Controller, AD DS and DNS</td>
+<td><code>192.168.176.129/24</code></td>
+</tr>
+</tbody>
+</table>
+<p>The Active Directory forest/domain used <strong><code>LAB.LOCAL</code></strong>.</p>
+<p>The Ubuntu server was deliberately dual-homed:</p>
+<ul>
+<li>one interface connected to the external network;</li>
+<li>one interface connected directly to the internal Active Directory network.</li>
+</ul>
+<p>This configuration made the web server a critical pivot point once compromised.</p>
+<div class="highlight"><pre><span></span><code>External network: 192.168.91.0/24
+
+[Kali Linux]
+192.168.91.129
+      |
+      | HTTP / attack traffic
+      v
+[Ubuntu + DVWA]
+192.168.91.128
+192.168.176.128
+      |
+      | Internal network access
+      v
+[Windows Server 2022 / DC]
+192.168.176.129
+LAB.LOCAL
+
+Internal network: 192.168.176.0/24
+</code></pre></div>
+<p><img alt="Ubuntu dual-homed network configuration" src="../../assets/ad-lab/ubuntu-interfaces.png" /></p>
+<p><em>Figure 1 — Ubuntu server connected to both the external and internal networks, making it usable as a pivot host after compromise.</em></p>
+<hr />
+<h2 id="3-active-directory-configuration">3. Active Directory Configuration</h2>
+<p>The Windows Server was configured with the <strong>Active Directory Domain Services (AD DS)</strong> and <strong>DNS</strong> roles and promoted as the Domain Controller for <code>LAB.LOCAL</code>.</p>
+<p>Several users were created to simulate a small organization, including:</p>
+<ul>
+<li><code>Alice</code></li>
+<li><code>Bob</code></li>
+<li><code>Charles</code></li>
+<li><code>svc_web</code></li>
+</ul>
+<p><img alt="Active Directory users" src="../../assets/ad-lab/ad-users.png" /></p>
+<p><em>Figure 2 — Test users created inside the <code>LAB.LOCAL</code> Active Directory domain.</em></p>
+<h3 id="31-service-account-configuration">3.1. Service Account Configuration</h3>
+<p>A dedicated service account named <code>svc_web</code> was associated with the Ubuntu web service through a Service Principal Name (SPN):</p>
+<div class="highlight"><pre><span></span><code>HTTP/ubuntuserver.lab.local
+</code></pre></div>
+<p><img alt="svc_web servicePrincipalName" src="../../assets/ad-lab/svc-web-properties.png" /></p>
+<p><em>Figure 3 — <code>svc_web</code> configured with an HTTP Service Principal Name.</em></p>
+<h3 id="32-excessive-replication-permissions">3.2. Excessive Replication Permissions</h3>
+<p>To simulate a privilege-management error, <code>svc_web</code> was intentionally granted directory replication permissions, including:</p>
+<ul>
+<li>Replicating Directory Changes</li>
+<li>Replicating Directory Changes All</li>
+<li>Replicating Directory Changes in Filtered Set</li>
+</ul>
+<p><img alt="svc_web replication permissions" src="../../assets/ad-lab/svc-web-replication-permissions.png" /></p>
+<p><em>Figure 4 — Excessive replication permissions assigned to the <code>svc_web</code> account.</em></p>
+<p>This misconfiguration is critical because an account with these permissions can perform a <strong>DCSync</strong> operation and request credential material from Active Directory.</p>
+<hr />
+<h2 id="4-offensive-scenario">4. Offensive Scenario</h2>
+<p>The attack chain was executed from the external Kali Linux host.</p>
+<p>The objective was to demonstrate how several independent weaknesses can be chained together until the Domain Controller is fully compromised.</p>
+<hr />
+<h3 id="41-initial-access-through-dvwa">4.1. Initial Access through DVWA</h3>
+<p>The Ubuntu server hosted <strong>Damn Vulnerable Web Application (DVWA)</strong>.</p>
+<p>The attack started by targeting the <strong>Command Injection</strong> functionality.</p>
+<p>A command-injection payload was used to launch a reverse shell toward the attacker's Kali Linux machine.</p>
+<p><img alt="DVWA command injection" src="../../assets/ad-lab/dvwa-command-injection.png" /></p>
+<p><em>Figure 5 — DVWA Command Injection used to execute a reverse-shell payload.</em></p>
+<p>On Kali Linux, a Netcat listener was started:</p>
+<div class="highlight"><pre><span></span><code>nc<span class="w"> </span>-nvlp<span class="w"> </span><span class="m">4444</span>
+</code></pre></div>
+<p>The connection returned a shell running under the web-service account:</p>
+<div class="highlight"><pre><span></span><code>www-data@ubuntuserver
+</code></pre></div>
+<p><img alt="Reverse shell as www-data" src="../../assets/ad-lab/reverse-shell-www-data.png" /></p>
+<p><em>Figure 6 — Reverse shell obtained from the vulnerable Ubuntu web server as <code>www-data</code>.</em></p>
+<p>At this stage, the attacker had remote command execution on the web server, but not administrative privileges.</p>
+<hr />
+<h3 id="42-linux-privilege-escalation">4.2. Linux Privilege Escalation</h3>
+<p>The current user's sudo privileges were inspected:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>-l
+</code></pre></div>
+<p>The configuration allowed <code>www-data</code> to execute:</p>
+<div class="highlight"><pre><span></span><code>/usr/bin/find
+</code></pre></div>
+<p>with <code>NOPASSWD</code>.</p>
+<p>Because <code>find</code> supports command execution, the rule could be abused to spawn a root shell:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>find<span class="w"> </span>.<span class="w"> </span>-exec<span class="w"> </span>/bin/bash<span class="w"> </span><span class="se">\;</span><span class="w"> </span>-quit
+</code></pre></div>
+<p><img alt="Linux privilege escalation" src="../../assets/ad-lab/ubuntu-privilege-escalation.png" /></p>
+<p><em>Figure 7 — Unsafe sudo configuration abused to escalate from <code>www-data</code> to <code>root</code>.</em></p>
+<p>The attacker now had full control of the Ubuntu server.</p>
+<h4 id="security-issue">Security issue</h4>
+<p>The problem was not the <code>find</code> utility itself, but the overly permissive sudo rule.</p>
+<p>A service account such as <code>www-data</code> should never be allowed to execute shell-capable binaries as root without authentication.</p>
+<hr />
+<h3 id="43-pivot-to-the-internal-active-directory-network">4.3. Pivot to the Internal Active Directory Network</h3>
+<p>Because the Ubuntu host had two network interfaces, root access also provided a direct path toward the internal <code>192.168.176.0/24</code> network.</p>
+<p>The system was already integrated into the <code>LAB.LOCAL</code> Kerberos realm.</p>
+<p>Domain membership was confirmed with:</p>
+<div class="highlight"><pre><span></span><code>realm<span class="w"> </span>discover
+</code></pre></div>
+<p>The machine account's Kerberos keytab was then used to obtain a Ticket Granting Ticket:</p>
+<div class="highlight"><pre><span></span><code>kinit<span class="w"> </span>-k<span class="w"> </span>-t<span class="w"> </span>/etc/krb5.keytab<span class="w"> </span><span class="s1">'UBUNTUSERVER$@LAB.LOCAL'</span>
+</code></pre></div>
+<p>The ticket was verified with:</p>
+<div class="highlight"><pre><span></span><code>klist
+</code></pre></div>
+<p><img alt="Kerberos domain membership" src="../../assets/ad-lab/realm-kerberos-membership.png" /></p>
+<p><em>Figure 8 — Ubuntu domain membership and Kerberos ticket acquisition using the machine keytab.</em></p>
+<p>This demonstrates an important security consideration: compromising a domain-joined Linux server can expose Kerberos material that may be reused for domain reconnaissance.</p>
+<hr />
+<h3 id="44-kerberoasting-the-svc_web-account">4.4. Kerberoasting the <code>svc_web</code> Account</h3>
+<p>The attacker then enumerated Service Principal Names from the compromised domain-joined Ubuntu server.</p>
+<p>The following Impacket command was used:</p>
+<div class="highlight"><pre><span></span><code>GetUserSPNs.py<span class="w"> </span>-request<span class="w"> </span>-k<span class="w"> </span>-no-pass<span class="w"> </span>LAB.LOCAL/UBUNTUSERVER$
+</code></pre></div>
+<p><img alt="GetUserSPNs command" src="../../assets/ad-lab/kerberoasting-command.png" /></p>
+<p><em>Figure 9 — Requesting Kerberos service tickets using Impacket <code>GetUserSPNs.py</code>.</em></p>
+<p>The output identified the service account:</p>
+<div class="highlight"><pre><span></span><code>HTTP/ubuntuserver.lab.local    svcweb
+</code></pre></div>
+<p>and returned a Kerberos TGS ticket suitable for offline password cracking.</p>
+<p><img alt="Kerberoasting ticket" src="../../assets/ad-lab/kerberoasting-ticket.png" /></p>
+<p><em>Figure 10 — Kerberos TGS ticket obtained for the <code>svc_web</code> service account.</em></p>
+<p>The captured ticket was then tested with Hashcat using mode <code>13100</code>:</p>
+<div class="highlight"><pre><span></span><code>hashcat<span class="w"> </span>-m<span class="w"> </span><span class="m">13100</span><span class="w"> </span>svc_web.hash<span class="w"> </span>/usr/share/wordlists/rockyou.txt
+</code></pre></div>
+<p>The password was successfully recovered.</p>
+<p><img alt="Hashcat cracked Kerberos ticket" src="../../assets/ad-lab/hashcat-kerberoast.png" /></p>
+<p><em>Figure 11 — Successful offline cracking of the Kerberos service ticket with Hashcat.</em></p>
+<p>This demonstrates why service accounts require long, random and non-human-generated passwords.</p>
+<hr />
+<h3 id="45-dcsync-through-excessive-replication-rights">4.5. DCSync through Excessive Replication Rights</h3>
+<p>The recovered <code>svc_web</code> credentials became much more dangerous because the account had Active Directory replication permissions.</p>
+<p>Using Impacket <code>secretsdump</code>, the account requested directory credential material from the Domain Controller:</p>
+<div class="highlight"><pre><span></span><code>impacket-secretsdump<span class="w"> </span>lab.local/svcweb:<span class="s1">'&lt;password&gt;'</span>@192.168.176.129
+</code></pre></div>
+<p><img alt="DCSync with secretsdump" src="../../assets/ad-lab/dcsync-secretsdump.png" /></p>
+<p><em>Figure 12 — <code>svc_web</code> using its excessive replication permissions to retrieve domain credential material.</em></p>
+<p>The operation returned password hashes for multiple domain accounts, including the built-in Administrator account.</p>
+<p>This technique is known as <strong>DCSync</strong> because the attacker abuses replication rights to behave like a Domain Controller requesting synchronization data.</p>
+<h3 id="sensitive-replication-permissions">Sensitive replication permissions</h3>
+<p>The following permissions are especially important to monitor:</p>
+<ul>
+<li>Replicating Directory Changes</li>
+<li>Replicating Directory Changes All</li>
+<li>Replicating Directory Changes in Filtered Set</li>
+</ul>
+<p>A normal service account should not possess them.</p>
+<hr />
+<h3 id="46-pass-the-hash-and-domain-controller-compromise">4.6. Pass-the-Hash and Domain Controller Compromise</h3>
+<p>The recovered Administrator NTLM hash was reused without needing to know the Administrator clear-text password.</p>
+<p>Impacket <code>psexec.py</code> was used:</p>
+<div class="highlight"><pre><span></span><code>psexec.py<span class="w"> </span>Administrator@192.168.176.129<span class="w"> </span>-hashes<span class="w"> </span>:&lt;ADMIN_NTLM_HASH&gt;
+</code></pre></div>
+<p>The attack successfully authenticated to the Domain Controller through SMB, created a service and obtained a privileged command shell.</p>
+<p>The final privilege level was verified with:</p>
+<div class="highlight"><pre><span></span><code>whoami
+</code></pre></div>
+<p>Result:</p>
+<div class="highlight"><pre><span></span><code>nt authority\system
+</code></pre></div>
+<p><img alt="Pass-the-Hash to Domain Controller" src="../../assets/ad-lab/pass-the-hash-system.png" /></p>
+<p><em>Figure 13 — Pass-the-Hash attack resulting in <code>NT AUTHORITY\SYSTEM</code> access on the Domain Controller.</em></p>
+<p>The full attack chain therefore progressed from an externally reachable web application to complete control of the Domain Controller.</p>
+<hr />
+<h2 id="5-complete-attack-path">5. Complete Attack Path</h2>
+<div class="highlight"><pre><span></span><code>External Kali Linux attacker
+        |
+        v
+DVWA Command Injection
+        |
+        v
+Reverse shell as www-data
+        |
+        v
+Unsafe sudo rule on /usr/bin/find
+        |
+        v
+Root on Ubuntu server
+        |
+        v
+Dual-homed host provides internal network access
+        |
+        v
+Kerberos machine credentials from keytab
+        |
+        v
+Kerberoasting of svc_web
+        |
+        v
+Offline password cracking
+        |
+        v
+svc_web replication permissions
+        |
+        v
+DCSync / secretsdump
+        |
+        v
+Administrator NTLM hash
+        |
+        v
+Pass-the-Hash / PsExec
+        |
+        v
+NT AUTHORITY\SYSTEM on Domain Controller
+</code></pre></div>
+<hr />
+<h2 id="6-security-weaknesses-identified">6. Security Weaknesses Identified</h2>
+<p>The compromise did not rely on a single vulnerability.</p>
+<p>It was possible because several weaknesses could be chained together.</p>
+<h3 id="61-vulnerable-internet-facing-application">6.1. Vulnerable Internet-Facing Application</h3>
+<p>DVWA intentionally allowed operating-system command injection.</p>
+<p>In a real environment, an equivalent vulnerability in an exposed application could provide the initial foothold.</p>
+<h3 id="62-dual-homed-web-server">6.2. Dual-Homed Web Server</h3>
+<p>The same Ubuntu server was connected to both:</p>
+<ul>
+<li>the external network;</li>
+<li>the internal Active Directory network.</li>
+</ul>
+<p>After compromising the web server, the attacker automatically gained network reachability toward internal resources.</p>
+<h3 id="63-unsafe-sudo-rule">6.3. Unsafe Sudo Rule</h3>
+<p>The <code>www-data</code> service account was able to execute <code>/usr/bin/find</code> as root without a password.</p>
+<p>This created an immediate local privilege-escalation path.</p>
+<h3 id="64-domain-joined-exposed-server">6.4. Domain-Joined Exposed Server</h3>
+<p>The Ubuntu machine was joined to the Active Directory domain and stored Kerberos machine credentials in its keytab.</p>
+<p>Once the host was compromised, this material could be reused.</p>
+<h3 id="65-weak-service-account-password">6.5. Weak Service-Account Password</h3>
+<p>The Kerberos service ticket for <code>svc_web</code> could be cracked offline.</p>
+<p>A sufficiently long random password would make this attack impractical.</p>
+<h3 id="66-excessive-active-directory-privileges">6.6. Excessive Active Directory Privileges</h3>
+<p>The <code>svc_web</code> account possessed replication permissions unrelated to its function.</p>
+<p>This converted a compromised service account into a domain-compromise path.</p>
+<h3 id="67-insufficient-internal-network-filtering">6.7. Insufficient Internal Network Filtering</h3>
+<p>The pivot host could directly reach sensitive services on the Domain Controller.</p>
+<h3 id="68-administrative-protocol-exposure">6.8. Administrative Protocol Exposure</h3>
+<p>SMB and related administrative services were reachable from the compromised internal host, making Pass-the-Hash lateral movement possible.</p>
+<hr />
+<h2 id="7-defensive-redesign-hardening">7. Defensive Redesign &amp; Hardening</h2>
+<p>The second phase of the project focused on redesigning the environment according to <strong>defense-in-depth</strong> principles.</p>
+<p>The objective was not to assume that the web application could never be compromised.</p>
+<p>Instead, the infrastructure was redesigned so that compromising one component would no longer automatically provide a path to the Domain Controller.</p>
+<hr />
+<h3 id="71-network-segmentation">7.1. Network Segmentation</h3>
+<p>The original architecture effectively allowed the web server to bridge the external network and the Active Directory network.</p>
+<p>The hardened design separates the infrastructure into security zones.</p>
+<div class="highlight"><pre><span></span><code>                   Internet / External
+                           |
+                        Firewall
+                           |
+                           v
+                      +---------+
+                      |   DMZ   |
+                      | Web App |
+                      +---------+
+                           |
+                     Restricted flows
+                           |
+                        Firewall
+                           |
+               +-----------+-----------+
+               |                       |
+               v                       v
+       Internal Server Zone     Administration Zone
+               |
+         Restricted flows
+               |
+               v
+        Identity / DC Zone
+</code></pre></div>
+<p>Recommended zones for the lab:</p>
+<ul>
+<li><strong>External / Untrusted Zone</strong></li>
+<li><strong>DMZ / Web Zone</strong></li>
+<li><strong>Internal Server Zone</strong></li>
+<li><strong>Domain Controller / Identity Zone</strong></li>
+<li><strong>Administration Zone</strong></li>
+</ul>
+<p>The central rule is:</p>
+<blockquote>
+<p><strong>Default deny between zones. Allow only explicitly required traffic.</strong></p>
+</blockquote>
+<hr />
+<h3 id="72-firewall-rules">7.2. Firewall Rules</h3>
+<p>Firewall rules should implement minimum required connectivity.</p>
+<h4 id="external-dmz">External → DMZ</h4>
+<p>Allow only the web application ports required by users.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code>ALLOW External -&gt; Web Server : TCP/80, TCP/443
+DENY  External -&gt; Internal Network : ANY
+</code></pre></div>
+<h4 id="dmz-internal">DMZ → Internal</h4>
+<p>The web server should not have unrestricted access to internal systems.</p>
+<div class="highlight"><pre><span></span><code>DENY DMZ -&gt; Domain Controller : SMB
+DENY DMZ -&gt; Domain Controller : RDP
+DENY DMZ -&gt; Domain Controller : WinRM
+DENY DMZ -&gt; Internal hosts : ANY
+</code></pre></div>
+<p>Only explicitly required application flows should be allowed.</p>
+<h4 id="administration-traffic">Administration Traffic</h4>
+<p>Administrative protocols should only originate from dedicated management systems or an administration zone.</p>
+<hr />
+<h3 id="73-removing-the-linux-privilege-escalation-path">7.3. Removing the Linux Privilege-Escalation Path</h3>
+<p>The dangerous sudo rule:</p>
+<div class="highlight"><pre><span></span><code>www-data ALL=(ALL) NOPASSWD: /usr/bin/find
+</code></pre></div>
+<p>must be removed.</p>
+<p>Web-service accounts should:</p>
+<ul>
+<li>not receive generic sudo privileges;</li>
+<li>not execute shell-capable utilities as root;</li>
+<li>not use unrestricted <code>NOPASSWD</code> rules;</li>
+<li>be isolated from administrator identities.</li>
+</ul>
+<p>Where privileged actions are absolutely necessary, they should be implemented using narrowly scoped commands.</p>
+<hr />
+<h3 id="74-active-directory-least-privilege">7.4. Active Directory Least Privilege</h3>
+<p>The most important Active Directory correction is to remove replication privileges from <code>svc_web</code>.</p>
+<p>A service account should receive only the permissions required for its service.</p>
+<p>The account should not have:</p>
+<ul>
+<li>Domain Admin membership;</li>
+<li>directory replication privileges;</li>
+<li>interactive administrator access;</li>
+<li>unrestricted remote-management rights.</li>
+</ul>
+<h4 id="service-account-hardening">Service-account hardening</h4>
+<p>A hardened service account should use:</p>
+<ul>
+<li>a long random password;</li>
+<li>regular password rotation;</li>
+<li>no interactive logon;</li>
+<li>minimal delegated permissions;</li>
+<li>modern Kerberos encryption where possible;</li>
+<li>periodic SPN review;</li>
+<li>periodic ACL and privilege review.</li>
+</ul>
+<p>A managed service account such as <strong>gMSA</strong> can also reduce password-management risk in suitable environments.</p>
+<hr />
+<h3 id="75-group-policy-hardening">7.5. Group Policy Hardening</h3>
+<p>Group Policy Objects were used during the defensive phase to centralize security configuration.</p>
+<p>The hardening strategy includes the following categories.</p>
+<h4 id="password-and-account-policies">Password and Account Policies</h4>
+<ul>
+<li>stronger password requirements;</li>
+<li>account-lockout policy;</li>
+<li>password history;</li>
+<li>protection of privileged accounts.</li>
+</ul>
+<h4 id="local-administrator-restrictions">Local Administrator Restrictions</h4>
+<p>Administrative privileges should be limited to explicitly authorized accounts.</p>
+<p>Users should not receive unnecessary local administrator rights.</p>
+<h4 id="windows-firewall">Windows Firewall</h4>
+<p>Windows Defender Firewall should be enforced centrally through Group Policy.</p>
+<p>Only necessary inbound services should be allowed.</p>
+<h4 id="remote-administration">Remote Administration</h4>
+<p>RDP, WinRM and SMB administration should be restricted to trusted management systems and administrator identities.</p>
+<h4 id="auditing">Auditing</h4>
+<p>Advanced audit policy should provide visibility into:</p>
+<ul>
+<li>logon events;</li>
+<li>account changes;</li>
+<li>Kerberos events;</li>
+<li>directory-service changes;</li>
+<li>privilege use;</li>
+<li>process creation;</li>
+<li>Group Policy changes.</li>
+</ul>
+<h4 id="authentication-hardening">Authentication Hardening</h4>
+<p>Where compatible with the environment:</p>
+<ul>
+<li>reduce or disable legacy NTLM use;</li>
+<li>prefer Kerberos;</li>
+<li>disable obsolete protocols;</li>
+<li>review delegation settings;</li>
+<li>enforce modern encryption.</li>
+</ul>
+<hr />
+<h2 id="8-protecting-the-domain-controller">8. Protecting the Domain Controller</h2>
+<p>The Domain Controller is the most sensitive system in the environment.</p>
+<p>It should be placed in a dedicated, highly restricted network zone.</p>
+<p>Key principles include:</p>
+<ul>
+<li>no direct Internet access;</li>
+<li>no direct access from the DMZ;</li>
+<li>no unnecessary software;</li>
+<li>no general-purpose browsing or user activity;</li>
+<li>restricted SMB/RPC/RDP/WinRM access;</li>
+<li>dedicated administrative accounts;</li>
+<li>privileged administration from trusted management systems;</li>
+<li>continuous monitoring of privileged groups;</li>
+<li>monitoring of directory replication permissions;</li>
+<li>regular review of delegated rights.</li>
+</ul>
+<hr />
+<h2 id="9-detection-opportunities">9. Detection Opportunities</h2>
+<p>The attack chain also provides several useful Blue Team detection points.</p>
+<table>
+<thead>
+<tr>
+<th>Attack phase</th>
+<th>Detection opportunity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Web command injection</td>
+<td>Web-server logs, suspicious command execution, unexpected shell processes</td>
+</tr>
+<tr>
+<td>Reverse shell</td>
+<td>Unexpected outbound connection from the web-service process</td>
+</tr>
+<tr>
+<td>Sudo privilege escalation</td>
+<td>Linux authentication/sudo logs showing privileged execution by <code>www-data</code></td>
+</tr>
+<tr>
+<td>Kerberoasting</td>
+<td>Unusual Kerberos service-ticket requests, especially RC4 TGS requests</td>
+</tr>
+<tr>
+<td>DCSync</td>
+<td>Directory replication activity initiated by an account that is not a Domain Controller</td>
+</tr>
+<tr>
+<td>Pass-the-Hash</td>
+<td>Unusual NTLM authentication, SMB administration and remote service creation</td>
+</tr>
+<tr>
+<td>PsExec</td>
+<td>Service creation and administrative-share activity</td>
+</tr>
+<tr>
+<td>Domain privilege changes</td>
+<td>Changes to directory ACLs and privileged group membership</td>
+</tr>
+</tbody>
+</table>
+<h4 id="relevant-windows-events">Relevant Windows events</h4>
+<p>Examples include:</p>
+<ul>
+<li><strong>4769</strong> — Kerberos service ticket requested</li>
+<li><strong>4662</strong> — operation performed on an Active Directory object</li>
+<li><strong>4624</strong> — successful logon</li>
+<li><strong>4672</strong> — special privileges assigned to a new logon</li>
+<li><strong>7045</strong> — service installed on a system</li>
+</ul>
+<p>Detection should not rely on a single event. Context and correlation are essential.</p>
+<hr />
+<h2 id="10-before-vs-after-hardening">10. Before vs. After Hardening</h2>
+<h3 id="before">Before</h3>
+<div class="highlight"><pre><span></span><code>External attacker
+       |
+       v
+Web Server
+       |
+       +---- unrestricted route ----&gt; Internal Network
+       |                                  |
+       |                                  v
+       |                           Domain Controller
+       |
+       +---- dangerous sudo rule
+       |
+       +---- Kerberos machine credentials
+
+svc_web
+   |
+   +---- weak password
+   |
+   +---- replication permissions
+              |
+              v
+            DCSync
+</code></pre></div>
+<h3 id="after">After</h3>
+<div class="highlight"><pre><span></span><code>External Zone
+      |
+   Firewall
+      |
+      v
+     DMZ
+ [Web Server]
+      |
+ restricted flows
+      |
+   Firewall
+      |
+      v
+Internal Services
+      |
+ restricted flows
+      |
+      v
+Identity / DC Zone
+</code></pre></div>
+<p>The hardened design introduces multiple independent barriers.</p>
+<p>Even if the web server is compromised:</p>
+<ul>
+<li>root access should not be immediate;</li>
+<li>the server should not have unrestricted internal connectivity;</li>
+<li>service accounts should not expose reusable high-value credentials;</li>
+<li>service accounts should not possess replication rights;</li>
+<li>the Domain Controller should not accept arbitrary administrative traffic from the web zone.</li>
+</ul>
+<hr />
+<h2 id="11-lessons-learned">11. Lessons Learned</h2>
+<p>The most important lesson from this lab is that a complete domain compromise often does not require one catastrophic vulnerability.</p>
+<p>Instead, attackers can chain together several smaller weaknesses:</p>
+<div class="highlight"><pre><span></span><code>Application vulnerability
+        +
+Privilege misconfiguration
+        +
+Poor network segmentation
+        +
+Weak service-account password
+        +
+Excessive AD permissions
+        =
+Domain compromise
+</code></pre></div>
+<p>This project reinforced the importance of <strong>defense in depth</strong>.</p>
+<p>Each defensive control should assume that another control may eventually fail.</p>
+<hr />
+<h2 id="12-skills-demonstrated">12. Skills Demonstrated</h2>
+<p>This project combines offensive and defensive security skills.</p>
+<h3 id="infrastructure-systems">Infrastructure &amp; Systems</h3>
+<ul>
+<li>Windows Server 2022</li>
+<li>Active Directory Domain Services</li>
+<li>DNS</li>
+<li>Linux administration</li>
+<li>Windows/Linux networking</li>
+<li>domain-joined Linux systems</li>
+</ul>
+<h4 id="offensive-security">Offensive Security</h4>
+<ul>
+<li>web command injection</li>
+<li>reverse shells</li>
+<li>Linux privilege escalation</li>
+<li>network pivoting</li>
+<li>Kerberos abuse</li>
+<li>Kerberoasting</li>
+<li>Hashcat</li>
+<li>DCSync</li>
+<li>Pass-the-Hash</li>
+<li>Impacket</li>
+<li>PsExec</li>
+</ul>
+<h4 id="defensive-security">Defensive Security</h4>
+<ul>
+<li>network segmentation</li>
+<li>DMZ design</li>
+<li>firewall policy design</li>
+<li>least privilege</li>
+<li>Active Directory ACL review</li>
+<li>service-account hardening</li>
+<li>GPO hardening</li>
+<li>identity-security principles</li>
+<li>attack-path analysis</li>
+<li>logging and detection strategy</li>
+</ul>
+<hr />
+<h2 id="13-conclusion">13. Conclusion</h2>
+<p>This lab reproduces a realistic multi-stage attack path against a deliberately vulnerable Active Directory environment.</p>
+<p>The project starts with the compromise of an exposed web application and progresses through Linux privilege escalation, network pivoting, Kerberos abuse, credential recovery, DCSync and Pass-the-Hash until the Domain Controller is reached with <code>NT AUTHORITY\SYSTEM</code> privileges.</p>
+<p>The second phase demonstrates that security cannot rely solely on preventing the initial exploit.</p>
+<p>A resilient architecture must also limit the consequences of compromise through:</p>
+<ul>
+<li>segmentation;</li>
+<li>firewalling;</li>
+<li>least privilege;</li>
+<li>strong service-account management;</li>
+<li>Active Directory hardening;</li>
+<li>centralized policies;</li>
+<li>monitoring and detection.</li>
+</ul>
+<p>The project therefore provides both an <strong>offensive understanding of Active Directory attack paths</strong> and a <strong>defensive understanding of how to reduce and detect them</strong>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
