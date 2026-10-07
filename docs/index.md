@@ -21,6 +21,22 @@ The project also includes controlled attack simulations from Kali Linux against 
 
 [View the project →](Projects/01-deploiement-siem-wazuh.md)
 
+---
+
+### Active Directory Attack & Defense Lab
+
+**Technologies:** Active Directory · Windows Server · DNS · Kerberos · Ubuntu · DVWA · Impacket · Hashcat · GPO · Network Segmentation
+
+An end-to-end Active Directory security lab combining offensive analysis and defensive hardening.
+
+The attack scenario starts from an external Kali Linux machine, compromises an exposed DVWA web server through command injection, escalates privileges on Ubuntu, pivots into the internal network and abuses Kerberos and excessive Active Directory permissions through **Kerberoasting, DCSync and Pass-the-Hash** until obtaining `NT AUTHORITY\SYSTEM` access on the Domain Controller.
+
+The second phase focuses on reducing the attack surface through **network segmentation, firewall rules, security zones, least privilege, service-account hardening and GPO-based security controls**, while identifying relevant Blue Team detection opportunities.
+
+[View the project →](Projects/02-active-directory-security-lab.md)
+
+---
+
 ### Bitcoin Mining Optimization on PiM Architecture
 
 **Technologies:** C · Assembly · UPMEM · Performance Optimization · SHA-256
@@ -31,20 +47,9 @@ R&D internship project conducted at the MIS Laboratory of the Université de Pic
 
 ---
 
-## Projects in Documentation
-
-Two additional cybersecurity labs are currently being documented:
-
-- **Active Directory Security Lab** — deployment, compromise simulation, Kerberoasting, Pass-the-Hash, DCSync, segmentation and GPO hardening.
-- **Windows Reverse Engineering** — static analysis with Ghidra, anti-debugging analysis, multithreaded code analysis and Python tooling around MD5-based recovery.
-
-These projects will be added here once their technical write-ups are complete.
-
----
-
 ## CTF & Practical Training
 
-I also document selected CTF and training exercises to keep track of techniques, methodology and lessons learned.
+I also document selected CTF and practical security exercises to develop and maintain hands-on skills in enumeration, exploitation, Active Directory and web security.
 
 [Browse CTF write-ups →](CTF/attacktive-directory.md)
 
