@@ -10,7 +10,7 @@ In modern corporate environments, centralizing security logs and maintaining str
 
 The environment is strictly segmented using a pfSense firewall to isolate the untrusted external zone from the internal corporate network, reflecting a realistic perimeter defense.
 
-![Hybrid SOC Architecture](../assets/architecture-soc.png)
+![Hybrid SOC Architecture](../assets/soc-lab/architecture-soc.png)
 _Figure 1: Virtual infrastructure design isolating the WAN (Attacker) and LAN (Enterprise) zones._
 
 - **Red Zone (Attacker):** Kali Linux (`192.168.50.100`) situated on an isolated external network (VMnet1).
@@ -28,7 +28,7 @@ To ensure strict isolation, the virtualization environment relies on custom Host
 - **LAN Interface (em1):** Assigned to `VMnet2` with static IP `10.0.0.254/24`.
 - WebConfigurator (HTTPS) enabled on the LAN interface for firewall management.
 
-![pfSense interface configuration](../assets/pfsense_config.png)  
+![pfSense interface configuration](../assets/soc-lab/pfsense_config.png)  
 _Figure 2: pfSense routing configuration establishing the foundation of the lab environment._
 
 ### 3.2. Firewall Initial Configuration
@@ -45,7 +45,7 @@ sudo systemctl enable --now docker
 sudo docker run -d -p 80:3000 bkimminich/juice-shop
 ```
 
-![docker image](../assets/docker_ps.png)
+![docker image](../assets/soc-lab/docker_ps.png)
 
 ### 3.4. SIEM Deployment (Wazuh Manager)
 
@@ -58,7 +58,7 @@ The core of the Security Operations Center is powered by a central Wazuh Manager
 
 To ensure continuous monitoring of the vulnerable web target, the Wazuh agent was deployed on the Ubuntu server (`10.0.0.30`). The agent is configured to forward system logs, security events, and file integrity data directly to the central Wazuh Manager.
 
-![Active Linux Agent in Wazuh Dashboard](../assets/wazuh_endpoits1.png)
+![Active Linux Agent in Wazuh Dashboard](../assets/soc-lab/wazuh_endpoits1.png)
 
 #### Troubleshooting: Agent Authentication Mismatch
 
@@ -78,7 +78,7 @@ To establish deep visibility into the Windows environment (`10.0.0.20`), the sta
 - **Log Forwarding:** The Wazuh agent was deployed and explicitly configured to hook into the `Microsoft-Windows-Sysmon/Operational` event channel, streaming high-fidelity endpoint data back to the central SIEM on the isolated LAN.
 - **Version Control:** Resolved an initial `Agent version must be lower or equal to manager version` error by downgrading the Windows agent to match the Manager's exact version (4.9.2), ensuring cryptographic compatibility.
 
-![Active Windows Agent in Wazuh Dashboard](../assets/wazuh-agent-windows.png)
+![Active Windows Agent in Wazuh Dashboard](../assets/soc-lab/wazuh-agent-windows.png)
 
 ### 3.7. Network Intrusion Detection (Suricata on pfSense)
 
@@ -88,7 +88,7 @@ To complement the endpoint telemetry provided by Wazuh, a Network Intrusion Dete
 - **Threat Intelligence:** The sensor is configured with the **ETOpen Emerging Threats** ruleset, providing signature-based detection for known malicious activity, network scans, and exploit attempts.
 - **Visibility:** By monitoring the LAN interface, Suricata detects threats that have bypassed perimeter access controls, acting as a critical network-layer sensor for the SOC.
 
-![Suricata Active on pfSense LAN Interface](../assets/suricata-pfsense-active.png)
+![Suricata Active on pfSense LAN Interface](../assets/soc-lab/suricata-pfsense-active.png)
 
 ## 4. Offensive Simulation (Red Team)
 
@@ -108,11 +108,11 @@ To expose this internal service to the external attacker, a **Port Forwarding (N
 - **Destination:** WAN Address (Port 80)
 - **Redirect Target:** `10.0.0.30` (Port 80)
 
-![pfSense NAT Rule Configuration](../assets/Port_forward_rule.png)
+![pfSense NAT Rule Configuration](../assets/soc-lab/Port_forward_rule.png)
 
 This setup successfully mirrors a standard corporate environment where internal servers are shielded by a firewall, but specific services (like HTTP) are selectively published to the Internet.
 
-![OWASP Juice Shop Accessed via Attacker](../assets/kali-juice-shop.png)
+![OWASP Juice Shop Accessed via Attacker](../assets/soc-lab/kali-juice-shop.png)
 
 ### 4.3. Network Intrusion Detection & Attack Validation
 
@@ -121,4 +121,4 @@ To validate the detection capabilities of the Suricata NIDS positioned on the in
 - **Attack Vector:** Execution of targeted Nmap scripting engine modules (`http-enum`, `http-vuln*`) against the published web service.
 - **SOC Response:** Suricata successfully intercepted the inbound malicious payload signatures as they traversed the internal network segment. The NIDS triggered clear signature-based alerts mapped to web server enumeration attempts and vulnerability probes.
 
-![Suricata NIDS Alerts Dashboard](../assets/suricata-nmap-alerts.png)
+![Suricata NIDS Alerts Dashboard](../assets/soc-lab/suricata-nmap-alerts.png)

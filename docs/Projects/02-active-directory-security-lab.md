@@ -113,7 +113,7 @@ This misconfiguration is critical because an account with these permissions can 
 
 ---
 
-# 4. Offensive Scenario
+## 4. Offensive Scenario
 
 The attack chain was executed from the external Kali Linux host.
 
@@ -121,7 +121,7 @@ The objective was to demonstrate how several independent weaknesses can be chain
 
 ---
 
-## 4.1. Initial Access through DVWA
+### 4.1. Initial Access through DVWA
 
 The Ubuntu server hosted **Damn Vulnerable Web Application (DVWA)**.
 
@@ -153,7 +153,7 @@ At this stage, the attacker had remote command execution on the web server, but 
 
 ---
 
-## 4.2. Linux Privilege Escalation
+### 4.2. Linux Privilege Escalation
 
 The current user's sudo privileges were inspected:
 
@@ -181,7 +181,7 @@ _Figure 7 — Unsafe sudo configuration abused to escalate from `www-data` to `r
 
 The attacker now had full control of the Ubuntu server.
 
-### Security issue
+#### Security issue
 
 The problem was not the `find` utility itself, but the overly permissive sudo rule.
 
@@ -189,7 +189,7 @@ A service account such as `www-data` should never be allowed to execute shell-ca
 
 ---
 
-## 4.3. Pivot to the Internal Active Directory Network
+### 4.3. Pivot to the Internal Active Directory Network
 
 Because the Ubuntu host had two network interfaces, root access also provided a direct path toward the internal `192.168.176.0/24` network.
 
@@ -221,7 +221,7 @@ This demonstrates an important security consideration: compromising a domain-joi
 
 ---
 
-## 4.4. Kerberoasting the `svc_web` Account
+### 4.4. Kerberoasting the `svc_web` Account
 
 The attacker then enumerated Service Principal Names from the compromised domain-joined Ubuntu server.
 
@@ -263,7 +263,7 @@ This demonstrates why service accounts require long, random and non-human-genera
 
 ---
 
-## 4.5. DCSync through Excessive Replication Rights
+### 4.5. DCSync through Excessive Replication Rights
 
 The recovered `svc_web` credentials became much more dangerous because the account had Active Directory replication permissions.
 
@@ -293,7 +293,7 @@ A normal service account should not possess them.
 
 ---
 
-## 4.6. Pass-the-Hash and Domain Controller Compromise
+### 4.6. Pass-the-Hash and Domain Controller Compromise
 
 The recovered Administrator NTLM hash was reused without needing to know the Administrator clear-text password.
 
@@ -325,7 +325,7 @@ The full attack chain therefore progressed from an externally reachable web appl
 
 ---
 
-# 5. Complete Attack Path
+## 5. Complete Attack Path
 
 ```text
 External Kali Linux attacker
@@ -372,19 +372,19 @@ NT AUTHORITY\SYSTEM on Domain Controller
 
 ---
 
-# 6. Security Weaknesses Identified
+## 6. Security Weaknesses Identified
 
 The compromise did not rely on a single vulnerability.
 
 It was possible because several weaknesses could be chained together.
 
-## 6.1. Vulnerable Internet-Facing Application
+### 6.1. Vulnerable Internet-Facing Application
 
 DVWA intentionally allowed operating-system command injection.
 
 In a real environment, an equivalent vulnerability in an exposed application could provide the initial foothold.
 
-## 6.2. Dual-Homed Web Server
+### 6.2. Dual-Homed Web Server
 
 The same Ubuntu server was connected to both:
 
@@ -393,41 +393,41 @@ The same Ubuntu server was connected to both:
 
 After compromising the web server, the attacker automatically gained network reachability toward internal resources.
 
-## 6.3. Unsafe Sudo Rule
+### 6.3. Unsafe Sudo Rule
 
 The `www-data` service account was able to execute `/usr/bin/find` as root without a password.
 
 This created an immediate local privilege-escalation path.
 
-## 6.4. Domain-Joined Exposed Server
+### 6.4. Domain-Joined Exposed Server
 
 The Ubuntu machine was joined to the Active Directory domain and stored Kerberos machine credentials in its keytab.
 
 Once the host was compromised, this material could be reused.
 
-## 6.5. Weak Service-Account Password
+### 6.5. Weak Service-Account Password
 
 The Kerberos service ticket for `svc_web` could be cracked offline.
 
 A sufficiently long random password would make this attack impractical.
 
-## 6.6. Excessive Active Directory Privileges
+### 6.6. Excessive Active Directory Privileges
 
 The `svc_web` account possessed replication permissions unrelated to its function.
 
 This converted a compromised service account into a domain-compromise path.
 
-## 6.7. Insufficient Internal Network Filtering
+### 6.7. Insufficient Internal Network Filtering
 
 The pivot host could directly reach sensitive services on the Domain Controller.
 
-## 6.8. Administrative Protocol Exposure
+### 6.8. Administrative Protocol Exposure
 
 SMB and related administrative services were reachable from the compromised internal host, making Pass-the-Hash lateral movement possible.
 
 ---
 
-# 7. Defensive Redesign & Hardening
+## 7. Defensive Redesign & Hardening
 
 The second phase of the project focused on redesigning the environment according to **defense-in-depth** principles.
 
@@ -437,7 +437,7 @@ Instead, the infrastructure was redesigned so that compromising one component wo
 
 ---
 
-## 7.1. Network Segmentation
+### 7.1. Network Segmentation
 
 The original architecture effectively allowed the web server to bridge the external network and the Active Directory network.
 
@@ -483,11 +483,11 @@ The central rule is:
 
 ---
 
-## 7.2. Firewall Rules
+### 7.2. Firewall Rules
 
 Firewall rules should implement minimum required connectivity.
 
-### External → DMZ
+#### External → DMZ
 
 Allow only the web application ports required by users.
 
@@ -498,7 +498,7 @@ ALLOW External -> Web Server : TCP/80, TCP/443
 DENY  External -> Internal Network : ANY
 ```
 
-### DMZ → Internal
+#### DMZ → Internal
 
 The web server should not have unrestricted access to internal systems.
 
@@ -511,13 +511,13 @@ DENY DMZ -> Internal hosts : ANY
 
 Only explicitly required application flows should be allowed.
 
-### Administration Traffic
+#### Administration Traffic
 
 Administrative protocols should only originate from dedicated management systems or an administration zone.
 
 ---
 
-## 7.3. Removing the Linux Privilege-Escalation Path
+### 7.3. Removing the Linux Privilege-Escalation Path
 
 The dangerous sudo rule:
 
@@ -538,7 +538,7 @@ Where privileged actions are absolutely necessary, they should be implemented us
 
 ---
 
-## 7.4. Active Directory Least Privilege
+### 7.4. Active Directory Least Privilege
 
 The most important Active Directory correction is to remove replication privileges from `svc_web`.
 
@@ -551,7 +551,7 @@ The account should not have:
 - interactive administrator access;
 - unrestricted remote-management rights.
 
-### Service-account hardening
+#### Service-account hardening
 
 A hardened service account should use:
 
@@ -567,36 +567,36 @@ A managed service account such as **gMSA** can also reduce password-management r
 
 ---
 
-## 7.5. Group Policy Hardening
+### 7.5. Group Policy Hardening
 
 Group Policy Objects were used during the defensive phase to centralize security configuration.
 
 The hardening strategy includes the following categories.
 
-### Password and Account Policies
+#### Password and Account Policies
 
 - stronger password requirements;
 - account-lockout policy;
 - password history;
 - protection of privileged accounts.
 
-### Local Administrator Restrictions
+#### Local Administrator Restrictions
 
 Administrative privileges should be limited to explicitly authorized accounts.
 
 Users should not receive unnecessary local administrator rights.
 
-### Windows Firewall
+#### Windows Firewall
 
 Windows Defender Firewall should be enforced centrally through Group Policy.
 
 Only necessary inbound services should be allowed.
 
-### Remote Administration
+#### Remote Administration
 
 RDP, WinRM and SMB administration should be restricted to trusted management systems and administrator identities.
 
-### Auditing
+#### Auditing
 
 Advanced audit policy should provide visibility into:
 
@@ -608,7 +608,7 @@ Advanced audit policy should provide visibility into:
 - process creation;
 - Group Policy changes.
 
-### Authentication Hardening
+#### Authentication Hardening
 
 Where compatible with the environment:
 
@@ -620,7 +620,7 @@ Where compatible with the environment:
 
 ---
 
-# 8. Protecting the Domain Controller
+## 8. Protecting the Domain Controller
 
 The Domain Controller is the most sensitive system in the environment.
 
@@ -641,7 +641,7 @@ Key principles include:
 
 ---
 
-# 9. Detection Opportunities
+## 9. Detection Opportunities
 
 The attack chain also provides several useful Blue Team detection points.
 
@@ -656,7 +656,7 @@ The attack chain also provides several useful Blue Team detection points.
 | PsExec                    | Service creation and administrative-share activity                                     |
 | Domain privilege changes  | Changes to directory ACLs and privileged group membership                              |
 
-### Relevant Windows events
+#### Relevant Windows events
 
 Examples include:
 
@@ -670,9 +670,9 @@ Detection should not rely on a single event. Context and correlation are essenti
 
 ---
 
-# 10. Before vs. After Hardening
+## 10. Before vs. After Hardening
 
-## Before
+### Before
 
 ```text
 External attacker
@@ -699,7 +699,7 @@ svc_web
             DCSync
 ```
 
-## After
+### After
 
 ```text
 External Zone
@@ -735,7 +735,7 @@ Even if the web server is compromised:
 
 ---
 
-# 11. Lessons Learned
+## 11. Lessons Learned
 
 The most important lesson from this lab is that a complete domain compromise often does not require one catastrophic vulnerability.
 
@@ -761,7 +761,7 @@ Each defensive control should assume that another control may eventually fail.
 
 ---
 
-# 12. Skills Demonstrated
+## 12. Skills Demonstrated
 
 This project combines offensive and defensive security skills.
 
@@ -774,7 +774,7 @@ This project combines offensive and defensive security skills.
 - Windows/Linux networking
 - domain-joined Linux systems
 
-### Offensive Security
+#### Offensive Security
 
 - web command injection
 - reverse shells
@@ -788,7 +788,7 @@ This project combines offensive and defensive security skills.
 - Impacket
 - PsExec
 
-### Defensive Security
+#### Defensive Security
 
 - network segmentation
 - DMZ design
@@ -803,7 +803,7 @@ This project combines offensive and defensive security skills.
 
 ---
 
-# 13. Conclusion
+## 13. Conclusion
 
 This lab reproduces a realistic multi-stage attack path against a deliberately vulnerable Active Directory environment.
 
