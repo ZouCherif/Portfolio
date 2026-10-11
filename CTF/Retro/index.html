@@ -1,0 +1,1943 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Cybersecurity portfolio of Cherif Zouaoui — Blue Team, security infrastructure, SOC, Active Directory and technical security projects.">
+      
+      
+      
+        <link rel="canonical" href="https://ZouCherif.github.io/portfolio/CTF/Retro/">
+      
+      
+        <link rel="prev" href="../../Projects/03-bitcoin-pim/">
+      
+      
+        <link rel="next" href="../attacktive-directory/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Retro - Cherif Zouaoui — Cybersecurity Portfolio</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tryhackme-retro" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Cherif Zouaoui — Cybersecurity Portfolio" class="md-header__button md-logo" aria-label="Cherif Zouaoui — Cybersecurity Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cherif Zouaoui — Cybersecurity Portfolio
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Retro
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="cyan"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Projects/01-deploiement-siem-wazuh/" class="md-tabs__link">
+          
+  
+  
+  Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  CTF Write-ups
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Cherif Zouaoui — Cybersecurity Portfolio" class="md-nav__button md-logo" aria-label="Cherif Zouaoui — Cybersecurity Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Cherif Zouaoui — Cybersecurity Portfolio
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Projects/01-deploiement-siem-wazuh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Monitoring Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Projects/02-active-directory-security-lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Directory Attack & Defense Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Projects/03-bitcoin-pim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bitcoin / PiM Optimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CTF Write-ups
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CTF Write-ups
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Retro
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Retro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-wordpress-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. WordPress Enumeration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. WordPress Enumeration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-directory-enumeration-with-gobuster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1. Directory Enumeration with Gobuster
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-wordpress-enumeration-with-wpscan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2. WordPress Enumeration with WPScan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-inspecting-the-website-source-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3. Inspecting the Website Source Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-inspecting-the-wordpress-rest-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4. Inspecting the WordPress REST API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-investigating-cve-2017-6514" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5. Investigating CVE-2017-6514
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-examining-wordpress-user-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6. Examining WordPress User Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-initial-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Initial Access
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Initial Access">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-accessing-the-wordpress-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Accessing the WordPress Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-preparing-remote-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Preparing Remote Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-confirming-remote-command-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. Confirming Remote Command Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-accessing-the-windows-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Accessing the Windows Machine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Accessing the Windows Machine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-connecting-through-rdp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Connecting Through RDP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-retrieving-the-user-flag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Retrieving the User Flag
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-privilege-escalation-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Privilege Escalation Enumeration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Privilege Escalation Enumeration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-investigating-cve-2019-1388" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1. Investigating CVE-2019-1388
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-exploring-windows-user-accounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2. Exploring Windows User Accounts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-testing-user-account-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3. Testing User Account Control
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-investigating-the-certificate-dialog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4. Investigating the Certificate Dialog
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-testing-the-cve-2019-1388-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5. Testing the CVE-2019-1388 Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-investigating-internet-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.6. Investigating Internet Explorer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-privilege-escalation-with-cve-2017-0213" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Privilege Escalation with CVE-2017-0213
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Privilege Escalation with CVE-2017-0213">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-obtaining-the-exploit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1. Obtaining the Exploit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-hosting-the-exploit-with-a-python-http-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2. Hosting the Exploit with a Python HTTP Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-downloading-the-exploit-onto-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3. Downloading the Exploit onto Windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-executing-cve-2017-0213" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4. Executing CVE-2017-0213
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-understanding-what-happened" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5. Understanding What Happened
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-attack-chain-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Attack Chain Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attacktive-directory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attacktive Directory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CMSpit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CMSpit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../JacobTheBoss/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JacobTheBoss
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-wordpress-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. WordPress Enumeration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. WordPress Enumeration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-directory-enumeration-with-gobuster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1. Directory Enumeration with Gobuster
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-wordpress-enumeration-with-wpscan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2. WordPress Enumeration with WPScan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-inspecting-the-website-source-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3. Inspecting the Website Source Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-inspecting-the-wordpress-rest-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4. Inspecting the WordPress REST API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-investigating-cve-2017-6514" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5. Investigating CVE-2017-6514
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-examining-wordpress-user-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6. Examining WordPress User Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-initial-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Initial Access
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Initial Access">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-accessing-the-wordpress-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Accessing the WordPress Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-preparing-remote-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Preparing Remote Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-confirming-remote-command-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. Confirming Remote Command Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-accessing-the-windows-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Accessing the Windows Machine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Accessing the Windows Machine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-connecting-through-rdp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Connecting Through RDP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-retrieving-the-user-flag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Retrieving the User Flag
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-privilege-escalation-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Privilege Escalation Enumeration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Privilege Escalation Enumeration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-investigating-cve-2019-1388" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1. Investigating CVE-2019-1388
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-exploring-windows-user-accounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2. Exploring Windows User Accounts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-testing-user-account-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3. Testing User Account Control
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-investigating-the-certificate-dialog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4. Investigating the Certificate Dialog
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-testing-the-cve-2019-1388-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5. Testing the CVE-2019-1388 Approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-investigating-internet-explorer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.6. Investigating Internet Explorer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-privilege-escalation-with-cve-2017-0213" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Privilege Escalation with CVE-2017-0213
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Privilege Escalation with CVE-2017-0213">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-obtaining-the-exploit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1. Obtaining the Exploit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-hosting-the-exploit-with-a-python-http-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2. Hosting the Exploit with a Python HTTP Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-downloading-the-exploit-onto-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3. Downloading the Exploit onto Windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-executing-cve-2017-0213" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4. Executing CVE-2017-0213
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-understanding-what-happened" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5. Understanding What Happened
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-attack-chain-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Attack Chain Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="tryhackme-retro">TryHackMe: Retro</h1>
+<p><strong>Difficulty:</strong> Hard<br />
+<strong>Platform:</strong> TryHackMe<br />
+<strong>Target:</strong> Windows<br />
+<strong>Objective:</strong> Initial Access &amp; Local Privilege Escalation</p>
+<hr />
+<h2 id="1-introduction">1. Introduction</h2>
+<p>In this room, the objective is to compromise a Windows machine and ultimately obtain the highest level of local privileges.</p>
+<p>The attack can be divided into several main phases:</p>
+<ol>
+<li>Enumerating the web server.</li>
+<li>Identifying the WordPress installation and valid users.</li>
+<li>Gaining access to the WordPress administration interface.</li>
+<li>Achieving remote command execution through the WordPress theme editor.</li>
+<li>Accessing the Windows desktop through RDP.</li>
+<li>Enumerating the system for possible privilege-escalation vectors.</li>
+<li>Investigating CVE-2019-1388.</li>
+<li>Exploiting CVE-2017-0213 to obtain <code>NT AUTHORITY\SYSTEM</code> privileges.</li>
+</ol>
+<p>All actions described in this write-up were performed inside the authorized TryHackMe laboratory environment.</p>
+<hr />
+<h2 id="2-wordpress-enumeration">2. WordPress Enumeration</h2>
+<h3 id="21-directory-enumeration-with-gobuster">2.1. Directory Enumeration with Gobuster</h3>
+<p>We begin by enumerating the web server in order to discover directories that may not be directly visible from the main page.</p>
+<div class="highlight"><pre><span></span><code>gobuster<span class="w"> </span>dir<span class="w"> </span>-u<span class="w"> </span>http://10.129.189.26<span class="w"> </span><span class="se">\</span>
+-w<span class="w"> </span>/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+</code></pre></div>
+<p>Gobuster discovers several interesting directories, including:</p>
+<div class="highlight"><pre><span></span><code>/retro
+/Retro
+</code></pre></div>
+<p>The <code>/retro</code> directory contains a website and therefore becomes our main target for further investigation.</p>
+<p><img alt="Gobuster directory enumeration" src="../assets/retro/1.png" /></p>
+<hr />
+<h3 id="22-wordpress-enumeration-with-wpscan">2.2. WordPress Enumeration with WPScan</h3>
+<p>After discovering the website, we identify it as a WordPress installation.</p>
+<p>We use WPScan to gather additional information about the WordPress environment.</p>
+<p>WPScan is specifically designed for WordPress enumeration and can help identify information such as:</p>
+<ul>
+<li>WordPress versions</li>
+<li>Users</li>
+<li>Installed themes</li>
+<li>Plugins</li>
+<li>Configuration information</li>
+<li>Known vulnerabilities</li>
+</ul>
+<p>During the enumeration, WPScan identifies a valid WordPress user:</p>
+<div class="highlight"><pre><span></span><code>wade
+</code></pre></div>
+<p>Discovering a valid username significantly reduces the authentication attack surface because we now know that <code>wade</code> corresponds to an existing account.</p>
+<p><img alt="WordPress user enumeration" src="../assets/retro/2.png" /></p>
+<hr />
+<h3 id="23-inspecting-the-website-source-code">2.3. Inspecting the Website Source Code</h3>
+<p>We continue the enumeration by inspecting the HTML source code of the website.</p>
+<p>The source contains several references to WordPress resources and to a theme named:</p>
+<div class="highlight"><pre><span></span><code>90s-retro
+</code></pre></div>
+<p>These references confirm that the website is powered by WordPress and provide additional information about its structure.</p>
+<p>Identifying the active theme will later become particularly useful once administrative access is obtained.</p>
+<p><img alt="Website source code" src="../assets/retro/3.png" /></p>
+<hr />
+<h3 id="24-inspecting-the-wordpress-rest-api">2.4. Inspecting the WordPress REST API</h3>
+<p>WordPress exposes a REST API that can provide information about the website depending on its configuration.</p>
+<p>By inspecting the available API endpoints, we observe references to WordPress REST API version 2 as well as namespaces such as:</p>
+<div class="highlight"><pre><span></span><code>oembed/1.0
+</code></pre></div>
+<p>The API provides another potential source of information during the enumeration phase.</p>
+<p><img alt="WordPress REST API information" src="../assets/retro/4.png" /></p>
+<hr />
+<h3 id="25-investigating-cve-2017-6514">2.5. Investigating CVE-2017-6514</h3>
+<p>During our research, we investigate <code>CVE-2017-6514</code>.</p>
+<p>The vulnerability is associated with information disclosure involving WordPress user information.</p>
+<p>From an attacker's perspective, information-disclosure vulnerabilities can be valuable because they may reveal valid usernames or other details that can later be used during authentication attempts.</p>
+<p><img alt="CVE-2017-6514 description" src="../assets/retro/5.png" /></p>
+<hr />
+<h3 id="26-examining-wordpress-user-information">2.6. Examining WordPress User Information</h3>
+<p>We inspect the WordPress API response associated with the user <code>wade</code>.</p>
+<p>The returned JSON information confirms details such as:</p>
+<ul>
+<li>User ID</li>
+<li>Username</li>
+<li>Author information</li>
+<li>Associated URLs</li>
+</ul>
+<p>Most importantly, this confirms that:</p>
+<div class="highlight"><pre><span></span><code>wade
+</code></pre></div>
+<p>is a valid WordPress account.</p>
+<p><img alt="WordPress user information" src="../assets/retro/6.png" /></p>
+<hr />
+<h2 id="3-initial-access">3. Initial Access</h2>
+<h3 id="31-accessing-the-wordpress-dashboard">3.1. Accessing the WordPress Dashboard</h3>
+<p>Using the credentials recovered during our enumeration, we successfully authenticate to the WordPress administration dashboard.</p>
+<p>Administrative access considerably increases our attack possibilities because WordPress administrators can modify files belonging to installed themes.</p>
+<p>We navigate to:</p>
+<div class="highlight"><pre><span></span><code>Appearance → Theme Editor → 404 Template (404.php)
+</code></pre></div>
+<p>The WordPress theme editor allows us to directly modify PHP files used by the website.</p>
+<p>Since PHP code contained inside these files is processed by the web server, modifying a theme file gives us a potential way to execute commands on the underlying Windows system.</p>
+<p><img alt="WordPress theme editor" src="../assets/retro/7.png" /></p>
+<hr />
+<h3 id="32-preparing-remote-access">3.2. Preparing Remote Access</h3>
+<p>Our next objective is to move from WordPress administrative access to command execution on the Windows host.</p>
+<p>We modify the <code>404.php</code> template and insert PHP code designed to interact with the operating system.</p>
+<p>One approach is to create a reverse shell using functions such as:</p>
+<div class="highlight"><pre><span></span><code><span class="x">fsockopen()</span>
+</code></pre></div>
+<p>to establish the network connection and:</p>
+<div class="highlight"><pre><span></span><code><span class="x">proc_open()</span>
+</code></pre></div>
+<p>to start:</p>
+<div class="highlight"><pre><span></span><code>cmd.exe
+</code></pre></div>
+<p>The principle of a reverse shell is that the compromised server initiates the connection back to our Kali machine.</p>
+<p>This avoids relying exclusively on commands executed through the browser and can provide a more interactive command-line session.</p>
+<p><img alt="PHP reverse shell code" src="../assets/retro/8.png" /></p>
+<hr />
+<h3 id="33-confirming-remote-command-execution">3.3. Confirming Remote Command Execution</h3>
+<p>Before relying on a reverse shell, we verify that our modified PHP file is capable of executing Windows commands.</p>
+<p>We request the modified <code>404.php</code> page while supplying the <code>dir</code> command:</p>
+<div class="highlight"><pre><span></span><code>http://10.129.189.26/retro/wp-content/themes/90s-retro/404.php?cmd=dir
+</code></pre></div>
+<p>The resulting page displays the output of the Windows <code>dir</code> command.</p>
+<p>We can see the files contained inside the WordPress theme directory.</p>
+<p>This confirms an important milestone:</p>
+<blockquote>
+<p>We have successfully achieved remote command execution on the Windows server through the WordPress application.</p>
+</blockquote>
+<p>At this point, our access is no longer limited to WordPress itself. We can interact with the underlying Windows operating system within the security context of the web-server process.</p>
+<p><img alt="Remote command execution" src="../assets/retro/9.png" /></p>
+<hr />
+<h2 id="4-accessing-the-windows-machine">4. Accessing the Windows Machine</h2>
+<h3 id="41-connecting-through-rdp">4.1. Connecting Through RDP</h3>
+<p>After obtaining valid Windows credentials, we attempt to access the graphical Windows environment using Remote Desktop Protocol.</p>
+<p>From Kali Linux, we use FreeRDP:</p>
+<div class="highlight"><pre><span></span><code>xfreerdp<span class="w"> </span>/u:wade<span class="w"> </span>/p:parzival<span class="w"> </span>/v:10.129.189.26<span class="w"> </span>/dynamic-resolution<span class="w"> </span>+clipboard
+</code></pre></div>
+<p>The main parameters are:</p>
+<ul>
+<li><code>/u:wade</code> — username</li>
+<li><code>/p:parzival</code> — password</li>
+<li><code>/v:10.129.189.26</code> — target host</li>
+<li><code>/dynamic-resolution</code> — dynamically adjusts the remote desktop resolution</li>
+<li><code>+clipboard</code> — enables clipboard sharing between Kali and Windows</li>
+</ul>
+<p>Authentication succeeds and we obtain an interactive Windows desktop session as:</p>
+<div class="highlight"><pre><span></span><code>Wade
+</code></pre></div>
+<p>We now have direct access to the target machine as a local user.</p>
+<hr />
+<h3 id="42-retrieving-the-user-flag">4.2. Retrieving the User Flag</h3>
+<p>Once connected through RDP, we inspect Wade's desktop.</p>
+<p>A file named:</p>
+<div class="highlight"><pre><span></span><code>user.txt
+</code></pre></div>
+<p>is present.</p>
+<p>Opening the file with Notepad reveals the user flag.</p>
+<p>This confirms that we have successfully completed the initial-access portion of the room.</p>
+<p><img alt="RDP access and user flag" src="../assets/retro/11.png" /></p>
+<hr />
+<h2 id="5-privilege-escalation-enumeration">5. Privilege Escalation Enumeration</h2>
+<p>Although we now have access to the Windows machine, <code>Wade</code> is not running with the highest system privileges.</p>
+<p>Our next objective is therefore to identify a local privilege-escalation technique that allows us to move from the current account to a privileged security context.</p>
+<p>The ultimate goal is to obtain either Administrator-level access or, preferably:</p>
+<div class="highlight"><pre><span></span><code>NT AUTHORITY\SYSTEM
+</code></pre></div>
+<p><code>SYSTEM</code> is one of the most privileged local security contexts available on Windows.</p>
+<hr />
+<h3 id="51-investigating-cve-2019-1388">5.1. Investigating CVE-2019-1388</h3>
+<p>One potential privilege-escalation technique we investigate is:</p>
+<div class="highlight"><pre><span></span><code>CVE-2019-1388
+</code></pre></div>
+<p>This vulnerability involves Windows certificate dialogs and certain privileged operations performed through the Windows graphical interface.</p>
+<p>Under vulnerable configurations, interactions with certificate information may lead to the creation of a process with elevated privileges.</p>
+<p><img alt="CVE-2019-1388 reference" src="../assets/retro/12.png" /></p>
+<p><img alt="CVE-2019-1388 reference" src="../assets/retro/13.png" /></p>
+<hr />
+<h3 id="52-exploring-windows-user-accounts">5.2. Exploring Windows User Accounts</h3>
+<p>As part of the local enumeration process, we navigate to:</p>
+<div class="highlight"><pre><span></span><code>C:\Users
+</code></pre></div>
+<p>Several user directories are visible, including:</p>
+<div class="highlight"><pre><span></span><code>Administrator
+Public
+Wade
+</code></pre></div>
+<p>This confirms that our current session belongs to the <code>Wade</code> account and that a separate Administrator profile exists on the machine.</p>
+<p><img alt="Windows user directories" src="../assets/retro/14.png" /></p>
+<hr />
+<h3 id="53-testing-user-account-control">5.3. Testing User Account Control</h3>
+<p>We then investigate the behavior of Windows User Account Control, commonly known as UAC.</p>
+<p>UAC is designed to prevent applications from silently acquiring elevated privileges.</p>
+<p>When an application requests administrative permissions, Windows may display a prompt asking the user either to confirm the action or to provide administrator credentials.</p>
+<p>In our case, attempting to execute the application with elevated privileges results in a credential prompt.</p>
+<p>This indicates that Wade cannot simply approve administrative execution.</p>
+<p><img alt="UAC prompt" src="../assets/retro/16.png" /></p>
+<p><img alt="UAC prompt" src="../assets/retro/15.png" /></p>
+<hr />
+<h3 id="54-investigating-the-certificate-dialog">5.4. Investigating the Certificate Dialog</h3>
+<p>Because CVE-2019-1388 is related to the Windows certificate interface, we inspect the certificate information presented by the executable.</p>
+<p>The application is displayed as being published by Microsoft Windows, and Windows allows us to inspect additional certificate and publisher information.</p>
+<p>This dialog is particularly interesting because certain historical Windows privilege-escalation techniques abused interactions originating from a privileged certificate window.</p>
+<p><img alt="Certificate dialog" src="../assets/retro/17.png" /></p>
+<hr />
+<h3 id="55-testing-the-cve-2019-1388-approach">5.5. Testing the CVE-2019-1388 Approach</h3>
+<p>We continue interacting with the UAC and certificate windows in order to determine whether we can launch another process from the privileged security context.</p>
+<p>The objective is to escape from the restricted dialog and obtain access to a privileged Windows process.</p>
+<p><img alt="CVE-2019-1388 testing" src="../assets/retro/19.png" /></p>
+<p>However, this approach does not provide us with a reliable privilege-escalation path in our current environment.</p>
+<p>We therefore continue our enumeration instead of relying on this technique.</p>
+<hr />
+<h3 id="56-investigating-internet-explorer">5.6. Investigating Internet Explorer</h3>
+<p>During the investigation, Internet Explorer is opened as part of the certificate-related workflow.</p>
+<p>The browser attempts to access a certificate-related resource, but the requested page cannot be displayed.</p>
+<p>We inspect the available browser options to determine whether Internet Explorer can be leveraged to start another process with elevated privileges.</p>
+<p><img alt="Internet Explorer" src="../assets/retro/20.png" /></p>
+<p><img alt="Internet Explorer" src="../assets/retro/21.png" /></p>
+<p>Since this path does not provide the desired result, we move on to another local privilege-escalation vulnerability.</p>
+<hr />
+<h2 id="6-privilege-escalation-with-cve-2017-0213">6. Privilege Escalation with CVE-2017-0213</h2>
+<p>We next investigate:</p>
+<div class="highlight"><pre><span></span><code>CVE-2017-0213
+</code></pre></div>
+<p>This vulnerability affects Microsoft Windows and can allow a local user to elevate privileges on a vulnerable system.</p>
+<p>It is associated with Windows COM mechanisms and improper handling of privileged operations.</p>
+<p>For our attack scenario, this vulnerability is particularly interesting because we already satisfy the most important prerequisite:</p>
+<blockquote>
+<p>We already have local access to the target machine as Wade.</p>
+</blockquote>
+<p>A successful exploitation can therefore allow us to transition from the security context of Wade to:</p>
+<div class="highlight"><pre><span></span><code>NT AUTHORITY\SYSTEM
+</code></pre></div>
+<hr />
+<h3 id="61-obtaining-the-exploit">6.1. Obtaining the Exploit</h3>
+<p>We locate a public proof of concept for CVE-2017-0213 in the <code>windows-kernel-exploits</code> repository.</p>
+<p>The available files contain different versions of the exploit for different system architectures.</p>
+<p>Because the target machine is running a 64-bit version of Windows, we select the appropriate 64-bit executable.</p>
+<p><img alt="CVE-2017-0213 exploit" src="../assets/retro/22.png" /></p>
+<p>At this stage, the exploit exists on our Kali machine.</p>
+<p>We still need to transfer it to the target Windows machine before it can be executed.</p>
+<hr />
+<h3 id="62-hosting-the-exploit-with-a-python-http-server">6.2. Hosting the Exploit with a Python HTTP Server</h3>
+<p>A simple way to transfer files between our Kali attacking machine and the Windows target is to temporarily host them over HTTP.</p>
+<p>Inside the directory containing the exploit, we start Python's built-in HTTP server.</p>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span><span class="m">8000</span>
+</code></pre></div>
+<p>Python starts a lightweight web server listening on port <code>8000</code>.</p>
+<p>The directory from which the command is executed becomes accessible over HTTP.</p>
+<p>Conceptually, the situation is now:</p>
+<div class="highlight"><pre><span></span><code>Kali Linux
+   |
+   |  Python HTTP Server
+   |  Port 8000
+   |
+   +---- CVE-2017-0213 exploit.exe
+                |
+                | HTTP
+                v
+        Windows Target
+</code></pre></div>
+<p><img alt="Python HTTP server" src="../assets/retro/23.png" /></p>
+<p>An important distinction is that the Python server itself does <strong>not</strong> exploit the Windows machine.</p>
+<p>Its only purpose is to make the exploit executable available for download.</p>
+<hr />
+<h3 id="63-downloading-the-exploit-onto-windows">6.3. Downloading the Exploit onto Windows</h3>
+<p>From the Windows target, we open a browser and navigate to the IP address of our Kali machine on the port used by the Python HTTP server.</p>
+<p>The browser displays the directory listing exposed by Python.</p>
+<p>We can see the CVE-2017-0213 executable hosted on Kali.</p>
+<p><img alt="Accessing the HTTP server" src="../assets/retro/24.png" /></p>
+<p>This demonstrates that network communication works in the following direction:</p>
+<div class="highlight"><pre><span></span><code>Windows Target  ─────HTTP request─────&gt;  Kali
+Windows Target  &lt;────exploit.exe──────  Kali
+</code></pre></div>
+<p>We then download the 64-bit exploit onto the Windows machine.</p>
+<p>This step is often described as <strong>transferring a payload</strong>, although technically our Kali machine is hosting the file and the Windows target is downloading it.</p>
+<p>After the transfer, the exploit executable is physically present on the target system and can be executed locally.</p>
+<hr />
+<h3 id="64-executing-cve-2017-0213">6.4. Executing CVE-2017-0213</h3>
+<p>We launch the downloaded executable from the Windows machine.</p>
+<p>The exploit abuses the vulnerable Windows behavior targeted by CVE-2017-0213 and causes a new process to be created with elevated privileges.</p>
+<p>A command prompt is opened.</p>
+<p><img alt="Elevated command prompt" src="../assets/retro/25.png" /></p>
+<p><img alt="Elevated command prompt" src="../assets/retro/26.png" /></p>
+<p>To understand the significance of this new shell, it is important to distinguish the different Windows security contexts involved.</p>
+<p>Before exploitation, our session runs as:</p>
+<div class="highlight"><pre><span></span><code>Wade
+</code></pre></div>
+<p>After successful exploitation, the newly created process runs as:</p>
+<div class="highlight"><pre><span></span><code>NT AUTHORITY\SYSTEM
+</code></pre></div>
+<p>The privilege transition can therefore be represented as:</p>
+<div class="highlight"><pre><span></span><code>Wade
+  |
+  | CVE-2017-0213
+  v
+NT AUTHORITY\SYSTEM
+</code></pre></div>
+<p>This confirms that the local privilege escalation was successful.</p>
+<hr />
+<h3 id="65-understanding-what-happened">6.5. Understanding What Happened</h3>
+<p>The final exploitation process consists of several independent steps.</p>
+<p>First, the exploit executable is located on our Kali Linux machine.</p>
+<p>We then run:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span><span class="m">8000</span>
+</code></pre></div>
+<p>This turns Kali into a temporary HTTP file server.</p>
+<p>The Windows target connects to that HTTP server and downloads the executable.</p>
+<p>Therefore, the Python server does <strong>not</strong> directly give us SYSTEM privileges.</p>
+<p>Its role is only:</p>
+<div class="highlight"><pre><span></span><code>File Transfer
+</code></pre></div>
+<p>The actual privilege escalation occurs only once the downloaded CVE-2017-0213 executable is launched on the vulnerable Windows machine.</p>
+<p>The complete attack flow is therefore:</p>
+<div class="highlight"><pre><span></span><code>                    ATTACKER
+                  Kali Linux
+                      |
+                      |
+             CVE-2017-0213.exe
+                      |
+                      v
+            Python HTTP Server
+                 Port 8000
+                      |
+                      | HTTP download
+                      |
+                      v
+                WINDOWS TARGET
+                      |
+                    Wade
+                      |
+                      | Execute exploit
+                      |
+                      v
+               CVE-2017-0213
+                      |
+                      | Privilege Escalation
+                      |
+                      v
+           NT AUTHORITY\SYSTEM
+</code></pre></div>
+<p>In other words:</p>
+<ol>
+<li>We obtain the exploit on Kali.</li>
+<li>We host it using Python's HTTP server.</li>
+<li>The Windows machine connects to our Kali HTTP server.</li>
+<li>We download the exploit onto Windows.</li>
+<li>We execute the exploit locally.</li>
+<li>CVE-2017-0213 abuses a vulnerable Windows mechanism.</li>
+<li>Windows starts a new process with elevated privileges.</li>
+<li>We obtain a command prompt running as <code>NT AUTHORITY\SYSTEM</code>.</li>
+</ol>
+<p><code>NT AUTHORITY\SYSTEM</code> is not simply another normal Windows user.</p>
+<p>It is the local system account used by Windows itself and by many privileged system services.</p>
+<p>It generally has permissions exceeding those of standard users and is one of the highest local privilege levels available on a Windows machine.</p>
+<p>Therefore, obtaining a shell as:</p>
+<div class="highlight"><pre><span></span><code>NT AUTHORITY\SYSTEM
+</code></pre></div>
+<p>means that the privilege-escalation phase has succeeded and that we have effectively gained full control of the target machine within the laboratory environment.</p>
+<hr />
+<h2 id="7-attack-chain-summary">7. Attack Chain Summary</h2>
+<p>The complete compromise can be summarized as follows:</p>
+<div class="highlight"><pre><span></span><code>Web Server Enumeration
+        |
+        v
+Discovery of /retro
+        |
+        v
+WordPress Enumeration
+        |
+        v
+Valid User: wade
+        |
+        v
+WordPress Administrative Access
+        |
+        v
+Theme Editor
+        |
+        v
+PHP Command Execution
+        |
+        v
+Remote Command Execution
+        |
+        v
+Windows Credentials
+        |
+        v
+RDP Access as Wade
+        |
+        v
+Local Privilege Escalation Enumeration
+        |
+        +---- CVE-2019-1388 Investigation
+        |
+        v
+CVE-2017-0213
+        |
+        v
+Exploit Transferred Through Python HTTP Server
+        |
+        v
+Exploit Executed Locally
+        |
+        v
+NT AUTHORITY\SYSTEM
+</code></pre></div>
+<hr />
+<h2 id="8-conclusion">8. Conclusion</h2>
+<p>The Retro room demonstrates an attack chain involving both web application compromise and Windows local privilege escalation.</p>
+<p>We began by enumerating the web server and identifying a WordPress installation under <code>/retro</code>.</p>
+<p>WordPress enumeration revealed the valid user <code>wade</code>, and access to the administration interface allowed us to modify a PHP theme file.</p>
+<p>By abusing the WordPress theme editor, we confirmed remote command execution on the underlying Windows host.</p>
+<p>Valid Windows credentials then allowed us to establish an RDP session as Wade and directly interact with the system.</p>
+<p>During privilege-escalation enumeration, we first investigated CVE-2019-1388 and the Windows certificate dialog but ultimately moved to CVE-2017-0213.</p>
+<p>We transferred the CVE-2017-0213 exploit from Kali to the Windows machine using a temporary Python HTTP server.</p>
+<p>Once the executable was downloaded and executed locally, the vulnerability allowed us to elevate our privileges from the <code>Wade</code> account to:</p>
+<div class="highlight"><pre><span></span><code>NT AUTHORITY\SYSTEM
+</code></pre></div>
+<p>The most important lesson from the final stage is that the Python HTTP server was only the <strong>file-transfer mechanism</strong>. The actual privilege escalation occurred when the vulnerable Windows machine executed the CVE-2017-0213 exploit.</p>
+<p>The final compromise path was therefore:</p>
+<div class="highlight"><pre><span></span><code>WordPress
+    ↓
+Remote Command Execution
+    ↓
+RDP as Wade
+    ↓
+Local Exploit Transfer
+    ↓
+CVE-2017-0213
+    ↓
+NT AUTHORITY\SYSTEM
+</code></pre></div>
+<p>This completes the compromise of the Retro machine.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

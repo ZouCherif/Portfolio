@@ -2,30 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://ZouCherif.github.io/portfolio/</loc>
-         <lastmod>2026-10-07</lastmod>
+         <lastmod>2026-10-11</lastmod>
     </url>
     <url>
          <loc>https://ZouCherif.github.io/portfolio/CTF/CMSpit/</loc>
-         <lastmod>2026-10-07</lastmod>
+         <lastmod>2026-10-11</lastmod>
     </url>
     <url>
          <loc>https://ZouCherif.github.io/portfolio/CTF/JacobTheBoss/</loc>
-         <lastmod>2026-10-07</lastmod>
+         <lastmod>2026-10-11</lastmod>
+    </url>
+    <url>
+         <loc>https://ZouCherif.github.io/portfolio/CTF/Retro/</loc>
+         <lastmod>2026-10-11</lastmod>
     </url>
     <url>
          <loc>https://ZouCherif.github.io/portfolio/CTF/attacktive-directory/</loc>
-         <lastmod>2026-10-07</lastmod>
+         <lastmod>2026-10-11</lastmod>
     </url>
     <url>
          <loc>https://ZouCherif.github.io/portfolio/Projects/01-deploiement-siem-wazuh/</loc>
-         <lastmod>2026-10-07</lastmod>
+         <lastmod>2026-10-11</lastmod>
     </url>
     <url>
          <loc>https://ZouCherif.github.io/portfolio/Projects/02-active-directory-security-lab/</loc>
-         <lastmod>2026-10-07</lastmod>
+         <lastmod>2026-10-11</lastmod>
     </url>
     <url>
          <loc>https://ZouCherif.github.io/portfolio/Projects/03-bitcoin-pim/</loc>
-         <lastmod>2026-10-07</lastmod>
+         <lastmod>2026-10-11</lastmod>
     </url>
 </urlset>

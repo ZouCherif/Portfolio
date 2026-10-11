@@ -240,7 +240,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="CTF/attacktive-directory/" class="md-tabs__link">
+        <a href="CTF/Retro/" class="md-tabs__link">
           
   
   
@@ -375,6 +375,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#active-directory-attack-defense-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Active Directory Attack &amp; Defense Lab
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#bitcoin-mining-optimization-on-pim-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -387,17 +398,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#projects-in-documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Projects in Documentation
-      
-    </span>
-  </a>
   
 </li>
       
@@ -633,6 +633,34 @@
   
   
     <li class="md-nav__item">
+      <a href="CTF/Retro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Retro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="CTF/attacktive-directory/" class="md-nav__link">
         
   
@@ -767,6 +795,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#active-directory-attack-defense-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Active Directory Attack &amp; Defense Lab
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#bitcoin-mining-optimization-on-pim-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -779,17 +818,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#projects-in-documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Projects in Documentation
-      
-    </span>
-  </a>
   
 </li>
       
@@ -844,21 +872,21 @@
 <p>A segmented security-monitoring lab combining network and endpoint telemetry. The environment uses pfSense for network segmentation, Suricata for network intrusion detection, Wazuh for centralized monitoring and Sysmon for Windows endpoint visibility.</p>
 <p>The project also includes controlled attack simulations from Kali Linux against an internal OWASP Juice Shop instance in order to validate detection and alerting capabilities.</p>
 <p><a href="Projects/01-deploiement-siem-wazuh/">View the project →</a></p>
+<hr />
+<h3 id="active-directory-attack-defense-lab">Active Directory Attack &amp; Defense Lab</h3>
+<p><strong>Technologies:</strong> Active Directory · Windows Server · DNS · Kerberos · Ubuntu · DVWA · Impacket · Hashcat · GPO · Network Segmentation</p>
+<p>An end-to-end Active Directory security lab combining offensive analysis and defensive hardening.</p>
+<p>The attack scenario starts from an external Kali Linux machine, compromises an exposed DVWA web server through command injection, escalates privileges on Ubuntu, pivots into the internal network and abuses Kerberos and excessive Active Directory permissions through <strong>Kerberoasting, DCSync and Pass-the-Hash</strong> until obtaining <code>NT AUTHORITY\SYSTEM</code> access on the Domain Controller.</p>
+<p>The second phase focuses on reducing the attack surface through <strong>network segmentation, firewall rules, security zones, least privilege, service-account hardening and GPO-based security controls</strong>, while identifying relevant Blue Team detection opportunities.</p>
+<p><a href="Projects/02-active-directory-security-lab/">View the project →</a></p>
+<hr />
 <h3 id="bitcoin-mining-optimization-on-pim-architecture">Bitcoin Mining Optimization on PiM Architecture</h3>
 <p><strong>Technologies:</strong> C · Assembly · UPMEM · Performance Optimization · SHA-256</p>
 <p>R&amp;D internship project conducted at the MIS Laboratory of the Université de Picardie Jules Verne. I implemented and optimized Bitcoin mining workloads on a Processor-in-Memory architecture, achieving up to a <strong>3× increase in hashes calculated per second</strong>.</p>
 <p><a href="Projects/03-bitcoin-pim/">View the project →</a></p>
 <hr />
-<h2 id="projects-in-documentation">Projects in Documentation</h2>
-<p>Two additional cybersecurity labs are currently being documented:</p>
-<ul>
-<li><strong>Active Directory Security Lab</strong> — deployment, compromise simulation, Kerberoasting, Pass-the-Hash, DCSync, segmentation and GPO hardening.</li>
-<li><strong>Windows Reverse Engineering</strong> — static analysis with Ghidra, anti-debugging analysis, multithreaded code analysis and Python tooling around MD5-based recovery.</li>
-</ul>
-<p>These projects will be added here once their technical write-ups are complete.</p>
-<hr />
 <h2 id="ctf-practical-training">CTF &amp; Practical Training</h2>
-<p>I also document selected CTF and training exercises to keep track of techniques, methodology and lessons learned.</p>
+<p>I also document selected CTF and practical security exercises to develop and maintain hands-on skills in enumeration, exploitation, Active Directory and web security.</p>
 <p><a href="CTF/attacktive-directory/">Browse CTF write-ups →</a></p>
 <hr />
 <h2 id="contact">Contact</h2>
