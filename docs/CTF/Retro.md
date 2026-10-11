@@ -26,9 +26,9 @@ All actions described in this write-up were performed inside the authorized TryH
 
 ---
 
-# 2. WordPress Enumeration
+## 2. WordPress Enumeration
 
-## 2.1. Directory Enumeration with Gobuster
+### 2.1. Directory Enumeration with Gobuster
 
 We begin by enumerating the web server in order to discover directories that may not be directly visible from the main page.
 
@@ -50,7 +50,7 @@ The `/retro` directory contains a website and therefore becomes our main target 
 
 ---
 
-## 2.2. WordPress Enumeration with WPScan
+### 2.2. WordPress Enumeration with WPScan
 
 After discovering the website, we identify it as a WordPress installation.
 
@@ -77,7 +77,7 @@ Discovering a valid username significantly reduces the authentication attack sur
 
 ---
 
-## 2.3. Inspecting the Website Source Code
+### 2.3. Inspecting the Website Source Code
 
 We continue the enumeration by inspecting the HTML source code of the website.
 
@@ -95,7 +95,7 @@ Identifying the active theme will later become particularly useful once administ
 
 ---
 
-## 2.4. Inspecting the WordPress REST API
+### 2.4. Inspecting the WordPress REST API
 
 WordPress exposes a REST API that can provide information about the website depending on its configuration.
 
@@ -111,7 +111,7 @@ The API provides another potential source of information during the enumeration 
 
 ---
 
-## 2.5. Investigating CVE-2017-6514
+### 2.5. Investigating CVE-2017-6514
 
 During our research, we investigate `CVE-2017-6514`.
 
@@ -123,7 +123,7 @@ From an attacker's perspective, information-disclosure vulnerabilities can be va
 
 ---
 
-## 2.6. Examining WordPress User Information
+### 2.6. Examining WordPress User Information
 
 We inspect the WordPress API response associated with the user `wade`.
 
@@ -146,9 +146,9 @@ is a valid WordPress account.
 
 ---
 
-# 3. Initial Access
+## 3. Initial Access
 
-## 3.1. Accessing the WordPress Dashboard
+### 3.1. Accessing the WordPress Dashboard
 
 Using the credentials recovered during our enumeration, we successfully authenticate to the WordPress administration dashboard.
 
@@ -168,7 +168,7 @@ Since PHP code contained inside these files is processed by the web server, modi
 
 ---
 
-## 3.2. Preparing Remote Access
+### 3.2. Preparing Remote Access
 
 Our next objective is to move from WordPress administrative access to command execution on the Windows host.
 
@@ -200,7 +200,7 @@ This avoids relying exclusively on commands executed through the browser and can
 
 ---
 
-## 3.3. Confirming Remote Command Execution
+### 3.3. Confirming Remote Command Execution
 
 Before relying on a reverse shell, we verify that our modified PHP file is capable of executing Windows commands.
 
@@ -224,9 +224,9 @@ At this point, our access is no longer limited to WordPress itself. We can inter
 
 ---
 
-# 4. Accessing the Windows Machine
+## 4. Accessing the Windows Machine
 
-## 4.1. Connecting Through RDP
+### 4.1. Connecting Through RDP
 
 After obtaining valid Windows credentials, we attempt to access the graphical Windows environment using Remote Desktop Protocol.
 
@@ -254,7 +254,7 @@ We now have direct access to the target machine as a local user.
 
 ---
 
-## 4.2. Retrieving the User Flag
+### 4.2. Retrieving the User Flag
 
 Once connected through RDP, we inspect Wade's desktop.
 
@@ -274,7 +274,7 @@ This confirms that we have successfully completed the initial-access portion of 
 
 ---
 
-# 5. Privilege Escalation Enumeration
+## 5. Privilege Escalation Enumeration
 
 Although we now have access to the Windows machine, `Wade` is not running with the highest system privileges.
 
@@ -290,7 +290,7 @@ NT AUTHORITY\SYSTEM
 
 ---
 
-## 5.1. Investigating CVE-2019-1388
+### 5.1. Investigating CVE-2019-1388
 
 One potential privilege-escalation technique we investigate is:
 
@@ -308,7 +308,7 @@ Under vulnerable configurations, interactions with certificate information may l
 
 ---
 
-## 5.2. Exploring Windows User Accounts
+### 5.2. Exploring Windows User Accounts
 
 As part of the local enumeration process, we navigate to:
 
@@ -330,7 +330,7 @@ This confirms that our current session belongs to the `Wade` account and that a 
 
 ---
 
-## 5.3. Testing User Account Control
+### 5.3. Testing User Account Control
 
 We then investigate the behavior of Windows User Account Control, commonly known as UAC.
 
@@ -348,7 +348,7 @@ This indicates that Wade cannot simply approve administrative execution.
 
 ---
 
-## 5.4. Investigating the Certificate Dialog
+### 5.4. Investigating the Certificate Dialog
 
 Because CVE-2019-1388 is related to the Windows certificate interface, we inspect the certificate information presented by the executable.
 
@@ -360,7 +360,7 @@ This dialog is particularly interesting because certain historical Windows privi
 
 ---
 
-## 5.5. Testing the CVE-2019-1388 Approach
+### 5.5. Testing the CVE-2019-1388 Approach
 
 We continue interacting with the UAC and certificate windows in order to determine whether we can launch another process from the privileged security context.
 
@@ -374,7 +374,7 @@ We therefore continue our enumeration instead of relying on this technique.
 
 ---
 
-## 5.6. Investigating Internet Explorer
+### 5.6. Investigating Internet Explorer
 
 During the investigation, Internet Explorer is opened as part of the certificate-related workflow.
 
@@ -390,7 +390,7 @@ Since this path does not provide the desired result, we move on to another local
 
 ---
 
-# 6. Privilege Escalation with CVE-2017-0213
+## 6. Privilege Escalation with CVE-2017-0213
 
 We next investigate:
 
@@ -414,7 +414,7 @@ NT AUTHORITY\SYSTEM
 
 ---
 
-## 6.1. Obtaining the Exploit
+### 6.1. Obtaining the Exploit
 
 We locate a public proof of concept for CVE-2017-0213 in the `windows-kernel-exploits` repository.
 
@@ -430,7 +430,7 @@ We still need to transfer it to the target Windows machine before it can be exec
 
 ---
 
-## 6.2. Hosting the Exploit with a Python HTTP Server
+### 6.2. Hosting the Exploit with a Python HTTP Server
 
 A simple way to transfer files between our Kali attacking machine and the Windows target is to temporarily host them over HTTP.
 
@@ -469,7 +469,7 @@ Its only purpose is to make the exploit executable available for download.
 
 ---
 
-## 6.3. Downloading the Exploit onto Windows
+### 6.3. Downloading the Exploit onto Windows
 
 From the Windows target, we open a browser and navigate to the IP address of our Kali machine on the port used by the Python HTTP server.
 
@@ -494,7 +494,7 @@ After the transfer, the exploit executable is physically present on the target s
 
 ---
 
-## 6.4. Executing CVE-2017-0213
+### 6.4. Executing CVE-2017-0213
 
 We launch the downloaded executable from the Windows machine.
 
@@ -534,7 +534,7 @@ This confirms that the local privilege escalation was successful.
 
 ---
 
-## 6.5. Understanding What Happened
+### 6.5. Understanding What Happened
 
 The final exploitation process consists of several independent steps.
 
@@ -618,7 +618,7 @@ means that the privilege-escalation phase has succeeded and that we have effecti
 
 ---
 
-# 7. Attack Chain Summary
+## 7. Attack Chain Summary
 
 The complete compromise can be summarized as follows:
 
@@ -672,7 +672,7 @@ NT AUTHORITY\SYSTEM
 
 ---
 
-# 8. Conclusion
+## 8. Conclusion
 
 The Retro room demonstrates an attack chain involving both web application compromise and Windows local privilege escalation.
 
