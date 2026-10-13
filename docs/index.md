@@ -7,6 +7,10 @@ I am currently looking for a **6-month final-year cybersecurity internship start
 
 My main interests are defensive security, infrastructure security, security monitoring, Active Directory, network security and technical security analysis. This portfolio presents the projects and technical work I use to develop those skills.
 
+
+!!! info "Portfolio continuously evolving"
+    This portfolio currently showcases a selection of my cybersecurity projects, labs and technical write-ups. Additional projects, CTF write-ups and documentation are progressively being added as I continue developing and documenting my practical work.
+
 ---
 
 ## Featured Projects
