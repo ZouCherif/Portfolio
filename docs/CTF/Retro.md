@@ -1,5 +1,8 @@
 # TryHackMe: Retro
 
+!!! info "Authorized educational environment"
+    This write-up documents cybersecurity techniques performed exclusively in an authorized TryHackMe training environment. All hosts, accounts, credentials, flags and data shown belong to isolated lab systems and are not production resources. Raw secret values are redacted from rendered commands where they are not necessary to understand the methodology; all attack steps and technical conclusions are preserved.
+
 **Difficulty:** Hard  
 **Platform:** TryHackMe  
 **Target:** Windows  
@@ -233,13 +236,13 @@ After obtaining valid Windows credentials, we attempt to access the graphical Wi
 From Kali Linux, we use FreeRDP:
 
 ```bash
-xfreerdp /u:wade /p:parzival /v:10.129.189.26 /dynamic-resolution +clipboard
+xfreerdp /u:wade /p:<LAB_PASSWORD_REDACTED> /v:10.129.189.26 /dynamic-resolution +clipboard
 ```
 
 The main parameters are:
 
 - `/u:wade` — username
-- `/p:parzival` — password
+- `/p:<LAB_PASSWORD_REDACTED>` — recovered lab password (redacted in the rendered write-up)
 - `/v:10.129.189.26` — target host
 - `/dynamic-resolution` — dynamically adjusts the remote desktop resolution
 - `+clipboard` — enables clipboard sharing between Kali and Windows
