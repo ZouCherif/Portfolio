@@ -1,6 +1,7 @@
 site_name: Cherif Zouaoui — Cybersecurity Portfolio
 site_url: https://ZouCherif.github.io/portfolio/
-site_description: Cybersecurity portfolio of Cherif Zouaoui — Blue Team, security infrastructure, SOC, Active Directory and technical security projects.
+site_description: Educational cybersecurity portfolio of Cherif Zouaoui — Blue Team, SOC, security infrastructure, Active Directory and authorized hands-on security labs.
+copyright: Educational cybersecurity portfolio — offensive techniques are documented only from authorized lab and training environments.
 
 theme:
   name: material
