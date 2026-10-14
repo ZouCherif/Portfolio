@@ -1,5 +1,8 @@
 # TryHackMe: Jacob the Boss
 
+!!! info "Authorized educational environment"
+    This write-up documents cybersecurity techniques performed exclusively in an authorized TryHackMe training environment. All hosts, accounts, credentials, flags and data shown belong to isolated lab systems and are not production resources. Screenshots are retained as technical evidence of the exercise.
+
 **Difficulty:** Medium  
 **Category:** Web Exploitation & Privilege Escalation
 
@@ -89,7 +92,6 @@ The scan revealed a vast array of open ports, most notably:
 ### JBoss & JMX Console Analysis:
 
 **JBoss** (now known as WildFly) is an enterprise Java Application Server used for hosting complex applications. Further enumeration of port 8080 revealed an exposed JMX (Java Management Extensions) Console accessible at `/jmx-console/`. The JMX Console is a built-in management tool that allows administrators to interact with Managed Beans (MBeans). Exposing this interface without proper authentication presents a critical security risk, as it permits arbitrary administrative actions.
-`
 
 ## 3. Exploitation (Initial Access)
 
