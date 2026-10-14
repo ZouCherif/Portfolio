@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Cybersecurity portfolio of Cherif Zouaoui — Blue Team, security infrastructure, SOC, Active Directory and technical security projects.">
+        <meta name="description" content="Educational cybersecurity portfolio of Cherif Zouaoui — Blue Team, SOC, security infrastructure, Active Directory and authorized hands-on security labs.">
       
       
       
@@ -1444,6 +1444,10 @@
 
 
 <h1 id="tryhackme-retro">TryHackMe: Retro</h1>
+<div class="admonition info">
+<p class="admonition-title">Authorized educational environment</p>
+<p>This write-up documents cybersecurity techniques performed exclusively in an authorized TryHackMe training environment. All hosts, accounts, credentials, flags and data shown belong to isolated lab systems and are not production resources. Raw secret values are redacted from rendered commands where they are not necessary to understand the methodology; all attack steps and technical conclusions are preserved.</p>
+</div>
 <p><strong>Difficulty:</strong> Hard<br />
 <strong>Platform:</strong> TryHackMe<br />
 <strong>Target:</strong> Windows<br />
@@ -1578,12 +1582,12 @@
 <h3 id="41-connecting-through-rdp">4.1. Connecting Through RDP</h3>
 <p>After obtaining valid Windows credentials, we attempt to access the graphical Windows environment using Remote Desktop Protocol.</p>
 <p>From Kali Linux, we use FreeRDP:</p>
-<div class="highlight"><pre><span></span><code>xfreerdp<span class="w"> </span>/u:wade<span class="w"> </span>/p:parzival<span class="w"> </span>/v:10.129.189.26<span class="w"> </span>/dynamic-resolution<span class="w"> </span>+clipboard
+<div class="highlight"><pre><span></span><code>xfreerdp<span class="w"> </span>/u:wade<span class="w"> </span>/p:&lt;LAB_PASSWORD_REDACTED&gt;<span class="w"> </span>/v:10.129.189.26<span class="w"> </span>/dynamic-resolution<span class="w"> </span>+clipboard
 </code></pre></div>
 <p>The main parameters are:</p>
 <ul>
 <li><code>/u:wade</code> — username</li>
-<li><code>/p:parzival</code> — password</li>
+<li><code>/p:&lt;LAB_PASSWORD_REDACTED&gt;</code> — recovered lab password (redacted in the rendered write-up)</li>
 <li><code>/v:10.129.189.26</code> — target host</li>
 <li><code>/dynamic-resolution</code> — dynamically adjusts the remote desktop resolution</li>
 <li><code>+clipboard</code> — enables clipboard sharing between Kali and Windows</li>
@@ -1911,6 +1915,10 @@ NT AUTHORITY\SYSTEM
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Educational cybersecurity portfolio — offensive techniques are documented only from authorized lab and training environments.
+    </div>
   
   
     Made with

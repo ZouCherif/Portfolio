@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Cybersecurity portfolio of Cherif Zouaoui — Blue Team, security infrastructure, SOC, Active Directory and technical security projects.">
+        <meta name="description" content="Educational cybersecurity portfolio of Cherif Zouaoui — Blue Team, SOC, security infrastructure, Active Directory and authorized hands-on security labs.">
       
       
       
@@ -866,6 +866,10 @@
 
 
 <h1 id="tryhackme-jacob-the-boss">TryHackMe: Jacob the Boss</h1>
+<div class="admonition info">
+<p class="admonition-title">Authorized educational environment</p>
+<p>This write-up documents cybersecurity techniques performed exclusively in an authorized TryHackMe training environment. All hosts, accounts, credentials, flags and data shown belong to isolated lab systems and are not production resources. Screenshots are retained as technical evidence of the exercise.</p>
+</div>
 <p><strong>Difficulty:</strong> Medium<br />
 <strong>Category:</strong> Web Exploitation &amp; Privilege Escalation</p>
 <h2 id="1-context-objectives">1. Context &amp; Objectives</h2>
@@ -946,8 +950,7 @@
 <li><strong>Port 8083/tcp</strong>: JBoss service httpd</li>
 </ul>
 <h3 id="jboss-jmx-console-analysis">JBoss &amp; JMX Console Analysis:</h3>
-<p><strong>JBoss</strong> (now known as WildFly) is an enterprise Java Application Server used for hosting complex applications. Further enumeration of port 8080 revealed an exposed JMX (Java Management Extensions) Console accessible at <code>/jmx-console/</code>. The JMX Console is a built-in management tool that allows administrators to interact with Managed Beans (MBeans). Exposing this interface without proper authentication presents a critical security risk, as it permits arbitrary administrative actions.
-`</p>
+<p><strong>JBoss</strong> (now known as WildFly) is an enterprise Java Application Server used for hosting complex applications. Further enumeration of port 8080 revealed an exposed JMX (Java Management Extensions) Console accessible at <code>/jmx-console/</code>. The JMX Console is a built-in management tool that allows administrators to interact with Managed Beans (MBeans). Exposing this interface without proper authentication presents a critical security risk, as it permits arbitrary administrative actions.</p>
 <h2 id="3-exploitation-initial-access">3. Exploitation (Initial Access)</h2>
 <p>To leverage the exposed JMX console, the <code>jexboss</code> framework (an automated exploitation tool designed for JBoss/Tomcat environments) was utilized.</p>
 <p>The tool successfully exploited the misconfiguration, deploying a payload that yielded a reverse shell on the target system. This initial foothold provided unauthorized access as a standard service user, allowing for the retrieval of the initial flag.</p>
@@ -1013,6 +1016,10 @@
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Educational cybersecurity portfolio — offensive techniques are documented only from authorized lab and training environments.
+    </div>
   
   
     Made with
