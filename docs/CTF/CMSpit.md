@@ -1,5 +1,8 @@
 # TryHackMe: CMSpit
 
+!!! info "Authorized educational environment"
+    This write-up documents cybersecurity techniques performed exclusively in an authorized TryHackMe training environment. All hosts, accounts, credentials, flags and data shown belong to isolated lab systems and are not production resources. Screenshots are retained as technical evidence of the exercise.
+
 **Difficulty:** Medium  
 **Category:** Web Exploitation & Privilege Escalation
 
